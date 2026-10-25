@@ -1,0 +1,46 @@
+{
+  "name": "betterbagac",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:24-trixie",
+  "workspaceFolder": "/workspaces/betterbagac",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "enableNonRootSudo": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/jungaretti/features/vim:1": {}
+  },
+  "remoteUser": "node",
+  "containerEnv": {
+    "COREPACK_ENABLE_DOWNLOAD_PROMPT": "0"
+  },
+  "onCreateCommand": "sudo corepack enable && sudo mkdir -p /home/node/.local/share/pnpm/store && sudo chown -R node:node /home/node",
+  "updateContentCommand": "pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "bradlc.vscode-tailwindcss",
+        "ms-vscode.vscode-typescript-next",
+        "mhutchie.git-graph",
+        "oderwat.indent-rainbow"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "biomejs.biome",
+        "editor.formatOnSave": true,
+        "js/ts.tsdk.path": "node_modules/typescript/lib"
+      }
+    }
+  },
+  "mounts": [
+    "source=pnpm-store-cache,target=/home/node/.local/share/pnpm/store,type=volume"
+  ],
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Dev Server",
+      "onAutoForward": "notify"
+    }
+  }
+}

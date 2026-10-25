@@ -1,0 +1,53 @@
+{
+  "title": "Bagac Competitive Index",
+  "description": "Annual competitiveness indicators measuring local economic performance",
+  "source": "Cities and Municipalities Competitiveness Index (CMCI)",
+  "years": [2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024],
+  "overall": {
+    "ranks": [172, 655, 246, 166, 200, 218, 116, 359, 44],
+    "scores": [26.06, 27.23, null, 38.19, 38.39, 33.01, 32.85, 27.67, 35.08]
+  },
+  "note": "Scores are not directly comparable across years because CMCI pillar weights changed. No comparable 2018 score was reported.",
+  "pillars": [
+    {
+      "id": "economic-dynamism",
+      "name": "Economic Dynamism",
+      "icon": "bi-graph-up-arrow",
+      "rank2024": 247,
+      "scores": [7.7927, 2.9825, null, 6.5178, 5.8978, 4.8484, 5.0069, 3.4251, 4.4403],
+      "ranks": [197, 656, 430, 32, 257, 338, 245, 351, 247]
+    },
+    {
+      "id": "government-efficiency",
+      "name": "Government Efficiency",
+      "icon": "bi-building-check",
+      "rank2024": 23,
+      "scores": [11.0795, 5.4594, null, 10.9738, 10.632, 9.4709, 10.8794, 8.2384, 8.5939],
+      "ranks": [88, 700, 300, 243, 216, 212, 2, 155, 23]
+    },
+    {
+      "id": "infrastructure",
+      "name": "Infrastructure",
+      "icon": "bi-building-gear",
+      "rank2024": 71,
+      "scores": [7.1863, 6.5953, null, 5.6495, 5.4788, 5.3197, 3.0484, 2.9511, 3.3508],
+      "ranks": [454, 126, 71, 170, 199, 283, 141, 168, 71]
+    },
+    {
+      "id": "resiliency",
+      "name": "Resiliency",
+      "icon": "bi-shield-check",
+      "rank2024": 285,
+      "scores": [null, 12.19, null, 15.0487, 16.3804, 13.3661, 10.3004, 10.2982, 11.2791],
+      "ranks": [null, 659, 417, 615, 277, 248, 489, 529, 285]
+    },
+    {
+      "id": "innovation",
+      "name": "Innovation",
+      "icon": "bi-lightbulb",
+      "rank2024": 34,
+      "scores": [null, null, null, null, null, null, 3.6167, 2.7567, 7.4175],
+      "ranks": [null, null, null, null, null, null, 282, 435, 34]
+    }
+  ]
+}
