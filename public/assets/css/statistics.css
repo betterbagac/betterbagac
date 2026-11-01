@@ -409,7 +409,7 @@
 /* Distribution Section */
 .distribution-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 32px;
     align-items: start;
 }
@@ -420,13 +420,23 @@
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     height: 380px;
+    min-width: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.distribution-chart canvas {
+    max-width: 100%;
+}
+
+.distribution-chart .chart-container-full {
+    height: 100%;
 }
 
 .distribution-list {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
 }
 
 .barangay-row {
@@ -620,12 +630,14 @@
     font-size: 0.8125rem;
     font-weight: 500;
     color: var(--color-text);
+    white-space: normal;
 }
 
 .sector-pct {
     font-size: 0.8125rem;
     font-weight: 700;
     color: var(--color-primary);
+    flex-shrink: 0;
 }
 
 .sector-bar-bg {
@@ -814,7 +826,7 @@
     }
 
     .distribution-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         gap: 24px;
     }
 
