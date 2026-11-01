@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import HotlineBar from "@/components/layout/HotlineBar";
 import InfoBar from "@/components/layout/InfoBar";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Providers } from "./providers";
 
 export const viewport: Viewport = {
   themeColor: "#1a5f2a",
@@ -72,16 +73,18 @@ export default function RootLayout({
         <link rel="stylesheet" href="/assets/css/footer.css" />
       </head>
       <body>
-        <LanguageProvider>
-          <a href="#main-content" className="skip-link">
-            Skip to main content
-          </a>
-          <HotlineBar />
-          <Header />
-          <InfoBar />
-          <main id="main-content">{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <Providers>
+          <LanguageProvider>
+            <a href="#main-content" className="skip-link">
+              Skip to main content
+            </a>
+            <HotlineBar />
+            <Header />
+            <InfoBar />
+            <main id="main-content">{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </Providers>
       </body>
     </html>
   );

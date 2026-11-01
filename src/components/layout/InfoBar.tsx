@@ -1,12 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useCurrency } from "@/hooks/useCurrency";
+import { useWeather } from "@/hooks/useWeather";
 
 export default function InfoBar() {
   const [dateTime, setDateTime] = useState({
     date: "--- --, ----",
     time: "--:-- --",
   });
+  const { rate } = useCurrency();
+  const { weather } = useWeather();
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -40,13 +44,13 @@ export default function InfoBar() {
           <div className="info-bar-item info-bar-rates">
             <i className="bi bi-currency-exchange" aria-hidden="true"></i>
             <span className="rate-rotator">
-              <span className="rate-display">1 USD = ₱ 56.50</span>
+              <span className="rate-display">1 USD = ₱ {rate.toFixed(2)}</span>
             </span>
           </div>
           <div className="info-bar-item info-bar-weather">
             <i className="bi bi-thermometer-half" aria-hidden="true"></i>
             <span className="weather-location">Bagac</span>
-            <span className="weather-temp">29°C</span>
+            <span className="weather-temp">{weather.temp}°C</span>
           </div>
           <div className="info-bar-item info-bar-datetime">
             <i className="bi bi-calendar3" aria-hidden="true"></i>

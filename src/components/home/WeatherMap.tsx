@@ -1,4 +1,10 @@
+"use client";
+
+import { useWeather } from "@/hooks/useWeather";
+
 export default function WeatherMap() {
+  const { weather } = useWeather();
+
   return (
     <section className="section weather-map-section">
       <div className="container">
@@ -14,26 +20,26 @@ export default function WeatherMap() {
               >
                 <div className="weather-current">
                   <div className="weather-current-icon">
-                    <i className="bi bi-cloud-sun-fill"></i>
+                    <i className={`bi ${weather.icon}`}></i>
                   </div>
                   <div className="weather-current-info">
-                    <div className="weather-current-temp">29°C</div>
+                    <div className="weather-current-temp">{weather.temp}°C</div>
                     <div className="weather-current-condition">
-                      Mainly clear
+                      {weather.description}
                     </div>
                     <div className="weather-current-location">
-                      <i className="bi bi-geo-alt"></i> Bagac, Bataan
+                      <i className="bi bi-geo-alt"></i> {weather.location}
                     </div>
                   </div>
                 </div>
                 <div className="weather-stats">
                   <div className="weather-stat">
                     <i className="bi bi-droplet"></i>
-                    <span>65%</span>
+                    <span>{weather.humidity}%</span>
                   </div>
                   <div className="weather-stat">
                     <i className="bi bi-wind"></i>
-                    <span>12 km/h</span>
+                    <span>{weather.windSpeed} km/h</span>
                   </div>
                 </div>
               </section>

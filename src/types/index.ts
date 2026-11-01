@@ -42,6 +42,11 @@ export interface WeatherData {
   description: string;
   icon: string;
   location: string;
+  humidity?: number;
+  windSpeed?: number;
+  /** WMO weather interpretation code from Open-Meteo. */
+  code?: number;
+  observedAt?: string;
 }
 
 // Exchange rate types

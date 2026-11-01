@@ -10,6 +10,7 @@
     "fix": "biome check --write"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.105.0",
     "chart.js": "^4.5.1",
     "i18next": "^23.10.0",
     "leaflet": "^1.9.4",
