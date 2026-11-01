@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 export const metadata = {
   title: "Government Officials & Structure",
-  description: "Meet the leadership and offices serving Bagac, Bataan",
+  description: `Meet the leadership and offices serving ${siteConfig.municipalityName}, ${siteConfig.province}`,
 };
 
 export default function GovernmentPage() {
@@ -26,7 +27,8 @@ export default function GovernmentPage() {
             </span>
             <h1>Government Structure &amp; Officials</h1>
             <p className="page-header-desc">
-              Meet the leadership and offices serving Bagac
+              Meet the leadership and offices serving{" "}
+              {siteConfig.municipalityName}
             </p>
           </div>
         </div>
@@ -64,7 +66,8 @@ export default function GovernmentPage() {
               Municipal Leadership
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
-              The executive officials leading Bagac&apos;s governance
+              The executive officials leading {siteConfig.municipalityName}
+              &apos;s governance
             </p>
           </div>
 
@@ -78,15 +81,16 @@ export default function GovernmentPage() {
               </div>
               <div className="executive-card-body">
                 <div className="executive-contacts">
-                  <a href="mailto:ronmichaelalexisdelrosario@gmail.com">
+                  <a href={`mailto:${siteConfig.contact.email}`}>
                     <i className="bi bi-envelope"></i>{" "}
-                    ronmichaelalexisdelrosario@gmail.com
+                    {siteConfig.contact.email}
                   </a>
-                  <a href="tel:09608848515">
-                    <i className="bi bi-telephone"></i> 0960 884 8515
+                  <a href={`tel:${siteConfig.contact.mobile}`}>
+                    <i className="bi bi-telephone"></i>{" "}
+                    {siteConfig.contact.mobileDisplay}
                   </a>
                   <span>
-                    <i className="bi bi-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM
+                    <i className="bi bi-clock"></i> {siteConfig.contact.hours}
                   </span>
                 </div>
               </div>
@@ -99,14 +103,15 @@ export default function GovernmentPage() {
               </div>
               <div className="executive-card-body">
                 <div className="executive-contacts">
-                  <a href="https://bagac.gov.ph/the-sanguniang-bayan/">
+                  <a href={siteConfig.links.sangguniangBayan}>
                     <i className="bi bi-globe2"></i> Sangguniang Bayan
                   </a>
-                  <a href="tel:0476120424">
-                    <i className="bi bi-telephone"></i> (047) 612-0424
+                  <a href={`tel:${siteConfig.contact.phone}`}>
+                    <i className="bi bi-telephone"></i>{" "}
+                    {siteConfig.contact.phoneDisplay}
                   </a>
                   <span>
-                    <i className="bi bi-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM
+                    <i className="bi bi-clock"></i> {siteConfig.contact.hours}
                   </span>
                 </div>
               </div>
@@ -144,7 +149,8 @@ export default function GovernmentPage() {
               Sangguniang Bayan Members
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
-              Municipal Councilors serving the people of Bagac
+              Municipal Councilors serving the people of{" "}
+              {siteConfig.municipalityName}
             </p>
           </div>
 
@@ -260,7 +266,7 @@ export default function GovernmentPage() {
             <h3
               style={{ fontSize: "1.75rem", marginBottom: "var(--spacing-xs)" }}
             >
-              Barangays of Bagac
+              Barangays of {siteConfig.municipalityName}
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
               14 barangays serving our community

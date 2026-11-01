@@ -1,3 +1,5 @@
+import { siteConfig } from "@/data/site.config";
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -7,17 +9,14 @@ export default function Footer() {
         <div className="footer-main-new">
           <div className="footer-brand">
             <img
-              src="/assets/images/logo/betterbagac-logo-long-white.svg"
-              alt="Better Bagac logo"
+              src={siteConfig.assets.logoWhite}
+              alt={`${siteConfig.displayName} logo`}
               className="footer-logo"
             />
-            <p className="footer-tagline">
-              Empowering the people of Bagac with transparent access to the
-              services, programs, and public funds of LGU Bagac.
-            </p>
+            <p className="footer-tagline">{siteConfig.tagline}</p>
             <div className="footer-social-new">
               <a
-                href="https://www.facebook.com/LGUbagac"
+                href={siteConfig.links.facebook}
                 className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -26,16 +25,16 @@ export default function Footer() {
                 <i className="bi bi-facebook"></i>
               </a>
               <a
-                href="https://bagac.gov.ph/"
+                href={siteConfig.links.officialPortal}
                 className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Official LGU Bagac website"
+                aria-label={`Official ${siteConfig.lguName} website`}
               >
                 <i className="bi bi-globe2"></i>
               </a>
               <a
-                href="https://bagac.gov.ph/transparency-seal/"
+                href={siteConfig.links.transparencySeal}
                 className="footer-social-btn"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -53,7 +52,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://bagac.gov.ph/citizens-charter/"
+                  href={siteConfig.links.citizensCharter}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -79,7 +78,7 @@ export default function Footer() {
             <ul className="footer-links-new">
               <li>
                 <a
-                  href="https://data.gov.ph"
+                  href={siteConfig.links.openData}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -88,7 +87,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.foi.gov.ph/"
+                  href={siteConfig.links.foi}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -97,16 +96,16 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://bagac.gov.ph/"
+                  href={siteConfig.links.officialPortal}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Official LGU Bagac Portal
+                  Official {siteConfig.lguName} Portal
                 </a>
               </li>
               <li>
                 <a
-                  href="https://bagac.gov.ph/the-sanguniang-bayan/"
+                  href={siteConfig.links.sangguniangBayan}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -115,16 +114,16 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://www.facebook.com/LGUbagac"
+                  href={siteConfig.links.facebook}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  LGU Bagac Facebook
+                  {siteConfig.lguName} Facebook
                 </a>
               </li>
               <li>
                 <a
-                  href="https://blgf.gov.ph/"
+                  href={siteConfig.links.blgf}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -133,7 +132,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://cmci.dti.gov.ph/"
+                  href={siteConfig.links.cmci}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -143,38 +142,40 @@ export default function Footer() {
             </ul>
           </div>
           <div className="footer-column">
-            <div
-              className="footer-cost"
-              role="status"
-              aria-label="Cost to the People of Bagac: Zero Pesos"
-            >
-              Cost to the People of Bagac ={" "}
-              <span className="footer-cost-value">₱0</span>
+            <div className="footer-cost">
+              Cost to the People of {siteConfig.municipalityName} ={" "}
+              <span className="footer-cost-value">
+                {siteConfig.costToPeople}
+              </span>
             </div>
             <a
-              href="mailto:volunteer@betterbagac.org"
+              href={`mailto:${siteConfig.volunteerEmail}`}
               className="footer-contribute"
             >
-              <i className="bi bi-envelope-heart"></i> Volunteer with us
+              <i className="bi bi-envelope-heart" aria-hidden="true"></i>{" "}
+              Volunteer with us
             </a>
             <a
-              href="https://github.com/betterbagac/betterbagac"
+              href={siteConfig.repo}
               className="footer-contribute"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="bi bi-github"></i> Contribute code with us
+              <i className="bi bi-github" aria-hidden="true"></i> Contribute
+              code with us
             </a>
           </div>
         </div>
         <div className="footer-bottom-new">
           <div className="footer-copyright">
             <span>
-              &copy; {currentYear} Better Bagac. MIT | CC BY 4.0 All public
-              information sourced from official government portals.
+              &copy; {currentYear} {siteConfig.displayName}.{" "}
+              {siteConfig.license} All public information sourced from official
+              government portals.
             </span>
             <span className="footer-version">
-              <i className="bi bi-boxes"></i> Ver. 1.1.12
+              <i className="bi bi-boxes" aria-hidden="true"></i> Ver.{" "}
+              {siteConfig.version}
             </span>
           </div>
         </div>

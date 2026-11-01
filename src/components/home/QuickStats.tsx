@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 interface StatCard {
   href: string;
@@ -46,7 +47,7 @@ export default function QuickStats() {
     <section className="home-stats-v2">
       <div className="container">
         <div className="home-stats-v2-header">
-          <h2>Bagac at a Glance</h2>
+          <h2>{siteConfig.municipalityName} at a Glance</h2>
           <Link href="/statistics" className="home-section-link">
             View Statistics <i className="bi bi-arrow-right" />
           </Link>

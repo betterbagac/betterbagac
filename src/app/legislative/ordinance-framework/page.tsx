@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { LegislativeRecords } from "@/components/legislative/LegislativeRecords";
+import { siteConfig } from "@/data/site.config";
 
 export const metadata = {
-  title: "Ordinance Framework | BetterBagac.org",
-  description:
-    "Browse municipal ordinances enacted by the Sangguniang Bayan of Bagac, Bataan.",
+  title: "Ordinance Framework",
+  description: `Browse municipal ordinances enacted by the Sangguniang Bayan of ${siteConfig.municipalityName}, ${siteConfig.province}.`,
 };
 
 export default function OrdinanceFrameworkPage() {
@@ -30,7 +30,8 @@ export default function OrdinanceFrameworkPage() {
             </span>
             <h1>Ordinance Framework</h1>
             <p className="page-header-desc">
-              Municipal ordinances enacted by the Sangguniang Bayan ng Bagac
+              Municipal ordinances enacted by the Sangguniang Bayan ng{" "}
+              {siteConfig.municipalityName}
             </p>
           </div>
         </div>
@@ -80,9 +81,10 @@ export default function OrdinanceFrameworkPage() {
               <h3>Where to find enacted ordinances</h3>
               <p>
                 Certified copies of enacted ordinances are available from the
-                Sangguniang Bayan Secretariat at the Bagac Municipal Hall during
-                office hours. Requests may be made in person, in writing, or
-                through the national Freedom of Information portal.
+                Sangguniang Bayan Secretariat at the{" "}
+                {siteConfig.municipalityName} Municipal Hall during office
+                hours. Requests may be made in person, in writing, or through
+                the national Freedom of Information portal.
               </p>
               <p>
                 This portal does not reproduce ordinance text. Where a number
@@ -102,7 +104,7 @@ export default function OrdinanceFrameworkPage() {
             }}
           >
             <a
-              href="https://bagac.gov.ph/the-sanguniang-bayan/"
+              href={siteConfig.links.sangguniangBayan}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -111,7 +113,7 @@ export default function OrdinanceFrameworkPage() {
               Bayan
             </a>
             <a
-              href="https://bagac.gov.ph/transparency-seal/"
+              href={siteConfig.links.transparencySeal}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"
@@ -119,7 +121,7 @@ export default function OrdinanceFrameworkPage() {
               <i className="bi bi-shield-check"></i> Transparency Seal
             </a>
             <a
-              href="https://www.foi.gov.ph/"
+              href={siteConfig.links.foi}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"

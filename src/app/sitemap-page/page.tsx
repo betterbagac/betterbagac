@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 export default function SitemapPage() {
   return (
@@ -23,7 +24,7 @@ export default function SitemapPage() {
             </span>
             <h1>Sitemap</h1>
             <p className="page-header-desc">
-              Navigate all pages and services of Better Bagac
+              Navigate all pages and services of {siteConfig.displayName}
             </p>
           </div>
         </div>
@@ -277,7 +278,7 @@ export default function SitemapPage() {
             </div>
             <div className="sitemap-links-grid">
               <a
-                href="https://www.filipizen.com/partners/bataan_bagac/bpls/billing"
+                href={siteConfig.links.filipizen.businessBilling}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -286,7 +287,7 @@ export default function SitemapPage() {
                 &amp; Payment
               </a>
               <a
-                href="https://www.filipizen.com/partners/bataan_bagac/bpls/newbusiness"
+                href={siteConfig.links.filipizen.newBusiness}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -295,7 +296,7 @@ export default function SitemapPage() {
                 Application
               </a>
               <a
-                href="https://www.filipizen.com/partners/bataan_bagac/bpls/renewbusiness"
+                href={siteConfig.links.filipizen.renewBusiness}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -304,7 +305,7 @@ export default function SitemapPage() {
                 Renewal
               </a>
               <a
-                href="https://www.filipizen.com/partners/bataan_bagac/rptis/billing"
+                href={siteConfig.links.filipizen.realPropertyTax}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -313,7 +314,7 @@ export default function SitemapPage() {
                 Payment
               </a>
               <a
-                href="https://www.filipizen.com/partners/bataan_bagac/po/billing"
+                href={siteConfig.links.filipizen.paymentOrder}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -334,16 +335,16 @@ export default function SitemapPage() {
             </div>
             <div className="sitemap-links-grid">
               <a
-                href="https://bagac.gov.ph"
+                href={siteConfig.links.officialPortal}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Official Bagac
-                Website
+                <i className="bi bi-box-arrow-up-right"></i> Official{" "}
+                {siteConfig.municipalityName} Website
               </a>
               <a
-                href="https://bagac.gov.ph/the-sanguniang-bayan/"
+                href={siteConfig.links.sangguniangBayan}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
@@ -351,7 +352,7 @@ export default function SitemapPage() {
                 <i className="bi bi-box-arrow-up-right"></i> Sangguniang Bayan
               </a>
               <a
-                href="https://www.facebook.com/LGUbagac"
+                href={siteConfig.links.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"

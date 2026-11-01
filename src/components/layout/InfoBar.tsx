@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { siteConfig } from "@/data/site.config";
 import { useCurrency } from "@/hooks/useCurrency";
 import { useWeather } from "@/hooks/useWeather";
 
@@ -49,7 +50,9 @@ export default function InfoBar() {
           </div>
           <div className="info-bar-item info-bar-weather">
             <i className="bi bi-thermometer-half" aria-hidden="true"></i>
-            <span className="weather-location">Bagac</span>
+            <span className="weather-location">
+              {siteConfig.municipalityName}
+            </span>
             <span className="weather-temp">{weather.temp}°C</span>
           </div>
           <div className="info-bar-item info-bar-datetime">

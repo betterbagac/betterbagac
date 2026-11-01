@@ -1,6 +1,8 @@
 // Service Details Content Data
 // Full content for each service detail page matching original HTML
 
+import { siteConfig } from "./site.config";
+
 export interface QuickStat {
   icon: string;
   label: string;
@@ -53,7 +55,7 @@ export interface ServiceDetail {
   relatedServices: RelatedService[];
 }
 
-export const serviceDetailsContent: ServiceDetail[] = [
+const serviceDetailsData: ServiceDetail[] = [
   {
     id: "birth-certificate",
     title: "Birth Certificate",
@@ -1619,6 +1621,20 @@ export const serviceDetailsContent: ServiceDetail[] = [
   },
 ];
 
-export function getServiceDetail(slug: string): ServiceDetail | undefined {
-  return serviceDetailsContent.find((s) => s.id === slug);
-}
+export const getServiceDetail = (slug: string): ServiceDetail | undefined =>
+  serviceDetailsContent.find((s) => s.id === slug);
+
+// Every listed office uses the Municipal Hall trunkline, so the number always
+// comes from site.config instead of being repeated per service.
+const withMunicipalPhone = (service: ServiceDetail): ServiceDetail => ({
+  ...service,
+  quickStats: service.quickStats.map((stat) =>
+    stat.icon === "bi-telephone"
+      ? { ...stat, value: siteConfig.contact.phoneDisplay }
+      : stat,
+  ),
+  office: { ...service.office, phone: siteConfig.contact.phoneDisplay },
+});
+
+export const serviceDetailsContent: ServiceDetail[] =
+  serviceDetailsData.map(withMunicipalPhone);

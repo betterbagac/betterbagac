@@ -9,6 +9,7 @@ import {
   WeatherMap,
 } from "@/components/home";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 
 export default function HomePage() {
   const { t } = useLanguage();
@@ -105,12 +106,12 @@ export default function HomePage() {
               <div className="home-leader-badge">{t("title-mayor")}</div>
               <h3>Hon. Ron Michael Alexis R. Del Rosario</h3>
               <div className="home-leader-contacts">
-                <a href="mailto:ronmichaelalexisdelrosario@gmail.com">
-                  <i className="bi bi-envelope"></i>{" "}
-                  ronmichaelalexisdelrosario@gmail.com
+                <a href={`mailto:${siteConfig.contact.email}`}>
+                  <i className="bi bi-envelope"></i> {siteConfig.contact.email}
                 </a>
-                <a href="tel:09608848515">
-                  <i className="bi bi-telephone"></i> 0960 884 8515
+                <a href={`tel:${siteConfig.contact.mobile}`}>
+                  <i className="bi bi-telephone"></i>{" "}
+                  {siteConfig.contact.mobileDisplay}
                 </a>
               </div>
             </div>
@@ -118,11 +119,12 @@ export default function HomePage() {
               <div className="home-leader-badge">{t("title-vice-mayor")}</div>
               <h3>Hon. Rommel V. Del Rosario</h3>
               <div className="home-leader-contacts">
-                <a href="https://bagac.gov.ph/the-sanguniang-bayan/">
+                <a href={siteConfig.links.sangguniangBayan}>
                   <i className="bi bi-globe2"></i> Sangguniang Bayan
                 </a>
-                <a href="tel:0476120424">
-                  <i className="bi bi-telephone"></i> (047) 612-0424
+                <a href={`tel:${siteConfig.contact.phone}`}>
+                  <i className="bi bi-telephone"></i>{" "}
+                  {siteConfig.contact.phoneDisplay}
                 </a>
               </div>
             </div>
@@ -140,20 +142,25 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="home-contact-v2-grid">
-            <a href="tel:0476120424" className="home-contact-v2-card">
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="home-contact-v2-card"
+            >
               <div className="home-contact-v2-icon">
                 <i className="bi bi-telephone-fill"></i>
               </div>
               <div className="home-contact-v2-content">
                 <h3>{t("contact-phone")}</h3>
-                <p className="home-contact-v2-value">(047) 612-0424</p>
+                <p className="home-contact-v2-value">
+                  {siteConfig.contact.phoneDisplay}
+                </p>
                 <span className="home-contact-v2-note">
                   {t("contact-hours")}
                 </span>
               </div>
             </a>
             <a
-              href="mailto:ronmichaelalexisdelrosario@gmail.com"
+              href={`mailto:${siteConfig.contact.email}`}
               className="home-contact-v2-card"
             >
               <div className="home-contact-v2-icon">
@@ -162,7 +169,7 @@ export default function HomePage() {
               <div className="home-contact-v2-content">
                 <h3>{t("contact-email")}</h3>
                 <p className="home-contact-v2-value">
-                  ronmichaelalexisdelrosario@gmail.com
+                  {siteConfig.contact.email}
                 </p>
                 <span className="home-contact-v2-note">
                   {t("contact-response")}
@@ -179,7 +186,7 @@ export default function HomePage() {
                   {t("contact-municipal-hall")}
                 </p>
                 <span className="home-contact-v2-note">
-                  Governor J.J. Linao Road, Bagac, Bataan 2107
+                  {siteConfig.contact.address}
                 </span>
               </div>
             </div>

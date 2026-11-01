@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { siteConfig } from "@/data/site.config";
 
 interface TimelineItem {
   year: string;
@@ -81,8 +82,8 @@ export default function History() {
       <div className="container">
         <div className="home-stats-v2-header">
           <h2>
-            <i className="bi bi-book" aria-hidden="true" /> Brief History of
-            Bagac
+            <i className="bi bi-book" aria-hidden="true" /> Brief History of{" "}
+            {siteConfig.municipalityName}
           </h2>
         </div>
         <div className="history-content">

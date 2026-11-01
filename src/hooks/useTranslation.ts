@@ -1,17 +1,20 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { translations } from "@/data/translations";
+import {
+  LANGUAGE_STORAGE_KEY,
+  LEGACY_LANGUAGE_STORAGE_KEY,
+  translations,
+} from "@/data/translations";
 import type { Language } from "@/types";
-
-const STORAGE_KEY = "betterbagac-lang";
 
 export function useTranslation() {
   const [language, setLanguageState] = useState<Language>("en");
 
   useEffect(() => {
     // Load saved language preference
-    const saved = localStorage.getItem(STORAGE_KEY) as Language | null;
+    const saved = (localStorage.getItem(LANGUAGE_STORAGE_KEY) ??
+      localStorage.getItem(LEGACY_LANGUAGE_STORAGE_KEY)) as Language | null;
     if (saved && ["en", "fil"].includes(saved)) {
       setLanguageState(saved);
     }
@@ -19,7 +22,8 @@ export function useTranslation() {
 
   const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+    localStorage.setItem(LANGUAGE_STORAGE_KEY, lang);
+    localStorage.removeItem(LEGACY_LANGUAGE_STORAGE_KEY);
     // Update URL param for SEO
     const url = new URL(window.location.href);
     if (lang === "en") {

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { siteConfig } from "@/data/site.config";
 import { DPWHProjectsTable } from "./DPWHProjectsTable";
 
 // FY 2024 financial data (BLGF)
@@ -229,7 +230,7 @@ export default function BudgetPage() {
           <p className="sre-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://blgf.gov.ph/"
+              href={siteConfig.links.blgf}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -249,16 +250,18 @@ export default function BudgetPage() {
             </span>
             <h2>Infrastructure &amp; Project Transparency</h2>
             <p>
-              Official sources for Bagac&apos;s public works and procurement
-              records
+              Official sources for {siteConfig.municipalityName}&apos;s public
+              works and procurement records
             </p>
           </div>
 
           <div className="dpwh-section-head">
-            <h3>DPWH Infrastructure Projects in Bagac</h3>
+            <h3>
+              DPWH Infrastructure Projects in {siteConfig.municipalityName}
+            </h3>
             <p>
-              118 projects (2016–2026) implemented by the DPWH Bataan 2nd and
-              3rd District Engineering Offices
+              118 projects (2016–2026) implemented by the DPWH{" "}
+              {siteConfig.province} 2nd and 3rd District Engineering Offices
             </p>
           </div>
 
@@ -272,10 +275,14 @@ export default function BudgetPage() {
                   <i className="bi bi-signpost-2"></i> Roads &amp; Bridges
                 </span>
               </div>
-              <h3>DPWH Bataan 2nd &amp; 3rd District Engineering Offices</h3>
+              <h3>
+                DPWH {siteConfig.province} 2nd &amp; 3rd District Engineering
+                Offices
+              </h3>
               <p className="infra-location">
                 <i className="bi bi-geo-alt"></i> National roads, bridges, and
-                flood control projects implemented in Bagac
+                flood control projects implemented in{" "}
+                {siteConfig.municipalityName}
               </p>
             </div>
             <div className="infra-project-footer">
@@ -284,7 +291,7 @@ export default function BudgetPage() {
                 Portal
               </span>
               <a
-                href="https://transparency.dpwh.gov.ph/"
+                href={siteConfig.links.dpwh}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="infra-link"
@@ -303,7 +310,7 @@ export default function BudgetPage() {
                   Procurement
                 </span>
               </div>
-              <h3>Bagac Transparency Seal</h3>
+              <h3>{siteConfig.municipalityName} Transparency Seal</h3>
               <p className="infra-location">
                 <i className="bi bi-geo-alt"></i> Annual and supplemental
                 budgets, programs, projects, and procurement reports
@@ -311,11 +318,11 @@ export default function BudgetPage() {
             </div>
             <div className="infra-project-footer">
               <span className="infra-source">
-                <i className="bi bi-info-circle"></i> Source: Municipality of
-                Bagac
+                <i className="bi bi-info-circle"></i> Source:{" "}
+                {siteConfig.municipality.officialName}
               </span>
               <a
-                href="https://bagac.gov.ph/transparency-seal/"
+                href={siteConfig.links.transparencySeal}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="infra-link"
@@ -333,7 +340,7 @@ export default function BudgetPage() {
                   <i className="bi bi-journal-text"></i> Legislation
                 </span>
               </div>
-              <h3>Sangguniang Bayan ng Bagac</h3>
+              <h3>Sangguniang Bayan ng {siteConfig.municipalityName}</h3>
               <p className="infra-location">
                 <i className="bi bi-geo-alt"></i> Ordinances, resolutions, and
                 the annual legislative agenda
@@ -341,11 +348,11 @@ export default function BudgetPage() {
             </div>
             <div className="infra-project-footer">
               <span className="infra-source">
-                <i className="bi bi-info-circle"></i> Source: Municipality of
-                Bagac
+                <i className="bi bi-info-circle"></i> Source:{" "}
+                {siteConfig.municipality.officialName}
               </span>
               <a
-                href="https://bagac.gov.ph/the-sanguniang-bayan/"
+                href={siteConfig.links.sangguniangBayan}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="infra-link"

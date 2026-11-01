@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -21,8 +22,8 @@ export default function Header() {
         <div className="logo-container">
           <Link href="/">
             <img
-              src="/assets/images/logo/betterbagac-logo-long.svg"
-              alt="Better Bagac Logo"
+              src={siteConfig.assets.logo}
+              alt={`${siteConfig.displayName} Logo`}
               className="logo-img"
             />
           </Link>

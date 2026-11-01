@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 
 export default function NewsPage() {
   const { t } = useLanguage();
@@ -74,8 +75,8 @@ export default function NewsPage() {
             </span>
             <h1>News & Announcements</h1>
             <p className="page-header-desc">
-              Stay updated with the latest news and announcements from the
-              Municipality of Bagac
+              Stay updated with the latest news and announcements from the{" "}
+              {siteConfig.municipality.officialName}
             </p>
           </div>
         </div>

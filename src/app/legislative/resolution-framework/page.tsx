@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { LegislativeRecords } from "@/components/legislative/LegislativeRecords";
+import { siteConfig } from "@/data/site.config";
 
 export const metadata = {
-  title: "Resolution Framework | BetterBagac.org",
-  description:
-    "Browse resolutions passed by the Sangguniang Bayan of Bagac, Bataan.",
+  title: "Resolution Framework",
+  description: `Browse resolutions passed by the Sangguniang Bayan of ${siteConfig.municipalityName}, ${siteConfig.province}.`,
 };
 
 export default function ResolutionFrameworkPage() {
@@ -30,7 +30,8 @@ export default function ResolutionFrameworkPage() {
             </span>
             <h1>Resolution Framework</h1>
             <p className="page-header-desc">
-              Resolutions passed by the Sangguniang Bayan ng Bagac
+              Resolutions passed by the Sangguniang Bayan ng{" "}
+              {siteConfig.municipalityName}
             </p>
           </div>
         </div>
@@ -80,9 +81,9 @@ export default function ResolutionFrameworkPage() {
               <h3>Where to find passed resolutions</h3>
               <p>
                 Copies of resolutions are available from the Sangguniang Bayan
-                Secretariat at the Bagac Municipal Hall during office hours.
-                Requests may be made in person, in writing, or through the
-                national Freedom of Information portal.
+                Secretariat at the {siteConfig.municipalityName} Municipal Hall
+                during office hours. Requests may be made in person, in writing,
+                or through the national Freedom of Information portal.
               </p>
               <p>
                 This portal does not reproduce resolution text. Where a number
@@ -102,7 +103,7 @@ export default function ResolutionFrameworkPage() {
             }}
           >
             <a
-              href="https://bagac.gov.ph/the-sanguniang-bayan/"
+              href={siteConfig.links.sangguniangBayan}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary"
@@ -111,7 +112,7 @@ export default function ResolutionFrameworkPage() {
               Bayan
             </a>
             <a
-              href="https://bagac.gov.ph/transparency-seal/"
+              href={siteConfig.links.transparencySeal}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"
@@ -119,7 +120,7 @@ export default function ResolutionFrameworkPage() {
               <i className="bi bi-shield-check"></i> Transparency Seal
             </a>
             <a
-              href="https://www.foi.gov.ph/"
+              href={siteConfig.links.foi}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-secondary"

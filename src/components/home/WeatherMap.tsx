@@ -1,22 +1,27 @@
 "use client";
 
+import { siteConfig } from "@/data/site.config";
 import { useWeather } from "@/hooks/useWeather";
 
 export default function WeatherMap() {
   const { weather } = useWeather();
+  const { latitude, longitude, mapBbox } = siteConfig.geo;
+  const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox
+    .map((value) => encodeURIComponent(value))
+    .join("%2C")}&layer=mapnik&marker=${latitude}%2C${longitude}`;
 
   return (
     <section className="section weather-map-section">
       <div className="container">
         <div className="home-stats-v2-header">
-          <h2>Weather and Map of Bagac</h2>
+          <h2>Weather and Map of {siteConfig.municipalityName}</h2>
         </div>
         <div className="weather-map-grid">
           <div className="weather-column">
             <div id="weather-container" aria-live="polite">
               <section
                 className="weather-widget"
-                aria-label="Current weather in Bagac"
+                aria-label={`Current weather in ${siteConfig.municipalityName}`}
               >
                 <div className="weather-current">
                   <div className="weather-current-icon">
@@ -50,7 +55,7 @@ export default function WeatherMap() {
               <div
                 id="map-container"
                 role="application"
-                aria-label="Interactive map of Bagac, Bataan"
+                aria-label={`Interactive map of ${siteConfig.geo.label}`}
                 className="map-container-iframe"
               >
                 <iframe
@@ -58,15 +63,15 @@ export default function WeatherMap() {
                   height="300"
                   frameBorder="0"
                   scrolling="no"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=120.3718%2C14.5801%2C120.4118%2C14.6101&layer=mapnik&marker=14.5951%2C120.3918"
+                  src={mapSrc}
                   className="map-iframe"
-                  title="Map of Bagac"
+                  title={`Map of ${siteConfig.municipalityName}`}
                   loading="lazy"
                 ></iframe>
               </div>
               <p className="map-attribution">
-                <i className="bi bi-geo-alt" aria-hidden="true"></i> Bagac
-                Municipal Hall, Bataan 2107
+                <i className="bi bi-geo-alt" aria-hidden="true"></i>{" "}
+                {siteConfig.contact.hallAddress}
               </p>
             </div>
           </div>

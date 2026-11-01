@@ -2,16 +2,15 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useCallback } from "react";
+import { siteConfig } from "@/data/site.config";
 import type { WeatherData } from "@/types";
 import { fetcher } from "@/utils/api";
 
-const LATITUDE = 14.5951;
-const LONGITUDE = 120.3918;
-const LOCATION_LABEL = "Bagac, Bataan";
+const { latitude, longitude, label: LOCATION_LABEL } = siteConfig.geo;
 
 const WEATHER_URL =
   "https://api.open-meteo.com/v1/forecast" +
-  `?latitude=${LATITUDE}&longitude=${LONGITUDE}` +
+  `?latitude=${latitude}&longitude=${longitude}` +
   "&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code" +
   "&timezone=Asia%2FManila";
 
@@ -90,7 +89,7 @@ function toWeatherData(data: OpenMeteoResponse): WeatherData {
 
 export function useWeather() {
   const query = useQuery({
-    queryKey: ["weather", "bagac"],
+    queryKey: ["weather", LOCATION_LABEL],
     queryFn: async ({ signal }) => {
       const data = await fetcher<OpenMeteoResponse>(WEATHER_URL, { signal });
       return toWeatherData(data);

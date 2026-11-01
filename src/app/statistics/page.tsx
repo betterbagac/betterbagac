@@ -8,6 +8,7 @@ import {
   PopulationDistributionChart,
   PopulationTrendsChart,
 } from "@/components/charts/Charts";
+import { siteConfig } from "@/data/site.config";
 
 export default function StatisticsPage() {
   useEffect(() => {
@@ -53,7 +54,10 @@ export default function StatisticsPage() {
               <i className="bi bi-bar-chart-fill"></i> Municipal Data
             </span>
             <h1>Municipal Statistics</h1>
-            <p>Data and statistics about Bagac, Bataan</p>
+            <p>
+              Data and statistics about {siteConfig.municipalityName},{" "}
+              {siteConfig.province}
+            </p>
           </div>
         </div>
       </section>
@@ -155,7 +159,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://blgf.gov.ph/"
+              href={siteConfig.links.blgf}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -202,7 +206,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://psa.gov.ph/"
+              href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -352,7 +356,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://psa.gov.ph/"
+              href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -451,11 +455,11 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://bagac.gov.ph/industries/"
+              href={siteConfig.links.industries}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Municipality of Bagac – Industries
+              {siteConfig.municipality.officialName} – Industries
             </a>{" "}
             (2019 municipal data)
           </p>
@@ -508,7 +512,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://psa.gov.ph/"
+              href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -529,7 +533,7 @@ export default function StatisticsPage() {
             <span className="section-tag">
               <i className="bi bi-trophy-fill"></i> Competitiveness
             </span>
-            <h2>Bagac Competitive Index</h2>
+            <h2>{siteConfig.municipalityName} Competitive Index</h2>
             <p>
               CMCI performance, 2016–2024 · 2024 overall rank: 44th (score
               35.08)
@@ -604,7 +608,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://cmci.dti.gov.ph/"
+              href={siteConfig.links.cmci}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -634,7 +638,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> Source:{" "}
             <a
-              href="https://psa.gov.ph/"
+              href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >

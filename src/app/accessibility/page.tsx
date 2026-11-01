@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 
 export default function AccessibilityPage() {
   const { t } = useLanguage();
@@ -53,10 +54,10 @@ export default function AccessibilityPage() {
             <div className="a11y-section">
               <h2>{t("access-commitment") || "Our Commitment"}</h2>
               <p>
-                Better Bagac is committed to ensuring digital accessibility for
-                people with disabilities. We are continually improving the user
-                experience for everyone and applying the relevant accessibility
-                standards.
+                {siteConfig.displayName} is committed to ensuring digital
+                accessibility for people with disabilities. We are continually
+                improving the user experience for everyone and applying the
+                relevant accessibility standards.
               </p>
             </div>
 
@@ -121,11 +122,11 @@ export default function AccessibilityPage() {
               </p>
               <div className="a11y-contact-grid">
                 <a
-                  href="mailto:volunteer@betterbagac.org"
+                  href={`mailto:${siteConfig.volunteerEmail}`}
                   className="a11y-contact-item"
                 >
                   <i className="bi bi-envelope-fill"></i>
-                  <span>volunteer@betterbagac.org</span>
+                  <span>{siteConfig.volunteerEmail}</span>
                 </a>
               </div>
             </div>
@@ -147,8 +148,8 @@ export default function AccessibilityPage() {
               <div>
                 <h3>{t("access-promise") || "Our Promise"}</h3>
                 <p>
-                  Better Bagac is committed to ensuring that our digital
-                  services are accessible to all citizens, regardless of
+                  {siteConfig.displayName} is committed to ensuring that our
+                  digital services are accessible to all citizens, regardless of
                   ability. We view accessibility not as a feature, but as a
                   fundamental right.
                 </p>

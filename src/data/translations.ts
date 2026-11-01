@@ -1,6 +1,14 @@
+import { siteConfig } from "@/data/site.config";
 import type { Language, TranslationKeys } from "@/types";
 
-// Core translations - migrated from original translations.js
+/** Storage key shared by every language hook. */
+export const LANGUAGE_STORAGE_KEY = "betterbagac-lang";
+
+/** Legacy key written by the old context hook, still read on first load. */
+export const LEGACY_LANGUAGE_STORAGE_KEY = "betterbagac_lang";
+
+// Single translation dictionary. LGU-specific wording comes from site.config
+// so a fork only edits that file.
 export const translations: Record<Language, TranslationKeys> = {
   en: {
     // Navigation
@@ -15,9 +23,9 @@ export const translations: Record<Language, TranslationKeys> = {
     "nav-sitemap": "Sitemap",
 
     // Hero Section
-    "hero-welcome": "Welcome to BetterBagac.org",
-    "hero-subtitle":
-      "Access government services, information, and resources for the people of Bagac, Bataan.",
+    "hero-welcome": `Welcome to ${siteConfig.fullName}`,
+    "hero-subtitle": `Access government services, information, and resources for the people of ${siteConfig.municipalityName}, ${siteConfig.province}.`,
+    "hero-find-service": "Find a Service",
 
     // Popular Services
     "section-popular": "Popular Services",
@@ -33,32 +41,101 @@ export const translations: Record<Language, TranslationKeys> = {
     "service-health-desc": "Medical assistance & programs",
     "btn-view-all-services": "View All Services",
 
+    // Latest Updates
+    "section-updates": "Latest Updates",
+    "btn-view-all": "View All",
+
+    // Municipal Leadership
+    "section-leadership": "Municipal Leadership",
+    "title-mayor": "Municipal Mayor",
+    "title-vice-mayor": "Municipal Vice Mayor",
+    "btn-view-officials": "View All Officials",
+
+    // Contact Section
+    "section-contact": "Contact Information",
+    "contact-phone": "Phone",
+    "contact-email": "Email",
+    "contact-address": "Address",
+    "contact-hours": siteConfig.contact.hours,
+    "contact-response": "We'll respond within 24 hours",
+    "contact-municipal-hall": "Municipal Hall",
+
+    // Services Page
+    "services-title": "Municipal Services Directory",
+    "services-subtitle": `Browse all services offered by the ${siteConfig.municipality.officialName}`,
+    "life-events-title": "Browse by Life Event",
+    "life-events-subtitle":
+      "Find services based on what's happening in your life",
+    "life-starting-business": "Starting a Business",
+    "life-getting-married": "Getting Married",
+    "life-having-baby": "Having a Baby",
+    "life-financial-help": "Need Financial Help",
+    "life-senior": "Senior Citizen Services",
+    "life-pwd": "Person with Disability",
+    "life-building": "Building/Home Improvement",
+    "life-trouble": "Got in Trouble",
+
     // Service Categories
+    "cat-certificates": "Certificates & Vital Records",
+    "cat-certificates-desc":
+      "Birth, death, marriage certificates, and other vital records.",
+    "cat-business": "Business & Trade",
+    "cat-business-desc":
+      "Business permits, licenses, and trade registration services.",
+    "cat-social": "Social Services",
+    "cat-social-desc":
+      "Welfare programs, senior citizen services, PWD benefits, and financial aid.",
+    "cat-health": "Health & Wellness",
+    "cat-health-desc":
+      "Vaccination programs, health certificates, and medical assistance.",
+    "cat-tax": "Taxation & Payments",
+    "cat-tax-desc": "Property tax, business tax, payments, and tax clearance.",
     "cat-agriculture": "Agriculture",
+    "cat-agriculture-desc":
+      "Agricultural loans, crop insurance, fertilizer assistance, and training.",
     "cat-infrastructure": "Infrastructure",
+    "cat-infrastructure-desc":
+      "Construction permits, road maintenance requests, and public facilities.",
     "cat-education": "Education",
+    "cat-education-desc":
+      "Scholarship programs, student assistance, and educational grants.",
     "cat-safety": "Public Safety",
+    "cat-safety-desc":
+      "Emergency services, disaster preparedness, and community safety programs.",
     "cat-environment": "Environment",
+    "cat-environment-desc":
+      "Environmental permits, waste management, and conservation programs.",
+
+    // FAQ Page
+    "faq-title": "Frequently Asked Questions",
+    "faq-subtitle": "Find answers to common questions about municipal services",
+    "faq-general": "General Questions",
+    "faq-certificates": "Certificates & Documents",
+    "faq-business": "Business & Permits",
+    "faq-payments": "Payments & Fees",
+    "faq-social": "Social Services",
+    "faq-technical": "Technical Questions",
+    "faq-still-questions": "Still have questions?",
+    "faq-contact-help":
+      "If you didn't find the answer you were looking for, please don't hesitate to contact us.",
 
     // Legislative
     "legislative-ordinances": "Ordinances",
     "legislative-resolutions": "Resolutions",
 
     // Footer
-    "footer-title": "Better Bagac",
-    "footer-desc":
-      "A service-first information portal for the Municipality of Bagac, Bataan.",
+    "footer-title": siteConfig.displayName,
+    "footer-desc": `A service-first information portal for the ${siteConfig.municipality.officialName}, ${siteConfig.province}.`,
     "footer-quick-links": "Quick Links",
     "footer-all-services": "All Services",
     "footer-officials": "Officials",
     "footer-contact-us": "Contact Us",
     "footer-faq": "FAQ",
-    "footer-copyright": "Better Bagac. All rights reserved.",
+    "footer-copyright": `${siteConfig.displayName}. All rights reserved.`,
     "footer-resources": "Resources",
     "footer-privacy": "Privacy Policy",
     "footer-terms": "Terms of Use",
     "accessibility-statement": "Accessibility Statement",
-    "section-contact": "Contact Information",
   },
 
   fil: {
@@ -74,9 +151,9 @@ export const translations: Record<Language, TranslationKeys> = {
     "nav-sitemap": "Mapa ng Site",
 
     // Hero Section
-    "hero-welcome": "Maligayang Pagdating sa BetterBagac.org",
-    "hero-subtitle":
-      "I-access ang mga serbisyo ng pamahalaan, impormasyon, at mga mapagkukunan para sa mga mamamayan ng Bagac, Bataan.",
+    "hero-welcome": `Maligayang Pagdating sa ${siteConfig.fullName}`,
+    "hero-subtitle": `I-access ang mga serbisyo ng pamahalaan, impormasyon, at mga mapagkukunan para sa mga mamamayan ng ${siteConfig.municipalityName}, ${siteConfig.province}.`,
+    "hero-find-service": "Maghanap ng Serbisyo",
 
     // Popular Services
     "section-popular": "Mga Sikat na Serbisyo",
@@ -93,31 +170,102 @@ export const translations: Record<Language, TranslationKeys> = {
     "service-health-desc": "Tulong medikal at mga programa",
     "btn-view-all-services": "Tingnan Lahat ng Serbisyo",
 
+    // Latest Updates
+    "section-updates": "Pinakabagong Balita",
+    "btn-view-all": "Tingnan Lahat",
+
+    // Municipal Leadership
+    "section-leadership": "Pamunuan ng Munisipalidad",
+    "title-mayor": "Punong Bayan",
+    "title-vice-mayor": "Bise Punong Bayan",
+    "btn-view-officials": "Tingnan Lahat ng Opisyal",
+
+    // Contact Section
+    "section-contact": "Impormasyon sa Pakikipag-ugnayan",
+    "contact-phone": "Telepono",
+    "contact-email": "Email",
+    "contact-address": "Tirahan",
+    "contact-hours": `Lunes-Biyernes: ${siteConfig.contact.officeOpen}`,
+    "contact-response": "Sasagutin namin sa loob ng 24 na oras",
+    "contact-municipal-hall": "Munisipyo",
+
+    // Services Page
+    "services-title": "Direktoryo ng Serbisyong Munisipal",
+    "services-subtitle": `Tingnan ang lahat ng serbisyong inaalok ng ${siteConfig.municipality.officialName}`,
+    "life-events-title": "Maghanap Ayon sa Pangyayari sa Buhay",
+    "life-events-subtitle":
+      "Hanapin ang mga serbisyo batay sa nangyayari sa iyong buhay",
+    "life-starting-business": "Magsimula ng Negosyo",
+    "life-getting-married": "Magpakasal",
+    "life-having-baby": "Magkaanak",
+    "life-financial-help": "Kailangan ng Tulong Pinansyal",
+    "life-senior": "Serbisyo para sa Senior Citizen",
+    "life-pwd": "Taong may Kapansanan",
+    "life-building": "Pagtatayo/Pagpapabuti ng Bahay",
+    "life-trouble": "May Problema",
+
     // Service Categories
+    "cat-certificates": "Mga Sertipiko at Vital Records",
+    "cat-certificates-desc":
+      "Sertipiko ng kapanganakan, kamatayan, kasal, at iba pang vital records.",
+    "cat-business": "Negosyo at Kalakalan",
+    "cat-business-desc":
+      "Mga permit sa negosyo, lisensya, at serbisyo sa pagpaparehistro ng kalakalan.",
+    "cat-social": "Serbisyong Panlipunan",
+    "cat-social-desc":
+      "Mga programa sa kapakanan, serbisyo para sa senior citizen, benepisyo ng PWD, at tulong pinansyal.",
+    "cat-health": "Kalusugan at Kagalingan",
+    "cat-health-desc":
+      "Mga programa sa bakuna, health certificates, at tulong medikal.",
+    "cat-tax": "Pagbubuwis at Pagbabayad",
+    "cat-tax-desc":
+      "Buwis sa ari-arian, buwis sa negosyo, pagbabayad, at tax clearance.",
     "cat-agriculture": "Agrikultura",
+    "cat-agriculture-desc":
+      "Mga pautang sa agrikultura, insurance sa pananim, tulong sa pataba, at pagsasanay.",
     "cat-infrastructure": "Imprastraktura",
+    "cat-infrastructure-desc":
+      "Mga permit sa konstruksyon, kahilingan sa pagpapanatili ng kalsada, at pampublikong pasilidad.",
     "cat-education": "Edukasyon",
+    "cat-education-desc":
+      "Mga programa sa iskolarship, tulong sa estudyante, at mga grant sa edukasyon.",
     "cat-safety": "Kaligtasan ng Publiko",
+    "cat-safety-desc":
+      "Mga serbisyong pang-emergency, paghahanda sa sakuna, at mga programa sa kaligtasan ng komunidad.",
     "cat-environment": "Kapaligiran",
+    "cat-environment-desc":
+      "Mga permit sa kapaligiran, pamamahala ng basura, at mga programa sa konserbasyon.",
+
+    // FAQ Page
+    "faq-title": "Mga Madalas Itanong",
+    "faq-subtitle":
+      "Hanapin ang mga sagot sa mga karaniwang tanong tungkol sa mga serbisyong munisipal",
+    "faq-general": "Mga Pangkalahatang Tanong",
+    "faq-certificates": "Mga Sertipiko at Dokumento",
+    "faq-business": "Negosyo at Permit",
+    "faq-payments": "Pagbabayad at Bayarin",
+    "faq-social": "Serbisyong Panlipunan",
+    "faq-technical": "Mga Teknikal na Tanong",
+    "faq-still-questions": "May tanong pa ba kayo?",
+    "faq-contact-help":
+      "Kung hindi ninyo nakita ang sagot na hinahanap, huwag mag-atubiling makipag-ugnayan sa amin.",
 
     // Legislative
     "legislative-ordinances": "Mga Ordinansa",
     "legislative-resolutions": "Mga Resolusyon",
 
     // Footer
-    "footer-title": "Better Bagac",
-    "footer-desc":
-      "Isang portal ng impormasyon na inuuna ang serbisyo para sa Munisipalidad ng Bagac, Bataan.",
+    "footer-title": siteConfig.displayName,
+    "footer-desc": `Isang portal ng impormasyon na inuuna ang serbisyo para sa ${siteConfig.municipality.officialName}, ${siteConfig.province}.`,
     "footer-quick-links": "Mabilis na Links",
     "footer-all-services": "Lahat ng Serbisyo",
     "footer-officials": "Mga Opisyal",
     "footer-contact-us": "Makipag-ugnayan sa Amin",
     "footer-faq": "Mga Madalas Itanong",
-    "footer-copyright": "Better Bagac. Nakalaan ang lahat ng karapatan.",
+    "footer-copyright": `${siteConfig.displayName}. Nakalaan ang lahat ng karapatan.`,
     "footer-resources": "Mga Mapagkukunan",
     "footer-privacy": "Patakaran sa Privacy",
     "footer-terms": "Mga Tuntunin ng Paggamit",
     "accessibility-statement": "Pahayag ng Aksesibilidad",
-    "section-contact": "Impormasyon sa Pakikipag-ugnayan",
   },
 };

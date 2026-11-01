@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 
 export default function FAQPage() {
   const { t } = useLanguage();
@@ -266,8 +267,8 @@ export default function FAQPage() {
                     <p>
                       Thank you for helping us improve! Please send us message
                       at{" "}
-                      <a href="mailto:volunteer@betterbagac.org">
-                        volunteer@betterbagac.org
+                      <a href={`mailto:${siteConfig.volunteerEmail}`}>
+                        {siteConfig.volunteerEmail}
                       </a>{" "}
                       and write &quot;Website Issue&quot; as the subject.
                       Describe the problem and include the page URL if possible.
@@ -278,8 +279,9 @@ export default function FAQPage() {
                   <summary>Is this website mobile-friendly?</summary>
                   <div className="faq-answer">
                     <p>
-                      Yes! Better Bagac is fully responsive and optimized for
-                      mobile phones, tablets, and desktop computers.
+                      Yes! {siteConfig.displayName} is fully responsive and
+                      optimized for mobile phones, tablets, and desktop
+                      computers.
                     </p>
                   </div>
                 </details>
@@ -304,7 +306,7 @@ export default function FAQPage() {
                       >
                         Juan Miguel Recondo
                       </a>{" "}
-                      is the developer behind BetterBagac.org. He is an
+                      is the developer behind {siteConfig.fullName}. He is an
                       early-career IT professional practicing full-stack
                       development and system administration in cloud
                       environments.

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { siteConfig } from "@/data/site.config";
 
 export default function LegislativePage() {
   const [activeTab, setActiveTab] = useState("ordinances");
@@ -27,7 +28,10 @@ export default function LegislativePage() {
               <i className="bi bi-bank2"></i> Sangguniang Bayan
             </span>
             <h1>Legislative Documents</h1>
-            <p>Ordinances and resolutions of the Sangguniang Bayan ng Bagac</p>
+            <p>
+              Ordinances and resolutions of the Sangguniang Bayan ng{" "}
+              {siteConfig.municipalityName}
+            </p>
           </div>
         </div>
       </section>

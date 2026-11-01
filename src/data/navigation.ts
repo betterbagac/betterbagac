@@ -1,4 +1,5 @@
 import type { Hotline, NavItem } from "@/types";
+import { siteConfig } from "./site.config";
 
 export const mainNavigation: NavItem[] = [
   { label: "Home", href: "/", i18nKey: "nav-home" },
@@ -81,20 +82,32 @@ export const mainNavigation: NavItem[] = [
 export const hotlines: Hotline[] = [
   {
     name: "National Emergency",
-    number: "911",
+    number: siteConfig.hotlines.emergency,
     icon: "bi-exclamation-triangle-fill",
   },
   {
-    name: "Bagac Municipal Hall",
-    number: "(047) 612-0424",
+    name: `${siteConfig.municipalityName} Municipal Hall`,
+    number: siteConfig.contact.phoneDisplay,
     icon: "bi-building-fill",
   },
   {
     name: "Mayor's Office",
-    number: "0960 884 8515",
+    number: siteConfig.contact.mobileDisplay,
     icon: "bi-person-badge-fill",
   },
-  { name: "PNP Bagac", number: "911", icon: "bi-shield-fill" },
-  { name: "BFP Bagac", number: "911", icon: "bi-fire" },
-  { name: "MDRRMO Bagac", number: "911", icon: "bi-broadcast" },
+  {
+    name: `PNP ${siteConfig.municipalityName}`,
+    number: siteConfig.hotlines.emergency,
+    icon: "bi-shield-fill",
+  },
+  {
+    name: `BFP ${siteConfig.municipalityName}`,
+    number: siteConfig.hotlines.emergency,
+    icon: "bi-fire",
+  },
+  {
+    name: `MDRRMO ${siteConfig.municipalityName}`,
+    number: siteConfig.hotlines.emergency,
+    icon: "bi-broadcast",
+  },
 ];

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 export default function ContactPage() {
   return (
@@ -35,7 +36,7 @@ export default function ContactPage() {
         <div className="container">
           <div className="grid grid-3" style={{ gap: "var(--spacing-md)" }}>
             <a
-              href="mailto:ronmichaelalexisdelrosario@gmail.com"
+              href={`mailto:${siteConfig.contact.email}`}
               className="contact-card"
             >
               <div className="contact-card-icon">
@@ -43,35 +44,43 @@ export default function ContactPage() {
               </div>
               <div className="contact-card-content">
                 <h3>Email</h3>
-                <p className="contact-card-value">
-                  ronmichaelalexisdelrosario@gmail.com
-                </p>
+                <p className="contact-card-value">{siteConfig.contact.email}</p>
                 <span className="contact-card-note">
                   We&apos;ll respond within 24 hours
                 </span>
               </div>
             </a>
-            <a href="tel:09608848515" className="contact-card">
+            <a
+              href={`tel:${siteConfig.contact.mobile}`}
+              className="contact-card"
+            >
               <div className="contact-card-icon">
                 <i className="bi bi-phone-fill"></i>
               </div>
               <div className="contact-card-content">
                 <h3>Mobile</h3>
-                <p className="contact-card-value">0960 884 8515</p>
+                <p className="contact-card-value">
+                  {siteConfig.contact.mobileDisplay}
+                </p>
                 <span className="contact-card-note">
-                  Mon-Fri: 8:00 AM - 5:00 PM
+                  {siteConfig.contact.hours}
                 </span>
               </div>
             </a>
-            <a href="tel:0476120424" className="contact-card">
+            <a
+              href={`tel:${siteConfig.contact.phone}`}
+              className="contact-card"
+            >
               <div className="contact-card-icon">
                 <i className="bi bi-telephone-fill"></i>
               </div>
               <div className="contact-card-content">
                 <h3>Phone</h3>
-                <p className="contact-card-value">(047) 612-0424</p>
+                <p className="contact-card-value">
+                  {siteConfig.contact.phoneDisplay}
+                </p>
                 <span className="contact-card-note">
-                  Mon-Fri: 8:00 AM - 5:00 PM
+                  {siteConfig.contact.hours}
                 </span>
               </div>
             </a>
@@ -89,15 +98,21 @@ export default function ContactPage() {
             </div>
             <div className="office-hours-schedule">
               <div className="office-hours-item office-hours-item--open">
-                <span className="office-hours-day">Monday - Friday</span>
-                <span className="office-hours-time">8:00 AM - 5:00 PM</span>
+                <span className="office-hours-day">
+                  {siteConfig.contact.officeDays}
+                </span>
+                <span className="office-hours-time">
+                  {siteConfig.contact.officeOpen}
+                </span>
                 <span className="office-hours-status">
                   <i className="bi bi-check-circle-fill"></i> Open
                 </span>
               </div>
               <div className="office-hours-item office-hours-item--break">
                 <span className="office-hours-day">Lunch Break</span>
-                <span className="office-hours-time">12:00 PM - 1:00 PM</span>
+                <span className="office-hours-time">
+                  {siteConfig.contact.lunchBreak}
+                </span>
                 <span className="office-hours-status">
                   <i className="bi bi-pause-circle-fill"></i> Break
                 </span>
@@ -136,55 +151,97 @@ export default function ContactPage() {
             <p>For emergencies and inquiries, contact these numbers anytime.</p>
           </div>
           <div className="hotlines-grid">
-            <a href="tel:911" className="hotline-card">
+            <a
+              href={`tel:${siteConfig.hotlines.emergency}`}
+              className="hotline-card"
+            >
               <i className="bi bi-exclamation-triangle-fill"></i>
               <span className="hotline-card-label">National Emergency</span>
-              <span className="hotline-card-number">911</span>
-            </a>
-            <a href="tel:0476120424" className="hotline-card">
-              <i className="bi bi-building-fill"></i>
-              <span className="hotline-card-label">Bagac Municipal Hall</span>
-              <span className="hotline-card-number">(047) 612-0424</span>
-            </a>
-            <a href="tel:09608848515" className="hotline-card">
-              <i className="bi bi-person-badge-fill"></i>
-              <span className="hotline-card-label">Mayor&apos;s Office</span>
-              <span className="hotline-card-number">0960 884 8515</span>
-            </a>
-            <a href="tel:911" className="hotline-card">
-              <i className="bi bi-shield-fill"></i>
-              <span className="hotline-card-label">PNP Bagac</span>
-              <span className="hotline-card-number">911</span>
-            </a>
-            <a href="tel:911" className="hotline-card">
-              <i className="bi bi-fire"></i>
-              <span className="hotline-card-label">BFP Bagac</span>
-              <span className="hotline-card-number">911</span>
-            </a>
-            <a href="tel:911" className="hotline-card">
-              <i className="bi bi-broadcast"></i>
-              <span className="hotline-card-label">MDRRMO Bagac</span>
-              <span className="hotline-card-number">911</span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.emergency}
+              </span>
             </a>
             <a
-              href="https://www.facebook.com/LGUbagac"
+              href={`tel:${siteConfig.contact.phone}`}
+              className="hotline-card"
+            >
+              <i className="bi bi-building-fill"></i>
+              <span className="hotline-card-label">
+                {siteConfig.municipalityName} Municipal Hall
+              </span>
+              <span className="hotline-card-number">
+                {siteConfig.contact.phoneDisplay}
+              </span>
+            </a>
+            <a
+              href={`tel:${siteConfig.contact.mobile}`}
+              className="hotline-card"
+            >
+              <i className="bi bi-person-badge-fill"></i>
+              <span className="hotline-card-label">Mayor&apos;s Office</span>
+              <span className="hotline-card-number">
+                {siteConfig.contact.mobileDisplay}
+              </span>
+            </a>
+            <a
+              href={`tel:${siteConfig.hotlines.emergency}`}
+              className="hotline-card"
+            >
+              <i className="bi bi-shield-fill"></i>
+              <span className="hotline-card-label">
+                PNP {siteConfig.municipalityName}
+              </span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.emergency}
+              </span>
+            </a>
+            <a
+              href={`tel:${siteConfig.hotlines.emergency}`}
+              className="hotline-card"
+            >
+              <i className="bi bi-fire"></i>
+              <span className="hotline-card-label">
+                BFP {siteConfig.municipalityName}
+              </span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.emergency}
+              </span>
+            </a>
+            <a
+              href={`tel:${siteConfig.hotlines.emergency}`}
+              className="hotline-card"
+            >
+              <i className="bi bi-broadcast"></i>
+              <span className="hotline-card-label">
+                MDRRMO {siteConfig.municipalityName}
+              </span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.emergency}
+              </span>
+            </a>
+            <a
+              href={siteConfig.links.facebook}
               target="_blank"
               rel="noopener noreferrer"
               className="hotline-card"
             >
               <i className="bi bi-facebook"></i>
-              <span className="hotline-card-label">LGU Bagac</span>
+              <span className="hotline-card-label">{siteConfig.lguName}</span>
               <span className="hotline-card-number">Official Facebook</span>
             </a>
             <a
-              href="https://bagac.gov.ph/contact-us/"
+              href={siteConfig.links.contactUs}
               target="_blank"
               rel="noopener noreferrer"
               className="hotline-card"
             >
               <i className="bi bi-globe2"></i>
-              <span className="hotline-card-label">LGU Bagac Website</span>
-              <span className="hotline-card-number">bagac.gov.ph</span>
+              <span className="hotline-card-label">
+                {siteConfig.lguName} Website
+              </span>
+              <span className="hotline-card-number">
+                {new URL(siteConfig.links.officialPortal).host}
+              </span>
             </a>
           </div>
         </div>
@@ -204,24 +261,36 @@ export default function ContactPage() {
           </div>
           <div className="hotlines-grid">
             <a
-              href="tel:0476120424"
+              href={`tel:${siteConfig.contact.phone}`}
               className="hotline-card hotline-card--medical"
             >
               <i className="bi bi-hospital"></i>
               <span className="hotline-card-label">
-                Bagac Rural Health Unit
+                {siteConfig.municipalityName} Rural Health Unit
               </span>
-              <span className="hotline-card-number">(047) 612-0424</span>
+              <span className="hotline-card-number">
+                {siteConfig.contact.phoneDisplay}
+              </span>
             </a>
-            <a href="tel:143" className="hotline-card hotline-card--medical">
+            <a
+              href={`tel:${siteConfig.hotlines.redCross}`}
+              className="hotline-card hotline-card--medical"
+            >
               <i className="bi bi-plus-circle-fill"></i>
               <span className="hotline-card-label">Philippine Red Cross</span>
-              <span className="hotline-card-number">143</span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.redCross}
+              </span>
             </a>
-            <a href="tel:911" className="hotline-card hotline-card--medical">
+            <a
+              href={`tel:${siteConfig.hotlines.emergency}`}
+              className="hotline-card hotline-card--medical"
+            >
               <i className="bi bi-truck"></i>
               <span className="hotline-card-label">Medical Emergency</span>
-              <span className="hotline-card-number">911</span>
+              <span className="hotline-card-number">
+                {siteConfig.hotlines.emergency}
+              </span>
             </a>
           </div>
         </div>

@@ -4,31 +4,32 @@ import Header from "@/components/layout/Header";
 import HotlineBar from "@/components/layout/HotlineBar";
 import InfoBar from "@/components/layout/InfoBar";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
 import { Providers } from "./providers";
 
 export const viewport: Viewport = {
-  themeColor: "#1a5f2a",
+  themeColor: siteConfig.themeColor,
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "BetterBagac.org | Official Portal",
-    template: "%s | BetterBagac.org",
+    default: siteConfig.title,
+    template: siteConfig.titleTemplate,
   },
-  description: "BetterBagac.org - Your digital gateway to LGU Bagac services.",
-  keywords: ["BetterBagac", "Bagac Bataan", "LGU Bagac", "municipal services"],
+  description: siteConfig.description,
+  keywords: [...siteConfig.keywords],
   authors: [{ name: "Ramon Logan Jr." }],
   openGraph: {
     type: "website",
     locale: "en_PH",
-    url: "https://betterbagac.org/",
-    siteName: "BetterBagac.org",
-    title: "BetterBagac.org | Official Portal",
-    description:
-      "Empowering the people of Bagac with transparent access to services.",
+    url: siteConfig.url,
+    siteName: siteConfig.fullName,
+    title: siteConfig.title,
+    description: siteConfig.tagline,
     images: [
       {
-        url: "https://betterbagac.org/assets/images/banners/opengraph.png",
+        url: siteConfig.assets.openGraph,
         width: 1200,
         height: 630,
       },
@@ -36,8 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image" },
   icons: {
-    icon: "/assets/images/logo/favicon.svg",
-    apple: "/assets/images/logo/favicon.svg",
+    icon: siteConfig.assets.favicon,
+    apple: siteConfig.assets.favicon,
   },
 };
 
@@ -71,6 +72,9 @@ export default function RootLayout({
         <link rel="stylesheet" href="/assets/css/responsive.css" />
         <link rel="stylesheet" href="/assets/css/accessibility.css" />
         <link rel="stylesheet" href="/assets/css/footer.css" />
+
+        {/* Per-LGU token overrides. */}
+        <link rel="stylesheet" href="/assets/css/theme.local.css" />
       </head>
       <body>
         <Providers>

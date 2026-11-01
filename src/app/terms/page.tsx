@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 export default function TermsPage() {
   return (
@@ -24,7 +25,7 @@ export default function TermsPage() {
               <i className="bi bi-file-earmark-text"></i> Legal
             </span>
             <h1>Terms of Use</h1>
-            <p>Guidelines for using BetterBagac.org</p>
+            <p>Guidelines for using {siteConfig.fullName}</p>
           </div>
         </div>
       </section>
@@ -62,15 +63,16 @@ export default function TermsPage() {
               <section id="introduction" className="legal-section">
                 <h2>Introduction</h2>
                 <p>
-                  BetterBagac.org is a civic platform dedicated to empowering
-                  the people of Bagac by providing transparent access to the
-                  services, programs, and public funds of LGU Bagac.
+                  {siteConfig.fullName} is a civic platform dedicated to
+                  empowering the people of {siteConfig.municipalityName} by
+                  providing transparent access to the services, programs, and
+                  public funds of {siteConfig.lguName}.
                 </p>
                 <p>
-                  While volunteers make every effort to secure BetterBagac.org
-                  from online threats and keep information accurate, no system
-                  can be guaranteed to be perfectly secure, error-free, or
-                  completely up-to-date at all times.
+                  While volunteers make every effort to secure{" "}
+                  {siteConfig.fullName} from online threats and keep information
+                  accurate, no system can be guaranteed to be perfectly secure,
+                  error-free, or completely up-to-date at all times.
                 </p>
                 <div className="legal-highlight">
                   <i className="bi bi-heart-fill"></i>
@@ -102,8 +104,8 @@ export default function TermsPage() {
                 <p>
                   Public domain content may be freely used, copied, distributed,
                   and modified without permission or attribution, although
-                  attribution to BetterBagac.org and LGU Bagac is encouraged as
-                  a civic courtesy.
+                  attribution to {siteConfig.fullName} and {siteConfig.lguName}{" "}
+                  is encouraged as a civic courtesy.
                 </p>
                 <div className="legal-note">
                   <i className="bi bi-info-circle"></i>
@@ -112,8 +114,8 @@ export default function TermsPage() {
                     official government channels. Residents and stakeholders are
                     encouraged to conduct their own independent research and
                     verification of all information found here and to consult
-                    official LGU Bagac offices and government agencies when
-                    making important decisions.
+                    official {siteConfig.lguName} offices and government
+                    agencies when making important decisions.
                   </p>
                 </div>
               </section>
@@ -280,8 +282,8 @@ export default function TermsPage() {
                 <h2>Website Availability</h2>
                 <p>
                   Although volunteers aim to keep the website accessible and
-                  functional, BetterBagac.org cannot guarantee that the website
-                  will be:
+                  functional, {siteConfig.fullName} cannot guarantee that the
+                  website will be:
                 </p>
                 <ul className="legal-list">
                   <li>Available or accessible at all times</li>
@@ -349,9 +351,9 @@ export default function TermsPage() {
               <section id="takedown" className="legal-section">
                 <h2>Content Concerns and Takedown Requests</h2>
                 <p>
-                  BetterBagac.org values accuracy, public safety, and respect
-                  for rights. Despite good-faith efforts, some content may
-                  become outdated, incomplete, or raise legitimate concerns.
+                  {siteConfig.fullName} values accuracy, public safety, and
+                  respect for rights. Despite good-faith efforts, some content
+                  may become outdated, incomplete, or raise legitimate concerns.
                 </p>
                 <p>If you believe that any content on this website is:</p>
                 <ul className="legal-list">
@@ -365,8 +367,8 @@ export default function TermsPage() {
                 </ul>
                 <p>
                   Please contact us at:{" "}
-                  <a href="mailto:volunteer@betterbagac.org">
-                    volunteer@betterbagac.org
+                  <a href={`mailto:${siteConfig.volunteerEmail}`}>
+                    {siteConfig.volunteerEmail}
                   </a>
                 </p>
 
@@ -418,17 +420,17 @@ export default function TermsPage() {
                 </p>
                 <div className="legal-contact">
                   <a
-                    href="mailto:volunteer@betterbagac.org"
+                    href={`mailto:${siteConfig.volunteerEmail}`}
                     className="contact-link"
                   >
                     <i className="bi bi-envelope-fill"></i>
-                    <span>volunteer@betterbagac.org</span>
+                    <span>{siteConfig.volunteerEmail}</span>
                   </a>
                 </div>
                 <p className="legal-closing">
-                  BetterBagac.org provides public domain information to support
-                  civic engagement, transparency, and informed participation in
-                  local governance.
+                  {siteConfig.fullName} provides public domain information to
+                  support civic engagement, transparency, and informed
+                  participation in local governance.
                 </p>
               </section>
             </article>

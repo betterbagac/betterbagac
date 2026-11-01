@@ -3,6 +3,7 @@ import {
   type LegislativeKind,
   legislativeRecords,
 } from "@/data/legislativeRecords";
+import { siteConfig } from "@/data/site.config";
 
 const TERMS = {
   ordinance: {
@@ -33,7 +34,7 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
         <p style={{ color: "var(--color-text-light)", fontSize: "0.875rem" }}>
           {records.length > 0
             ? `${records.length} verified ${term.plural} confirmed from published sources`
-            : `No ${term.plural} of the Sangguniang Bayan ng Bagac are published online yet`}
+            : `No ${term.plural} of the Sangguniang Bayan ng ${siteConfig.municipalityName} are published online yet`}
         </p>
       </div>
 
@@ -45,12 +46,12 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
           <div className="info-card-content">
             <h3>Why this list is empty</h3>
             <p>
-              The Municipality of Bagac does not post its {term.plural} in any
-              publicly readable form. The LGU transparency page lists
-              &ldquo;Ordinances&rdquo; under Annual Reports without any attached
-              document, the Sangguniang Bayan page only lists members and
-              committees, and the national ordinance repositories have no Bagac
-              entries.
+              The {siteConfig.municipality.officialName} does not post its{" "}
+              {term.plural} in any publicly readable form. The LGU transparency
+              page lists &ldquo;Ordinances&rdquo; under Annual Reports without
+              any attached document, the Sangguniang Bayan page only lists
+              members and committees, and the national ordinance repositories
+              have no {siteConfig.municipalityName} entries.
             </p>
             <p>
               Sangguniang Bayan resolutions still exist — they are routinely
@@ -124,7 +125,7 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
         published source are listed. Sources checked {LEGISLATIVE_DATA_AS_OF}{" "}
         &middot;{" "}
         <a
-          href="https://bagac.gov.ph/transparency-seal/"
+          href={siteConfig.links.transparencySeal}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -132,7 +133,7 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
         </a>{" "}
         &middot;{" "}
         <a
-          href="https://ordinances.ph/search"
+          href={siteConfig.links.ordinances}
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { siteConfig } from "@/data/site.config";
 
 export default function PrivacyPage() {
   return (
@@ -60,7 +61,7 @@ export default function PrivacyPage() {
               <section id="introduction" className="legal-section">
                 <h2>Introduction</h2>
                 <p>
-                  BetterBagac.org (&quot;we,&quot; &quot;us,&quot; or
+                  {siteConfig.fullName} (&quot;we,&quot; &quot;us,&quot; or
                   &quot;our&quot;) is committed to protecting your privacy and
                   ensuring the security of your personal information. This
                   Privacy Policy explains how we collect, use, disclose, and
@@ -239,8 +240,8 @@ export default function PrivacyPage() {
                   </li>
                   <li>
                     <strong>Protection of Rights:</strong> To protect the
-                    rights, property, or safety of BetterBagac.org, our users,
-                    or the public
+                    rights, property, or safety of {siteConfig.fullName}, our
+                    users, or the public
                   </li>
                   <li>
                     <strong>Consent:</strong> With your explicit consent for any
@@ -343,8 +344,8 @@ export default function PrivacyPage() {
                   </h4>
                   <p>
                     To exercise any of these rights, please contact us at{" "}
-                    <a href="mailto:volunteer@betterbagac.org">
-                      volunteer@betterbagac.org
+                    <a href={`mailto:${siteConfig.volunteerEmail}`}>
+                      {siteConfig.volunteerEmail}
                     </a>
                     . We will respond to your request within 30 days as required
                     by law.
@@ -355,16 +356,17 @@ export default function PrivacyPage() {
               <section id="childrens-privacy" className="legal-section">
                 <h2>Children&apos;s Privacy</h2>
                 <p>
-                  BetterBagac.org is a general audience website providing civic
-                  information. We do not knowingly collect personal information
-                  from children under 18 years of age without parental consent.
+                  {siteConfig.fullName} is a general audience website providing
+                  civic information. We do not knowingly collect personal
+                  information from children under 18 years of age without
+                  parental consent.
                 </p>
                 <p>
                   If you are a parent or guardian and believe your child has
                   provided us with personal information, please contact us
                   immediately at{" "}
-                  <a href="mailto:volunteer@betterbagac.org">
-                    volunteer@betterbagac.org
+                  <a href={`mailto:${siteConfig.volunteerEmail}`}>
+                    {siteConfig.volunteerEmail}
                   </a>
                   , and we will take steps to delete such information.
                 </p>
@@ -413,11 +415,11 @@ export default function PrivacyPage() {
                 </p>
                 <div className="legal-contact">
                   <a
-                    href="mailto:volunteer@betterbagac.org"
+                    href={`mailto:${siteConfig.volunteerEmail}`}
                     className="contact-link"
                   >
                     <i className="bi bi-envelope-fill"></i>
-                    <span>volunteer@betterbagac.org</span>
+                    <span>{siteConfig.volunteerEmail}</span>
                   </a>
                 </div>
 
@@ -438,11 +440,11 @@ export default function PrivacyPage() {
                     <br />
                     Website:{" "}
                     <a
-                      href="https://www.privacy.gov.ph"
+                      href={siteConfig.links.privacyCommission}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      www.privacy.gov.ph
+                      {new URL(siteConfig.links.privacyCommission).host}
                     </a>
                   </p>
                 </div>
