@@ -45,47 +45,38 @@ export default function HomePage() {
             <article className="home-news-card">
               <div className="home-news-meta">
                 <span className="home-news-badge home-news-badge--info">
-                  Advisory
+                  {t("home-news-advisory")}
                 </span>
                 <span className="home-news-date">Feb 2, 2026</span>
               </div>
               <h3>
-                <Link href="/news">Temporary Suspension of Operations</Link>
+                <Link href="/news">{t("home-news-1-title")}</Link>
               </h3>
-              <p>
-                The LGU advised the public that operations of a beach house in
-                Barangay Pag-asa were suspended for lack of a business permit.
-              </p>
+              <p>{t("home-news-1-desc")}</p>
             </article>
             <article className="home-news-card">
               <div className="home-news-meta">
                 <span className="home-news-badge home-news-badge--success">
-                  Program
+                  {t("home-news-program")}
                 </span>
                 <span className="home-news-date">Aug 25, 2025</span>
               </div>
               <h3>
-                <Link href="/news">MAS Bagac Congress 2025</Link>
+                <Link href="/news">{t("home-news-2-title")}</Link>
               </h3>
-              <p>
-                Youth leaders gathered at St. Vincent Ferrer Parish in Saysain
-                for fellowship, sports, and leadership activities.
-              </p>
+              <p>{t("home-news-2-desc")}</p>
             </article>
             <article className="home-news-card">
               <div className="home-news-meta">
                 <span className="home-news-badge home-news-badge--warning">
-                  Recognition
+                  {t("home-news-recognition")}
                 </span>
                 <span className="home-news-date">2023</span>
               </div>
               <h3>
-                <Link href="/news">Top SGLG Incentive Fund Completer</Link>
+                <Link href="/news">{t("home-news-3-title")}</Link>
               </h3>
-              <p>
-                Bagac placed first nationwide among LGUs in the FY 2023 Seal of
-                Good Local Governance Incentive Fund.
-              </p>
+              <p>{t("home-news-3-desc")}</p>
             </article>
           </div>
         </div>
@@ -120,7 +111,8 @@ export default function HomePage() {
               <h3>Hon. Rommel V. Del Rosario</h3>
               <div className="home-leader-contacts">
                 <a href={siteConfig.links.sangguniangBayan}>
-                  <i className="bi bi-globe2"></i> Sangguniang Bayan
+                  <i className="bi bi-globe2"></i>{" "}
+                  {t("footer-sangguniang-bayan")}
                 </a>
                 <a href={`tel:${siteConfig.contact.phone}`}>
                   <i className="bi bi-telephone"></i>{" "}

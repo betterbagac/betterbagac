@@ -1,3 +1,6 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   LEGISLATIVE_DATA_AS_OF,
   type LegislativeKind,
@@ -7,20 +10,21 @@ import { siteConfig } from "@/data/site.config";
 
 const TERMS = {
   ordinance: {
-    plural: "ordinances",
-    singular: "ordinance",
-    heading: "Ordinances on record",
+    headingKey: "leg-records-ordinances-heading",
+    termKey: "leg-records-ordinances-term",
   },
   resolution: {
-    plural: "resolutions",
-    singular: "resolution",
-    heading: "Resolutions on record",
+    headingKey: "leg-records-resolutions-heading",
+    termKey: "leg-records-resolutions-term",
   },
 } as const;
 
 export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
+  const { t } = useLanguage();
   const records = legislativeRecords.filter((record) => record.kind === kind);
-  const term = TERMS[kind];
+  const heading = t(TERMS[kind].headingKey);
+  const term = t(TERMS[kind].termKey);
+  const municipality = siteConfig.municipalityName;
 
   return (
     <div className="container">
@@ -29,12 +33,12 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
         style={{ marginBottom: "var(--spacing-md)" }}
       >
         <h2 style={{ fontSize: "1.5rem", marginBottom: "var(--spacing-xs)" }}>
-          {term.heading}
+          {heading}
         </h2>
         <p style={{ color: "var(--color-text-light)", fontSize: "0.875rem" }}>
           {records.length > 0
-            ? `${records.length} verified ${term.plural} confirmed from published sources`
-            : `No ${term.plural} of the Sangguniang Bayan ng ${siteConfig.municipalityName} are published online yet`}
+            ? t("leg-records-count", { count: records.length, term })
+            : t("leg-records-empty", { term, municipality })}
         </p>
       </div>
 
@@ -44,26 +48,16 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
             <i className="bi bi-inbox"></i>
           </div>
           <div className="info-card-content">
-            <h3>Why this list is empty</h3>
+            <h3>{t("leg-empty-why")}</h3>
             <p>
-              The {siteConfig.municipality.officialName} does not post its{" "}
-              {term.plural} in any publicly readable form. The LGU transparency
-              page lists &ldquo;Ordinances&rdquo; under Annual Reports without
-              any attached document, the Sangguniang Bayan page only lists
-              members and committees, and the national ordinance repositories
-              have no {siteConfig.municipalityName} entries.
+              {t("leg-empty-p1", {
+                office: siteConfig.municipality.officialName,
+                term,
+                municipality,
+              })}
             </p>
-            <p>
-              Sangguniang Bayan resolutions still exist — they are routinely
-              issued for commendations, requests to national agencies,
-              endorsements, condolences, and authorizations — but none are
-              published online.
-            </p>
-            <p>
-              This page will be updated as soon as the Sangguniang Bayan
-              Secretariat publishes an official register. In the meantime,
-              certified copies can be requested directly from the Secretariat.
-            </p>
+            <p>{t("leg-empty-p2")}</p>
+            <p>{t("leg-empty-p3")}</p>
           </div>
         </div>
       ) : (
@@ -71,12 +65,12 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
           <table className="data-table">
             <thead>
               <tr>
-                <th scope="col">Number</th>
-                <th scope="col">Title</th>
-                <th scope="col">Subject</th>
-                <th scope="col">Year</th>
-                <th scope="col">Status</th>
-                <th scope="col">Source</th>
+                <th scope="col">{t("leg-col-number")}</th>
+                <th scope="col">{t("leg-col-title")}</th>
+                <th scope="col">{t("leg-col-subject")}</th>
+                <th scope="col">{t("leg-col-year")}</th>
+                <th scope="col">{t("leg-col-status")}</th>
+                <th scope="col">{t("leg-col-source")}</th>
               </tr>
             </thead>
             <tbody>
@@ -121,15 +115,14 @@ export function LegislativeRecords({ kind }: { kind: LegislativeKind }) {
       )}
 
       <p className="data-source" style={{ marginTop: "var(--spacing-md)" }}>
-        <i className="bi bi-info-circle"></i> Only measures confirmed by a
-        published source are listed. Sources checked {LEGISLATIVE_DATA_AS_OF}{" "}
-        &middot;{" "}
+        <i className="bi bi-info-circle"></i>{" "}
+        {t("leg-source-note", { date: LEGISLATIVE_DATA_AS_OF })} &middot;{" "}
         <a
           href={siteConfig.links.transparencySeal}
           target="_blank"
           rel="noopener noreferrer"
         >
-          LGU transparency page
+          {t("leg-source-transparency")}
         </a>{" "}
         &middot;{" "}
         <a

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ErrorProps {
   error: Error & { digest?: string };
@@ -9,6 +10,8 @@ interface ErrorProps {
 }
 
 export default function Error({ error, reset }: ErrorProps) {
+  const { t } = useLanguage();
+
   useEffect(() => {
     console.error(error);
   }, [error]);
@@ -48,7 +51,7 @@ export default function Error({ error, reset }: ErrorProps) {
             color: "var(--color-text)",
           }}
         >
-          Server Error
+          {t("error-500-title")}
         </h1>
         <p
           className="error-desc"
@@ -60,8 +63,7 @@ export default function Error({ error, reset }: ErrorProps) {
             lineHeight: 1.6,
           }}
         >
-          Something went wrong on our end. This has been logged and our team
-          will look into it. Please try again later or return to the homepage.
+          {t("error-500-desc")}
         </p>
         <div
           className="error-actions"
@@ -73,10 +75,10 @@ export default function Error({ error, reset }: ErrorProps) {
           }}
         >
           <button onClick={reset} className="btn btn-primary">
-            Try Again
+            {t("error-retry")}
           </button>
           <Link href="/" className="btn btn-secondary">
-            Go to Homepage
+            {t("error-home")}
           </Link>
         </div>
       </div>

@@ -13,10 +13,10 @@ export default function FAQPage() {
 
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">FAQ</span>
+          <span aria-current="page">{t("faq-badge")}</span>
         </nav>
       </div>
 
@@ -25,13 +25,10 @@ export default function FAQPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-question-circle-fill"></i> FAQ
+              <i className="bi bi-question-circle-fill"></i> {t("faq-badge")}
             </span>
-            <h1>{t("faq-title") || "Frequently Asked Questions"}</h1>
-            <p className="page-header-desc">
-              {t("faq-subtitle") ||
-                "Find answers to common questions about municipal services"}
-            </p>
+            <h1>{t("faq-title")}</h1>
+            <p className="page-header-desc">{t("faq-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -43,43 +40,29 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-info-circle-fill"></i>
-                <h2>{t("faq-general") || "General Questions"}</h2>
+                <h2>{t("faq-general")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>
-                    What are the office hours of the Municipal Hall?
-                  </summary>
+                  <summary>{t("faq-q1")}</summary>
+                  <div className="faq-answer">
+                    <p>{t("faq-a1")}</p>
+                  </div>
+                </details>
+                <details className="faq-accordion">
+                  <summary>{t("faq-q2")}</summary>
                   <div className="faq-answer">
                     <p>
-                      The Municipal Hall is open Monday to Friday, 8:00 AM to
-                      5:00 PM, with a lunch break from 12:00 PM to 1:00 PM. We
-                      are closed on weekends and national/local holidays.
+                      {t("faq-a2-1")}{" "}
+                      <Link href="/government">{t("faq-link-government")}</Link>{" "}
+                      {t("faq-a2-2")}
                     </p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>
-                    How can I contact a specific municipal office?
-                  </summary>
+                  <summary>{t("faq-q3")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Visit our{" "}
-                      <Link href="/government">Government Directory</Link> page
-                      to find contact information for all municipal offices and
-                      department heads.
-                    </p>
-                  </div>
-                </details>
-                <details className="faq-accordion">
-                  <summary>Can I request services online?</summary>
-                  <div className="faq-answer">
-                    <p>
-                      Currently, most services require in-person applications.
-                      However, we are working on implementing online services
-                      for select transactions. Check individual service pages
-                      for updates.
-                    </p>
+                    <p>{t("faq-a3")}</p>
                   </div>
                 </details>
               </div>
@@ -89,47 +72,30 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-file-earmark-text-fill"></i>
-                <h2>{t("faq-certificates") || "Certificates & Documents"}</h2>
+                <h2>{t("faq-certificates")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>
-                    How long does it take to get a birth certificate?
-                  </summary>
+                  <summary>{t("faq-q4")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      For birth certificates registered in Bagac, it typically
-                      takes 15-30 minutes while you wait, provided the record is
-                      readily available.
-                    </p>
+                    <p>{t("faq-a4")}</p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>
-                    Can someone else request my certificate for me?
-                  </summary>
+                  <summary>{t("faq-q5")}</summary>
                   <div className="faq-answer">
-                    <p>Yes, but they must bring:</p>
+                    <p>{t("faq-a5")}</p>
                     <ul>
-                      <li>An authorization letter signed by you</li>
-                      <li>Valid ID of both you and the representative</li>
-                      <li>Photocopy of your valid ID</li>
+                      <li>{t("faq-a5-li1")}</li>
+                      <li>{t("faq-a5-li2")}</li>
+                      <li>{t("faq-a5-li3")}</li>
                     </ul>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>
-                    What is the difference between PSA and local civil registrar
-                    certificates?
-                  </summary>
+                  <summary>{t("faq-q6")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Both are certified true copies. PSA certificates are the
-                      nationally-recognized version required for passport and
-                      visa applications. Local civil registrar certificates are
-                      accepted for most local transactions and are often
-                      processed faster.
-                    </p>
+                    <p>{t("faq-a6")}</p>
                   </div>
                 </details>
               </div>
@@ -139,41 +105,32 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-shop"></i>
-                <h2>{t("faq-business") || "Business & Permits"}</h2>
+                <h2>{t("faq-business")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>When should I renew my business permit?</summary>
+                  <summary>{t("faq-q7")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Business permits must be renewed annually, preferably in
-                      January. The deadline for penalty-free renewal is
-                      typically January 20th of each year.
-                    </p>
+                    <p>{t("faq-a7")}</p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>
-                    What do I need to start a new business in Bagac?
-                  </summary>
+                  <summary>{t("faq-q8")}</summary>
                   <div className="faq-answer">
-                    <p>To start a new business, you&apos;ll need:</p>
+                    <p>{t("faq-a8")}</p>
                     <ul>
-                      <li>
-                        DTI Registration (for sole proprietorship) or SEC
-                        Registration (for corporation)
-                      </li>
-                      <li>Barangay Clearance</li>
-                      <li>Community Tax Certificate (Cedula)</li>
-                      <li>Location Sketch/Map</li>
-                      <li>Contract of Lease (if renting)</li>
+                      <li>{t("faq-a8-li1")}</li>
+                      <li>{t("faq-a8-li2")}</li>
+                      <li>{t("faq-a8-li3")}</li>
+                      <li>{t("faq-a8-li4")}</li>
+                      <li>{t("faq-a8-li5")}</li>
                     </ul>
                     <p>
-                      Visit our{" "}
+                      {t("faq-a8-1")}{" "}
                       <Link href="/services/business">
-                        Business Permit page
+                        {t("faq-link-business-permit")}
                       </Link>{" "}
-                      for complete details.
+                      {t("faq-a8-2")}
                     </p>
                   </div>
                 </details>
@@ -184,29 +141,19 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-cash-coin"></i>
-                <h2>{t("faq-payments") || "Payments & Fees"}</h2>
+                <h2>{t("faq-payments")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>What payment methods are accepted?</summary>
+                  <summary>{t("faq-q9")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Currently, we accept cash payments at the Municipal
-                      Treasurer&apos;s Office. We are working on implementing
-                      online payment options for taxes and fees.
-                    </p>
+                    <p>{t("faq-a9")}</p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>How can I pay my real property tax?</summary>
+                  <summary>{t("faq-q10")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Visit the Municipal Treasurer&apos;s Office at the
-                      Municipal Hall with your Tax Declaration or latest
-                      Official Receipt. Payment is in cash. Property taxes are
-                      due quarterly, but you may pay annually to avail of
-                      discounts.
-                    </p>
+                    <p>{t("faq-a10")}</p>
                   </div>
                 </details>
               </div>
@@ -216,36 +163,25 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-people-fill"></i>
-                <h2>{t("faq-social") || "Social Services"}</h2>
+                <h2>{t("faq-social")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>How do I apply for a Senior Citizen ID?</summary>
+                  <summary>{t("faq-q11")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Go to the Municipal Social Welfare and Development Office
-                      (MSWDO) with:
-                    </p>
+                    <p>{t("faq-a11")}</p>
                     <ul>
-                      <li>
-                        Birth Certificate or any valid ID showing your age (60
-                        and above)
-                      </li>
-                      <li>1x1 ID photo</li>
-                      <li>Barangay Residence Certificate</li>
+                      <li>{t("faq-a11-li1")}</li>
+                      <li>{t("faq-a11-li2")}</li>
+                      <li>{t("faq-a11-li3")}</li>
                     </ul>
-                    <p>The ID is issued for free.</p>
+                    <p>{t("faq-a11-tail")}</p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>What benefits do senior citizens receive?</summary>
+                  <summary>{t("faq-q12")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Senior citizens enjoy 20% discount and VAT exemption on
-                      purchases (with a minimum purchase amount per
-                      establishment), priority lanes, and access to special
-                      programs and medical assistance from the municipality.
-                    </p>
+                    <p>{t("faq-a12")}</p>
                   </div>
                 </details>
               </div>
@@ -255,34 +191,25 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-gear-fill"></i>
-                <h2>{t("faq-technical") || "Technical Questions"}</h2>
+                <h2>{t("faq-technical")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>
-                    I found a broken link or error on this website. How do I
-                    report it?
-                  </summary>
+                  <summary>{t("faq-q13")}</summary>
                   <div className="faq-answer">
                     <p>
-                      Thank you for helping us improve! Please send us message
-                      at{" "}
+                      {t("faq-a13-1")}{" "}
                       <a href={`mailto:${siteConfig.volunteerEmail}`}>
                         {siteConfig.volunteerEmail}
                       </a>{" "}
-                      and write &quot;Website Issue&quot; as the subject.
-                      Describe the problem and include the page URL if possible.
+                      {t("faq-a13-2")}
                     </p>
                   </div>
                 </details>
                 <details className="faq-accordion">
-                  <summary>Is this website mobile-friendly?</summary>
+                  <summary>{t("faq-q14")}</summary>
                   <div className="faq-answer">
-                    <p>
-                      Yes! {siteConfig.displayName} is fully responsive and
-                      optimized for mobile phones, tablets, and desktop
-                      computers.
-                    </p>
+                    <p>{t("faq-a14")}</p>
                   </div>
                 </details>
               </div>
@@ -292,11 +219,11 @@ export default function FAQPage() {
             <div className="faq-category">
               <div className="faq-category-header">
                 <i className="bi bi-person-badge-fill"></i>
-                <h2>About the Developer</h2>
+                <h2>{t("faq-about-developer")}</h2>
               </div>
               <div className="faq-list">
                 <details className="faq-accordion">
-                  <summary>Who developed Better Bagac?</summary>
+                  <summary>{t("faq-q15")}</summary>
                   <div className="faq-answer">
                     <p>
                       <a
@@ -306,13 +233,10 @@ export default function FAQPage() {
                       >
                         Juan Miguel Recondo
                       </a>{" "}
-                      is the developer behind {siteConfig.fullName}. He is an
-                      early-career IT professional practicing full-stack
-                      development and system administration in cloud
-                      environments.
+                      {t("faq-a15-1-2")}
                     </p>
                     <p>
-                      Juan Miguel contributes to{" "}
+                      {t("faq-a15-2-1")}{" "}
                       <a
                         href="https://bettergov.ph"
                         target="_blank"
@@ -320,18 +244,9 @@ export default function FAQPage() {
                       >
                         BetterGov.ph
                       </a>
-                      , a volunteer-driven civic-tech effort focused on
-                      improving access to local government information and
-                      services in the Philippines.
+                      {t("faq-a15-2-2")}
                     </p>
-                    <p>
-                      Juan Miguel has made the Bagac Project open source under
-                      MIT | CC BY 4.0 to empower community-driven development,
-                      and contributions are warmly welcomed from everyone;
-                      whether you are a developer, data researcher, designer,
-                      content writer, translator, or a concerned citizen of
-                      Bagac, your participation helps shape the project for all.
-                    </p>
+                    <p>{t("faq-a15-3")}</p>
                   </div>
                 </details>
               </div>
@@ -341,14 +256,11 @@ export default function FAQPage() {
             <div className="faq-cta">
               <i className="bi bi-chat-dots-fill"></i>
               <div className="faq-cta-content">
-                <h3>{t("faq-still-questions") || "Still have questions?"}</h3>
-                <p>
-                  {t("faq-contact-help") ||
-                    "If you didn't find the answer you were looking for, please don't hesitate to contact us."}
-                </p>
+                <h3>{t("faq-still-questions")}</h3>
+                <p>{t("faq-contact-help")}</p>
               </div>
               <Link href="/contact" className="btn btn-primary">
-                Contact Us
+                {t("contact-title")}
               </Link>
             </div>
           </div>

@@ -32,7 +32,7 @@ export default function Header() {
         <nav
           id="main-nav"
           className={`main-nav ${mobileMenuOpen ? "active" : ""}`}
-          aria-label="Main Navigation"
+          aria-label={t("header-main-nav")}
         >
           <ul>
             <li>
@@ -48,34 +48,44 @@ export default function Header() {
               <Link href="/services">{t("nav-services")}</Link>
               <ul className="dropdown-menu">
                 <li>
-                  <Link href="/services/certificates">Certificates</Link>
+                  <Link href="/services/certificates">
+                    {t("cat-certificates")}
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/business">Business</Link>
+                  <Link href="/services/business">{t("cat-business")}</Link>
                 </li>
                 <li>
-                  <Link href="/services/tax-payments">Tax Payments</Link>
+                  <Link href="/services/tax-payments">{t("cat-tax")}</Link>
                 </li>
                 <li>
-                  <Link href="/services/social-services">Social Services</Link>
+                  <Link href="/services/social-services">
+                    {t("cat-social")}
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/health">Health</Link>
+                  <Link href="/services/health">{t("cat-health")}</Link>
                 </li>
                 <li>
-                  <Link href="/services/agriculture">Agriculture</Link>
+                  <Link href="/services/agriculture">
+                    {t("cat-agriculture")}
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/infrastructure">Infrastructure</Link>
+                  <Link href="/services/infrastructure">
+                    {t("cat-infrastructure")}
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/services/education">Education</Link>
+                  <Link href="/services/education">{t("cat-education")}</Link>
                 </li>
                 <li>
-                  <Link href="/services/public-safety">Public Safety</Link>
+                  <Link href="/services/public-safety">{t("cat-safety")}</Link>
                 </li>
                 <li>
-                  <Link href="/services/environment">Environment</Link>
+                  <Link href="/services/environment">
+                    {t("cat-environment")}
+                  </Link>
                 </li>
               </ul>
             </li>
@@ -90,12 +100,12 @@ export default function Header() {
               <ul className="dropdown-menu">
                 <li>
                   <Link href="/legislative/ordinance-framework">
-                    Ordinance Framework
+                    {t("header-ordinance-framework")}
                   </Link>
                 </li>
                 <li>
                   <Link href="/legislative/resolution-framework">
-                    Resolution Framework
+                    {t("header-resolution-framework")}
                   </Link>
                 </li>
               </ul>
@@ -115,7 +125,7 @@ export default function Header() {
               type="button"
               className={`btn btn-secondary btn-sm lang-btn ${language === "en" ? "active" : ""}`}
               onClick={() => setLanguage("en")}
-              aria-label="Switch to English"
+              aria-label={t("header-switch-en")}
             >
               EN
             </button>
@@ -123,7 +133,7 @@ export default function Header() {
               type="button"
               className={`btn btn-secondary btn-sm lang-btn ${language === "fil" ? "active" : ""}`}
               onClick={() => setLanguage("fil")}
-              aria-label="Switch to Filipino"
+              aria-label={t("header-switch-fil")}
             >
               FIL
             </button>
@@ -137,7 +147,7 @@ export default function Header() {
           aria-expanded={mobileMenuOpen}
           aria-controls="main-nav"
           aria-label={
-            mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            mobileMenuOpen ? t("header-close-menu") : t("header-open-menu")
           }
         >
           <i

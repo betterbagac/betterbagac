@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function TermsPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <link rel="stylesheet" href="/assets/css/legal.css" />
 
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Terms of Use</span>
+          <span aria-current="page">{t("footer-terms")}</span>
         </nav>
       </div>
 
@@ -22,10 +25,10 @@ export default function TermsPage() {
         <div className="container">
           <div className="legal-hero-content">
             <span className="legal-hero-badge">
-              <i className="bi bi-file-earmark-text"></i> Legal
+              <i className="bi bi-file-earmark-text"></i> {t("terms-badge")}
             </span>
-            <h1>Terms of Use</h1>
-            <p>Guidelines for using {siteConfig.fullName}</p>
+            <h1>{t("footer-terms")}</h1>
+            <p>{t("terms-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -37,7 +40,7 @@ export default function TermsPage() {
             {/* Table of Contents */}
             <aside className="legal-toc">
               <h4>
-                <i className="bi bi-list-ul"></i> Contents
+                <i className="bi bi-list-ul"></i> {t("legal-toc-title")}
               </h4>
               <nav>
                 <a href="#introduction">Introduction</a>

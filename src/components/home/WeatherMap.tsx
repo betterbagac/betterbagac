@@ -1,9 +1,11 @@
 "use client";
 
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 import { useWeather } from "@/hooks/useWeather";
 
 export default function WeatherMap() {
+  const { t } = useLanguage();
   const { weather } = useWeather();
   const { latitude, longitude, mapBbox } = siteConfig.geo;
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${mapBbox
@@ -14,14 +16,14 @@ export default function WeatherMap() {
     <section className="section weather-map-section">
       <div className="container">
         <div className="home-stats-v2-header">
-          <h2>Weather and Map of {siteConfig.municipalityName}</h2>
+          <h2>{t("weather-title")}</h2>
         </div>
         <div className="weather-map-grid">
           <div className="weather-column">
             <div id="weather-container" aria-live="polite">
               <section
                 className="weather-widget"
-                aria-label={`Current weather in ${siteConfig.municipalityName}`}
+                aria-label={t("weather-aria")}
               >
                 <div className="weather-current">
                   <div className="weather-current-icon">
@@ -55,7 +57,7 @@ export default function WeatherMap() {
               <div
                 id="map-container"
                 role="application"
-                aria-label={`Interactive map of ${siteConfig.geo.label}`}
+                aria-label={t("weather-map-aria")}
                 className="map-container-iframe"
               >
                 <iframe
@@ -65,7 +67,7 @@ export default function WeatherMap() {
                   scrolling="no"
                   src={mapSrc}
                   className="map-iframe"
-                  title={`Map of ${siteConfig.municipalityName}`}
+                  title={t("weather-map-title")}
                   loading="lazy"
                 ></iframe>
               </div>

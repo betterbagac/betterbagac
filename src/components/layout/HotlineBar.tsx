@@ -1,7 +1,11 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function HotlineBar() {
-  const { contact, hotlines, municipalityName } = siteConfig;
+  const { t } = useLanguage();
+  const { contact, hotlines } = siteConfig;
 
   return (
     <div className="hotline-bar">
@@ -10,19 +14,27 @@ export default function HotlineBar() {
           <div className="hotline-items">
             <a href={`tel:${hotlines.emergency}`} className="hotline-item">
               <i className="bi bi-shield-fill" aria-hidden="true"></i>
-              <span>Emergency: {hotlines.emergency}</span>
+              <span>
+                {t("hotline-emergency")}: {hotlines.emergency}
+              </span>
             </a>
             <a href={`tel:${contact.phone}`} className="hotline-item">
               <i className="bi bi-building" aria-hidden="true"></i>
-              <span>Municipal Hall: {contact.phoneDisplay}</span>
+              <span>
+                {t("contact-municipal-hall")}: {contact.phoneDisplay}
+              </span>
             </a>
             <a href={`tel:${contact.mobile}`} className="hotline-item">
               <i className="bi bi-person-badge" aria-hidden="true"></i>
-              <span>Mayor&apos;s Office: {contact.mobileDisplay}</span>
+              <span>
+                {t("hotline-mayor")}: {contact.mobileDisplay}
+              </span>
             </a>
             <a href={`tel:${hotlines.emergency}`} className="hotline-item">
               <i className="bi bi-fire" aria-hidden="true"></i>
-              <span>Fire &amp; Rescue: {hotlines.emergency}</span>
+              <span>
+                {t("hotline-fire-rescue")}: {hotlines.emergency}
+              </span>
             </a>
             <a href={`tel:${hotlines.emergency}`} className="hotline-item">
               <i
@@ -30,7 +42,7 @@ export default function HotlineBar() {
                 aria-hidden="true"
               ></i>
               <span>
-                MDRRMO {municipalityName}: {hotlines.emergency}
+                {t("hotline-mdrrmo")}: {hotlines.emergency}
               </span>
             </a>
             <a
@@ -38,7 +50,7 @@ export default function HotlineBar() {
               className="hotline-item"
             >
               <i className="bi bi-envelope-heart" aria-hidden="true"></i>
-              <span>Volunteer with us</span>
+              <span>{t("hotline-volunteer")}</span>
             </a>
           </div>
         </div>

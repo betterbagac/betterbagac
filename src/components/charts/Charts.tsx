@@ -14,6 +14,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Register Chart.js components
 ChartJS.register(
@@ -31,11 +32,12 @@ ChartJS.register(
 
 // Population Trends Line Chart
 export function PopulationTrendsChart() {
+  const { t } = useLanguage();
   const data = {
     labels: ["1990", "1995", "2000", "2007", "2010", "2015", "2020", "2024"],
     datasets: [
       {
-        label: "Population",
+        label: t("stats-chart-population"),
         data: [18241, 20906, 22353, 24202, 25568, 26936, 31365, 32799],
         borderColor: "#0032a0",
         backgroundColor: "rgba(0, 50, 160, 0.12)",
@@ -67,7 +69,7 @@ export function PopulationTrendsChart() {
         displayColors: false,
         callbacks: {
           label: (context: any) =>
-            `Population: ${context.raw.toLocaleString()}`,
+            `${t("stats-chart-population")}: ${context.raw.toLocaleString()}`,
         },
       },
     },
@@ -193,8 +195,12 @@ export function IncomeSourcesChart({
   externalValue?: number;
   totalIncome?: number;
 }) {
+  const { t } = useLanguage();
   const data = {
-    labels: ["Local Sources", "External Sources (NTA)"],
+    labels: [
+      t("budget-chart-local-sources"),
+      t("budget-chart-external-sources"),
+    ],
     datasets: [
       {
         data: [localValue, externalValue],
@@ -236,7 +242,9 @@ export function IncomeSourcesChart({
       <Doughnut data={data} options={options} />
       <div className="chart-center-label">
         <div className="chart-center-value">₱{totalIncome.toFixed(2)}M</div>
-        <div className="chart-center-text">Total Income</div>
+        <div className="chart-center-text">
+          {t("budget-chart-total-income")}
+        </div>
       </div>
     </div>
   );
@@ -256,12 +264,13 @@ export function ExpenditureChart({
   debtValue?: number;
   totalExpense?: number;
 }) {
+  const { t } = useLanguage();
   const data = {
     labels: [
-      "General Public Services",
-      "Social Services",
-      "Economic Services",
-      "Debt Service",
+      t("budget-chart-gps"),
+      t("budget-chart-social"),
+      t("budget-chart-economic"),
+      t("budget-chart-debt"),
     ],
     datasets: [
       {
@@ -304,7 +313,9 @@ export function ExpenditureChart({
       <Doughnut data={data} options={options} />
       <div className="chart-center-label">
         <div className="chart-center-value">₱{totalExpense.toFixed(2)}M</div>
-        <div className="chart-center-text">Total Expenses</div>
+        <div className="chart-center-text">
+          {t("budget-chart-total-expenses")}
+        </div>
       </div>
     </div>
   );
@@ -312,6 +323,7 @@ export function ExpenditureChart({
 
 // CMCI Rankings Line Chart
 export function CMCIRankingsChart() {
+  const { t } = useLanguage();
   const data = {
     labels: [
       "2016",
@@ -326,7 +338,7 @@ export function CMCIRankingsChart() {
     ],
     datasets: [
       {
-        label: "Overall Rank",
+        label: t("stats-chart-overall-rank"),
         data: [172, 655, 246, 166, 200, 218, 116, 359, 44],
         borderColor: "#0032a0",
         backgroundColor: "rgba(0, 50, 160, 0.1)",
@@ -390,6 +402,7 @@ export function CMCIRankingsChart() {
 
 // CMCI Pillar Score Trends (2016-2024)
 export function PillarScoresTrendChart() {
+  const { t } = useLanguage();
   const data = {
     labels: [
       "2016",
@@ -404,7 +417,7 @@ export function PillarScoresTrendChart() {
     ],
     datasets: [
       {
-        label: "Economic Dynamism",
+        label: t("stats-chart-economic-dynamism"),
         data: [
           7.7927,
           2.9825,
@@ -425,7 +438,7 @@ export function PillarScoresTrendChart() {
         spanGaps: true,
       },
       {
-        label: "Government Efficiency",
+        label: t("stats-chart-government-efficiency"),
         data: [
           11.0795,
           5.4594,
@@ -446,7 +459,7 @@ export function PillarScoresTrendChart() {
         spanGaps: true,
       },
       {
-        label: "Infrastructure",
+        label: t("stats-chart-infrastructure"),
         data: [
           7.1863,
           6.5953,
@@ -467,7 +480,7 @@ export function PillarScoresTrendChart() {
         spanGaps: true,
       },
       {
-        label: "Resiliency",
+        label: t("stats-chart-resiliency"),
         data: [
           null,
           12.19,
@@ -488,7 +501,7 @@ export function PillarScoresTrendChart() {
         spanGaps: true,
       },
       {
-        label: "Innovation",
+        label: t("stats-chart-innovation"),
         data: [null, null, null, null, null, null, 3.6167, 2.7567, 7.4175],
         borderColor: "#8b5cf6",
         backgroundColor: "#8b5cf6",
@@ -557,6 +570,7 @@ export function PillarScoresTrendChart() {
 
 // Barangay Population Horizontal Bar Chart
 export function BarangayPopulationChart() {
+  const { t } = useLanguage();
   const barangayData = [
     { name: "Pag-asa", pop: 3729 },
     { name: "Parang", pop: 3480 },
@@ -578,7 +592,7 @@ export function BarangayPopulationChart() {
     labels: barangayData.map((d) => d.name),
     datasets: [
       {
-        label: "Population",
+        label: t("stats-chart-population"),
         data: barangayData.map((d) => d.pop),
         backgroundColor: barangayData.map((_, i) => {
           const opacity = 1 - i * 0.07;
@@ -607,7 +621,7 @@ export function BarangayPopulationChart() {
         displayColors: false,
         callbacks: {
           label: (context: any) =>
-            `Population: ${context.raw.toLocaleString()}`,
+            `${t("stats-chart-population")}: ${context.raw.toLocaleString()}`,
         },
       },
     },

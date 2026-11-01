@@ -1,20 +1,21 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
-export const metadata = {
-  title: "Government Officials & Structure",
-  description: `Meet the leadership and offices serving ${siteConfig.municipalityName}, ${siteConfig.province}`,
-};
-
 export default function GovernmentPage() {
+  const { t } = useLanguage();
+  const municipality = siteConfig.municipalityName;
+
   return (
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("gov-breadcrumb-aria")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Government</span>
+          <span aria-current="page">{t("nav-government")}</span>
         </nav>
       </div>
 
@@ -23,12 +24,11 @@ export default function GovernmentPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-building-fill"></i> Government
+              <i className="bi bi-building-fill"></i> {t("nav-government")}
             </span>
-            <h1>Government Structure &amp; Officials</h1>
+            <h1>{t("gov-title")}</h1>
             <p className="page-header-desc">
-              Meet the leadership and offices serving{" "}
-              {siteConfig.municipalityName}
+              {t("gov-subtitle", { municipality })}
             </p>
           </div>
         </div>
@@ -58,23 +58,22 @@ export default function GovernmentPage() {
                 marginBottom: "var(--spacing-sm)",
               }}
             >
-              <i className="bi bi-star-fill"></i> Executive Branch
+              <i className="bi bi-star-fill"></i> {t("gov-executive-branch")}
             </span>
             <h3
               style={{ fontSize: "1.75rem", marginBottom: "var(--spacing-xs)" }}
             >
-              Municipal Leadership
+              {t("section-leadership")}
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
-              The executive officials leading {siteConfig.municipalityName}
-              &apos;s governance
+              {t("gov-executive-desc", { municipality })}
             </p>
           </div>
 
           <div className="grid grid-2" style={{ gap: "var(--spacing-lg)" }}>
             <div className="executive-card">
               <div className="executive-card-header">
-                <span className="executive-badge">Municipal Mayor</span>
+                <span className="executive-badge">{t("title-mayor")}</span>
                 <h4 className="executive-name">
                   Hon. Ron Michael Alexis R. Del Rosario
                 </h4>
@@ -98,13 +97,14 @@ export default function GovernmentPage() {
 
             <div className="executive-card">
               <div className="executive-card-header">
-                <span className="executive-badge">Municipal Vice Mayor</span>
+                <span className="executive-badge">{t("title-vice-mayor")}</span>
                 <h4 className="executive-name">Hon. Rommel V. Del Rosario</h4>
               </div>
               <div className="executive-card-body">
                 <div className="executive-contacts">
                   <a href={siteConfig.links.sangguniangBayan}>
-                    <i className="bi bi-globe2"></i> Sangguniang Bayan
+                    <i className="bi bi-globe2"></i>{" "}
+                    {t("footer-sangguniang-bayan")}
                   </a>
                   <a href={`tel:${siteConfig.contact.phone}`}>
                     <i className="bi bi-telephone"></i>{" "}
@@ -141,100 +141,92 @@ export default function GovernmentPage() {
                 marginBottom: "var(--spacing-sm)",
               }}
             >
-              <i className="bi bi-people-fill"></i> Legislative Branch
+              <i className="bi bi-people-fill"></i>{" "}
+              {t("gov-legislative-branch")}
             </span>
             <h3
               style={{ fontSize: "1.75rem", marginBottom: "var(--spacing-xs)" }}
             >
-              Sangguniang Bayan Members
+              {t("gov-sb-members")}
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
-              Municipal Councilors serving the people of{" "}
-              {siteConfig.municipalityName}
+              {t("gov-sb-members-desc", { municipality })}
             </p>
           </div>
 
           <div className="grid grid-3" style={{ gap: "var(--spacing-md)" }}>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Alex J. Bantugan</h4>
-              <span className="councilor-badge">SB Member</span>
-              <p className="councilor-committees">Women and Family</p>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
+              <p className="councilor-committees">
+                {t("gov-committee-women-family")}
+              </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. John Harry R. Carreon</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Finance, Budget, Appropriation, and Ways and Means; Tourism;
-                Community Development
+                {t("gov-committee-finance")}
               </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Larry G. Bantugan</h4>
-              <span className="councilor-badge">SB Member</span>
-              <p className="councilor-committees">
-                Rules and Ethics; Agriculture, Food and Fisheries; Local
-                Enterprise
-              </p>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
+              <p className="councilor-committees">{t("gov-committee-rules")}</p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Neil Patrick R. Dela Rosa</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Education and Culture; Social Welfare and Development; Senior
-                Citizens and Veterans Affairs
+                {t("gov-committee-education")}
               </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Ricardo R. Canta</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Environmental Protection and Natural Resources; Public
-                Utilities; Cooperatives; Games and Amusement
+                {t("gov-committee-environment")}
               </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Guillermo C. Mendoza Jr.</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Human Rights, Justice and Legal Matters; Peace and Order and
-                Public Safety; Housing and Land Use
+                {t("gov-committee-rights")}
               </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Felix R. Tutol Jr.</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Good Government, Public Ethics and Accountability; Labor,
-                Manpower, Employment, and Government
+                {t("gov-committee-good-government")}
               </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Jorge Xy-Ril R. Teopengco</h4>
-              <span className="councilor-badge">SB Member</span>
-              <p className="councilor-committees">
-                Trade, Commerce, and Industry; Infrastructure
-              </p>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
+              <p className="councilor-committees">{t("gov-committee-trade")}</p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Jason M. Narazeno</h4>
-              <span className="councilor-badge">SB Member</span>
-              <p className="councilor-committees">Barangay Affairs</p>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
+              <p className="councilor-committees">
+                {t("gov-committee-barangay")}
+              </p>
             </div>
             <div className="councilor-card">
               <h4 className="councilor-name">Hon. Anthony B. Sy</h4>
-              <span className="councilor-badge">SB Member</span>
+              <span className="councilor-badge">{t("gov-sb-member")}</span>
               <p className="councilor-committees">
-                Indigenous Cultural Communities
+                {t("gov-committee-indigenous")}
               </p>
             </div>
             <div className="councilor-card councilor-card--sk">
               <h4 className="councilor-name">Hon. Erwin P. Sales</h4>
               <span className="councilor-badge councilor-badge--sk">
-                SK Federation President
+                {t("gov-sk-president")}
               </span>
-              <p className="councilor-committees">
-                Youth and Sports Development
-              </p>
+              <p className="councilor-committees">{t("gov-committee-youth")}</p>
             </div>
           </div>
         </div>
@@ -261,15 +253,15 @@ export default function GovernmentPage() {
                 marginBottom: "var(--spacing-sm)",
               }}
             >
-              <i className="bi bi-geo-alt-fill"></i> Barangay Units
+              <i className="bi bi-geo-alt-fill"></i> {t("gov-barangay-units")}
             </span>
             <h3
               style={{ fontSize: "1.75rem", marginBottom: "var(--spacing-xs)" }}
             >
-              Barangays of {siteConfig.municipalityName}
+              {t("gov-barangays-title", { municipality })}
             </h3>
             <p style={{ color: "var(--color-text-light)" }}>
-              14 barangays serving our community
+              {t("gov-barangays-desc")}
             </p>
           </div>
 
@@ -323,7 +315,8 @@ export default function GovernmentPage() {
                       </span>
                     ) : (
                       <span className="barangay-contact">
-                        <i className="bi bi-building"></i> Municipal Hall
+                        <i className="bi bi-building"></i>{" "}
+                        {t("contact-municipal-hall")}
                       </span>
                     )}
                   </div>

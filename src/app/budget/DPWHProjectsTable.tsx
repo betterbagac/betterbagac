@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import dpwhSource from "@/data/dpwh-projects.json";
 
 type StatusLabel = "Completed" | "Ongoing" | "For Procurement";
@@ -36,13 +37,13 @@ const data = dpwhSource as unknown as {
 
 type FilterType = "all" | "roads" | "bridges" | "buildings" | "flood" | "water";
 
-const FILTERS: { key: FilterType; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "roads", label: "Roads" },
-  { key: "bridges", label: "Bridges" },
-  { key: "buildings", label: "Buildings" },
-  { key: "flood", label: "Flood Control" },
-  { key: "water", label: "Water" },
+const FILTERS: { key: FilterType; labelKey: string }[] = [
+  { key: "all", labelKey: "budget-filter-all" },
+  { key: "roads", labelKey: "budget-filter-roads" },
+  { key: "bridges", labelKey: "budget-filter-bridges" },
+  { key: "buildings", labelKey: "budget-filter-buildings" },
+  { key: "flood", labelKey: "budget-filter-flood" },
+  { key: "water", labelKey: "budget-filter-water" },
 ];
 
 const matchesFilter = (project: Project, filter: FilterType) => {
@@ -72,12 +73,12 @@ const CATEGORY_CLASS: Record<string, string> = {
   "Water Supply": "water",
 };
 
-const CATEGORY_LABEL: Record<string, string> = {
-  Roads: "Roads",
-  Bridges: "Bridges",
-  "Buildings and Facilities": "Buildings",
-  "Flood Control and Drainage": "Flood Control",
-  "Water Supply": "Water",
+const CATEGORY_LABEL_KEY: Record<string, string> = {
+  Roads: "budget-filter-roads",
+  Bridges: "budget-filter-bridges",
+  "Buildings and Facilities": "budget-filter-buildings",
+  "Flood Control and Drainage": "budget-filter-flood",
+  "Water Supply": "budget-filter-water",
 };
 
 const PAGE_SIZE = 8;
@@ -106,9 +107,9 @@ const formatCompactPeso = (amount: number) =>
     ? `₱${(amount / 1_000_000_000).toFixed(2)}B`
     : `₱${(amount / 1_000_000).toFixed(1)}M`;
 
-const formatDate = (dateStr: string | null) => {
+const formatDate = (dateStr: string | null, locale: string) => {
   if (!dateStr) return "—";
-  return new Date(dateStr).toLocaleDateString("en-PH", {
+  return new Date(dateStr).toLocaleDateString(locale, {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -123,6 +124,8 @@ const splitContractor = (contractor: string) => {
 };
 
 export function DPWHProjectsTable() {
+  const { t, language } = useLanguage();
+  const locale = language === "fil" ? "fil-PH" : "en-PH";
   const [filter, setFilter] = useState<FilterType>("all");
   const [showAll, setShowAll] = useState(false);
 
@@ -143,38 +146,48 @@ export function DPWHProjectsTable() {
           <span className="dpwh-summary-value">
             {data.summary.totalProjects}
           </span>
-          <span className="dpwh-summary-label">Projects</span>
+          <span className="dpwh-summary-label">
+            {t("budget-summary-projects")}
+          </span>
         </div>
         <div className="dpwh-summary-item">
           <span className="dpwh-summary-value">
             {formatCompactPeso(data.summary.totalCost)}
           </span>
-          <span className="dpwh-summary-label">Total Investment</span>
+          <span className="dpwh-summary-label">
+            {t("budget-summary-investment")}
+          </span>
         </div>
         <div className="dpwh-summary-item">
           <span className="dpwh-summary-value">
             {data.summary.completedProjects}
           </span>
-          <span className="dpwh-summary-label">Completed</span>
+          <span className="dpwh-summary-label">
+            {t("budget-summary-completed")}
+          </span>
         </div>
         <div className="dpwh-summary-item">
           <span className="dpwh-summary-value">
             {data.summary.ongoingProjects}
           </span>
-          <span className="dpwh-summary-label">Ongoing</span>
+          <span className="dpwh-summary-label">
+            {t("budget-summary-ongoing")}
+          </span>
         </div>
         <div className="dpwh-summary-item">
           <span className="dpwh-summary-value">
             {data.summary.forProcurementProjects}
           </span>
-          <span className="dpwh-summary-label">For Procurement</span>
+          <span className="dpwh-summary-label">
+            {t("budget-summary-procurement")}
+          </span>
         </div>
       </div>
 
       {/* Filter Tabs */}
       <div className="dpwh-controls">
         <div className="dpwh-filter-group" role="tablist">
-          {FILTERS.map(({ key, label }) => (
+          {FILTERS.map(({ key, labelKey }) => (
             <button
               key={key}
               type="button"
@@ -186,7 +199,7 @@ export function DPWHProjectsTable() {
               role="tab"
               aria-selected={filter === key}
             >
-              {label}
+              {t(labelKey)}
               <span className="dpwh-tab-count">{COUNTS[key]}</span>
             </button>
           ))}
@@ -199,19 +212,19 @@ export function DPWHProjectsTable() {
           <thead>
             <tr>
               <th scope="col" className="col-desc">
-                Contract Description
+                {t("budget-th-description")}
               </th>
               <th scope="col" className="col-contractor">
-                Contractor
+                {t("budget-th-contractor")}
               </th>
               <th scope="col" className="col-cost">
-                Cost
+                {t("budget-th-cost")}
               </th>
               <th scope="col" className="col-status">
-                Status
+                {t("budget-th-status")}
               </th>
               <th scope="col" className="col-date">
-                Completed
+                {t("budget-th-completed")}
               </th>
             </tr>
           </thead>
@@ -226,7 +239,7 @@ export function DPWHProjectsTable() {
                       <span
                         className={`dpwh-cat-badge ${CATEGORY_CLASS[p.category] ?? "buildings"}`}
                       >
-                        {CATEGORY_LABEL[p.category] ?? p.category}
+                        {t(CATEGORY_LABEL_KEY[p.category] ?? p.category)}
                       </span>
                     </div>
                     <span className="dpwh-proj-title" title={p.name}>
@@ -240,25 +253,27 @@ export function DPWHProjectsTable() {
                     <span className="dpwh-contractor">{contractor.name}</span>
                     {contractor.id && (
                       <span className="dpwh-contractor-id">
-                        Contractor ID: {contractor.id}
+                        {t("budget-contractor-id", { id: contractor.id })}
                       </span>
                     )}
                   </td>
                   <td className="col-cost">{formatCurrency(p.cost)}</td>
                   <td className="col-status">
                     {p.statusLabel === "Completed" && (
-                      <span className="dpwh-badge complete">Completed</span>
+                      <span className="dpwh-badge complete">
+                        {t("budget-summary-completed")}
+                      </span>
                     )}
                     {p.statusLabel === "Ongoing" && (
                       <span className="dpwh-badge ongoing">{p.status}%</span>
                     )}
                     {p.statusLabel === "For Procurement" && (
                       <span className="dpwh-badge procurement">
-                        For Bidding
+                        {t("budget-badge-bidding")}
                       </span>
                     )}
                   </td>
-                  <td className="col-date">{formatDate(p.date)}</td>
+                  <td className="col-date">{formatDate(p.date, locale)}</td>
                 </tr>
               );
             })}
@@ -274,9 +289,11 @@ export function DPWHProjectsTable() {
             className="dpwh-load-btn"
             onClick={() => setShowAll(true)}
           >
-            Load More{" "}
+            {t("budget-load-more")}{" "}
             <span className="dpwh-remaining">
-              ({filteredProjects.length - PAGE_SIZE} remaining)
+              {t("budget-load-more-remaining", {
+                count: filteredProjects.length - PAGE_SIZE,
+              })}
             </span>
           </button>
         </div>
@@ -284,13 +301,13 @@ export function DPWHProjectsTable() {
       {showAll && (
         <div className="dpwh-load-more">
           <span className="dpwh-end-msg">
-            Showing all {filteredProjects.length} projects
+            {t("budget-showing-all", { count: filteredProjects.length })}
           </span>
         </div>
       )}
 
       <p className="dpwh-source-note">
-        <i className="bi bi-info-circle"></i> Source:{" "}
+        <i className="bi bi-info-circle"></i> {t("budget-source-label")}{" "}
         <a
           href="https://transparency.dpwh.gov.ph/"
           target="_blank"
@@ -298,8 +315,10 @@ export function DPWHProjectsTable() {
         >
           {data.summary.source}
         </a>{" "}
-        · Implemented by the {data.summary.implementingAgency} · Retrieved{" "}
-        {data.summary.asOf}
+        {t("budget-source-implemented", {
+          agency: data.summary.implementingAgency,
+          date: data.summary.asOf,
+        })}
       </p>
     </div>
   );

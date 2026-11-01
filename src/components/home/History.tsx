@@ -1,103 +1,55 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { siteConfig } from "@/data/site.config";
+import { Fragment, type ReactNode } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-interface TimelineItem {
-  year: string;
-  content: ReactNode;
+const EMPHASIS = /\*\*([^*]+)\*\*/g;
+
+/** Renders `**...**` segments of a translated string as <strong>. */
+function withEmphasis(text: string) {
+  const nodes: ReactNode[] = [];
+  const pattern = new RegExp(EMPHASIS.source, "g");
+  let cursor = 0;
+  let match = pattern.exec(text);
+
+  while (match) {
+    const start = match.index;
+    if (start > cursor) {
+      nodes.push(<Fragment key={cursor}>{text.slice(cursor, start)}</Fragment>);
+    }
+    nodes.push(<strong key={start}>{match[1]}</strong>);
+    cursor = start + match[0].length;
+    match = pattern.exec(text);
+  }
+
+  if (cursor < text.length) {
+    nodes.push(<Fragment key={cursor}>{text.slice(cursor)}</Fragment>);
+  }
+
+  return nodes;
 }
 
-const timeline: TimelineItem[] = [
-  {
-    year: "1578",
-    content: (
-      <>
-        Bagac was founded by the <strong>Franciscan Fathers</strong> and formed
-        part of the Corregimiento de Mariveles before Bataan became a province.
-      </>
-    ),
-  },
-  {
-    year: "1754",
-    content: (
-      <>
-        Bataan was created as a province, and Bagac was placed under its
-        jurisdiction.
-      </>
-    ),
-  },
-  {
-    year: "1896",
-    content: (
-      <>
-        Local insurrectos led by <strong>Jose Noriega</strong> rose against
-        Spanish rule, joined by Juan Bantay, Ildefonso Lucas Gonzales, and other
-        Bagac natives.
-      </>
-    ),
-  },
-  {
-    year: "1900",
-    content: (
-      <>
-        <strong>Manuel L. Quezon</strong>, then a major, married a Bagac maiden
-        under Katipunan rites at the home of Florentina Banzon Gutierrez.
-      </>
-    ),
-  },
-  {
-    year: "1942",
-    content: (
-      <>
-        The 25-kilometer <strong>Bagac–Pilar defense line</strong> held until
-        the fall of Bataan. Bagac then became one of the starting points of the
-        Bataan Death March.
-      </>
-    ),
-  },
-  {
-    year: "1975",
-    content: (
-      <>
-        The <strong>Bagac Friendship Tower</strong> was inaugurated on April 8,
-        1975, near the point where the Death March began.
-      </>
-    ),
-  },
-  {
-    year: "2023",
-    content: (
-      <>
-        Bagac placed <strong>first nationwide</strong> in the FY 2023 Seal of
-        Good Local Governance Incentive Fund (SGLGIF).
-      </>
-    ),
-  },
-];
+const timelineYears = ["1578", "1754", "1896", "1900", "1942", "1975", "2023"];
 
 export default function History() {
+  const { t } = useLanguage();
+
   return (
     <section className="section history-section">
       <div className="container">
         <div className="home-stats-v2-header">
           <h2>
-            <i className="bi bi-book" aria-hidden="true" /> Brief History of{" "}
-            {siteConfig.municipalityName}
+            <i className="bi bi-book" aria-hidden="true" /> {t("history-title")}
           </h2>
         </div>
         <div className="history-content">
           <div className="history-timeline">
-            {timeline.map((item) => (
-              <div
-                key={item.year}
-                className="timeline-item"
-                data-year={item.year}
-              >
+            {timelineYears.map((year) => (
+              <div key={year} className="timeline-item" data-year={year}>
                 <div className="timeline-marker" />
                 <div className="timeline-content">
-                  <span className="timeline-year">{item.year}</span>
-                  <p>{item.content}</p>
+                  <span className="timeline-year">{year}</span>
+                  <p>{withEmphasis(t(`history-${year}`))}</p>
                 </div>
               </div>
             ))}
@@ -108,11 +60,8 @@ export default function History() {
                 <i className="bi bi-geo-alt-fill"></i>
               </div>
               <div className="history-card-content">
-                <h4>Largest in Bataan</h4>
-                <p>
-                  With a land area of 231.20 square kilometers, Bagac is the
-                  largest municipality in the province by territory.
-                </p>
+                <h4>{t("history-largest-title")}</h4>
+                <p>{t("history-largest-desc")}</p>
               </div>
             </div>
             <div className="history-card">
@@ -120,11 +69,8 @@ export default function History() {
                 <i className="bi bi-signpost-split"></i>
               </div>
               <div className="history-card-content">
-                <h4>Zero Kilometer</h4>
-                <p>
-                  A marker and zero kilometer post now stand where the Bataan
-                  Death March began in Bagac during World War II.
-                </p>
+                <h4>{t("history-zero-title")}</h4>
+                <p>{t("history-zero-desc")}</p>
               </div>
             </div>
           </div>

@@ -8,9 +8,12 @@ import {
   PopulationDistributionChart,
   PopulationTrendsChart,
 } from "@/components/charts/Charts";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function StatisticsPage() {
+  const { t } = useLanguage();
+
   useEffect(() => {
     // Animation on scroll
     const observer = new IntersectionObserver(
@@ -39,10 +42,10 @@ export default function StatisticsPage() {
 
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("stats-breadcrumb-aria")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Statistics</span>
+          <span aria-current="page">{t("nav-statistics")}</span>
         </nav>
       </div>
 
@@ -51,13 +54,10 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="stats-hero-content">
             <span className="stats-hero-badge">
-              <i className="bi bi-bar-chart-fill"></i> Municipal Data
+              <i className="bi bi-bar-chart-fill"></i> {t("stats-hero-badge")}
             </span>
-            <h1>Municipal Statistics</h1>
-            <p>
-              Data and statistics about {siteConfig.municipalityName},{" "}
-              {siteConfig.province}
-            </p>
+            <h1>{t("stats-title")}</h1>
+            <p>{t("stats-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -71,32 +71,44 @@ export default function StatisticsPage() {
                 <i className="bi bi-people-fill"></i>
               </div>
               <div className="metric-value">32,799</div>
-              <div className="metric-label">Population</div>
-              <div className="metric-source">2024 Census</div>
+              <div className="metric-label">{t("stats-metric-population")}</div>
+              <div className="metric-source">
+                {t("stats-metric-population-source")}
+              </div>
             </div>
             <div className="metric-card" data-delay="100">
               <div className="metric-icon">
                 <i className="bi bi-geo-alt-fill"></i>
               </div>
               <div className="metric-value">14</div>
-              <div className="metric-label">Barangays</div>
-              <div className="metric-source">Administrative Units</div>
+              <div className="metric-label">{t("stats-metric-barangays")}</div>
+              <div className="metric-source">
+                {t("stats-metric-barangays-source")}
+              </div>
             </div>
             <div className="metric-card" data-delay="200">
               <div className="metric-icon">
                 <i className="bi bi-rulers"></i>
               </div>
               <div className="metric-value">231.20</div>
-              <div className="metric-label">Land Area (km²)</div>
-              <div className="metric-source">Total Municipal Area</div>
+              <div className="metric-label">{t("stats-metric-area")}</div>
+              <div className="metric-source">
+                {t("stats-metric-area-source")}
+              </div>
             </div>
             <div className="metric-card" data-delay="300">
               <div className="metric-icon">
                 <i className="bi bi-award-fill"></i>
               </div>
-              <div className="metric-value">2nd</div>
-              <div className="metric-label">Income Class</div>
-              <div className="metric-source">Municipality Classification</div>
+              <div className="metric-value">
+                {t("stats-metric-income-class-value")}
+              </div>
+              <div className="metric-label">
+                {t("stats-metric-income-class")}
+              </div>
+              <div className="metric-source">
+                {t("stats-metric-income-class-source")}
+              </div>
             </div>
           </div>
         </div>
@@ -107,17 +119,17 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-cash-stack"></i> Finance
+              <i className="bi bi-cash-stack"></i> {t("stats-finance-tag")}
             </span>
-            <h2>Municipal Income</h2>
-            <p>Financial standing for fiscal year 2023</p>
+            <h2>{t("stats-finance-title")}</h2>
+            <p>{t("stats-finance-subtitle")}</p>
           </div>
 
           <div className="finance-grid">
             <div className="finance-card finance-card-primary">
               <div className="finance-card-header">
                 <i className="bi bi-graph-up-arrow"></i>
-                <span>Annual Revenue</span>
+                <span>{t("stats-annual-revenue")}</span>
               </div>
               <div className="finance-card-value">₱236.6M</div>
               <div className="finance-card-detail">FY 2024</div>
@@ -125,7 +137,7 @@ export default function StatisticsPage() {
             <div className="finance-card">
               <div className="finance-card-header">
                 <i className="bi bi-cash-stack"></i>
-                <span>Total Expenditure</span>
+                <span>{t("stats-total-expenditure")}</span>
               </div>
               <div className="finance-card-value">₱197.4M</div>
               <div className="finance-card-detail">FY 2024</div>
@@ -133,39 +145,39 @@ export default function StatisticsPage() {
             <div className="finance-card">
               <div className="finance-card-header">
                 <i className="bi bi-bank"></i>
-                <span>Total Assets</span>
+                <span>{t("stats-total-assets")}</span>
               </div>
               <div className="finance-card-value">₱739.4M</div>
               <div className="finance-card-detail">
-                Liabilities: ₱192.9M (FY 2024)
+                {t("stats-liabilities-detail")}
               </div>
             </div>
           </div>
 
           <div className="income-breakdown animate-on-scroll">
-            <h4>Financial Position</h4>
+            <h4>{t("stats-financial-position")}</h4>
             <div className="breakdown-legend">
               <div className="legend-item">
-                <span className="legend-dot legend-ira"></span>Revenue exceeds
-                expenditure by ₱39.2M in FY 2024
+                <span className="legend-dot legend-ira"></span>
+                {t("stats-revenue-exceeds")}
               </div>
               <div className="legend-item">
-                <span className="legend-dot legend-local"></span>Assets exceed
-                liabilities by ₱546.5M
+                <span className="legend-dot legend-local"></span>
+                {t("stats-assets-exceed")}
               </div>
             </div>
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.blgf}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Bureau of Local Government Finance (BLGF)
+              {t("stats-source-blgf")}
             </a>{" "}
-            – FY 2024 local government financial data
+            {t("stats-source-blgf-detail")}
           </p>
         </div>
       </section>
@@ -175,10 +187,10 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-graph-up"></i> Growth
+              <i className="bi bi-graph-up"></i> {t("stats-growth-tag")}
             </span>
-            <h2>Population Trends</h2>
-            <p>Historical growth from 1990 to 2024</p>
+            <h2>{t("stats-pop-trends-title")}</h2>
+            <p>{t("stats-pop-trends-subtitle")}</p>
           </div>
 
           <div className="trends-summary">
@@ -194,7 +206,9 @@ export default function StatisticsPage() {
               <span className="trend-stat-value">32,799</span>
             </div>
             <div className="trend-stat trend-stat-growth">
-              <span className="trend-stat-label">Growth</span>
+              <span className="trend-stat-label">
+                {t("stats-growth-label")}
+              </span>
               <span className="trend-stat-value">+79.8%</span>
             </div>
           </div>
@@ -204,13 +218,13 @@ export default function StatisticsPage() {
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Philippine Statistics Authority (PSA)
+              {t("stats-source-psa")}
             </a>
           </p>
         </div>
@@ -221,10 +235,11 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-pie-chart-fill"></i> Distribution
+              <i className="bi bi-pie-chart-fill"></i>{" "}
+              {t("stats-distribution-tag")}
             </span>
-            <h2>Population by Barangay</h2>
-            <p>2020 Census of Population</p>
+            <h2>{t("stats-pop-by-barangay")}</h2>
+            <p>{t("stats-pop-by-barangay-subtitle")}</p>
           </div>
 
           <div className="distribution-layout">
@@ -316,7 +331,7 @@ export default function StatisticsPage() {
           </div>
 
           <details className="more-barangays">
-            <summary>View all 14 barangays</summary>
+            <summary>{t("stats-view-all-barangays")}</summary>
             <div className="distribution-list distribution-list-full">
               <div className="barangay-row">
                 <span className="rank">#11</span>
@@ -354,15 +369,15 @@ export default function StatisticsPage() {
           </details>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Philippine Statistics Authority (PSA)
+              {t("stats-source-psa")}
             </a>{" "}
-            - 2020 Census (barangay level)
+            {t("stats-source-psa-census")}
           </p>
         </div>
       </section>
@@ -372,10 +387,10 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-briefcase-fill"></i> Economy
+              <i className="bi bi-briefcase-fill"></i> {t("stats-economy-tag")}
             </span>
-            <h2>Local Economy</h2>
-            <p>Farming, fishing, and household livelihoods</p>
+            <h2>{t("stats-economy-title")}</h2>
+            <p>{t("stats-economy-subtitle")}</p>
           </div>
 
           <div className="economy-grid">
@@ -385,8 +400,10 @@ export default function StatisticsPage() {
               </div>
               <div className="economy-content">
                 <div className="economy-value">12.26 km²</div>
-                <div className="economy-label">Agricultural Land</div>
-                <div className="economy-trend">5.30% of the municipal area</div>
+                <div className="economy-label">{t("stats-agri-land")}</div>
+                <div className="economy-trend">
+                  {t("stats-agri-land-detail")}
+                </div>
               </div>
             </div>
             <div className="economy-card">
@@ -395,8 +412,10 @@ export default function StatisticsPage() {
               </div>
               <div className="economy-content">
                 <div className="economy-value">10,692 MT</div>
-                <div className="economy-label">Rice Production</div>
-                <div className="economy-trend">Municipal estimate, 2019</div>
+                <div className="economy-label">
+                  {t("stats-rice-production")}
+                </div>
+                <div className="economy-trend">{t("stats-rice-detail")}</div>
               </div>
             </div>
             <div className="economy-card">
@@ -405,22 +424,18 @@ export default function StatisticsPage() {
               </div>
               <div className="economy-content">
                 <div className="economy-value">1,851.77 MT</div>
-                <div className="economy-label">Fish Catch</div>
-                <div className="economy-trend">
-                  2019, along a 28-km coastline
-                </div>
+                <div className="economy-label">{t("stats-fish-catch")}</div>
+                <div className="economy-trend">{t("stats-fish-detail")}</div>
               </div>
             </div>
           </div>
 
           <div className="sectors-chart animate-on-scroll">
-            <h4>Livelihood Profile</h4>
+            <h4>{t("stats-livelihood")}</h4>
             <div className="sector-bars">
               <div className="sector-item">
                 <div className="sector-info">
-                  <span className="sector-name">
-                    Households citing farming or fishing as primary livelihood
-                  </span>
+                  <span className="sector-name">{t("stats-livelihood-1")}</span>
                   <span className="sector-pct">48.17%</span>
                 </div>
                 <div className="sector-bar-bg">
@@ -429,9 +444,7 @@ export default function StatisticsPage() {
               </div>
               <div className="sector-item">
                 <div className="sector-info">
-                  <span className="sector-name">
-                    Coastal barangays along Bagac Bay
-                  </span>
+                  <span className="sector-name">{t("stats-livelihood-2")}</span>
                   <span className="sector-pct">6 of 14</span>
                 </div>
                 <div className="sector-bar-bg">
@@ -440,9 +453,7 @@ export default function StatisticsPage() {
               </div>
               <div className="sector-item">
                 <div className="sector-info">
-                  <span className="sector-name">
-                    Agricultural share of municipal land area
-                  </span>
+                  <span className="sector-name">{t("stats-livelihood-3")}</span>
                   <span className="sector-pct">5.30%</span>
                 </div>
                 <div className="sector-bar-bg">
@@ -453,7 +464,7 @@ export default function StatisticsPage() {
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.industries}
               target="_blank"
@@ -461,7 +472,7 @@ export default function StatisticsPage() {
             >
               {siteConfig.municipality.officialName} – Industries
             </a>{" "}
-            (2019 municipal data)
+            {t("stats-source-industries-suffix")}
           </p>
         </div>
       </section>
@@ -471,10 +482,11 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-graph-down-arrow"></i> Poverty
+              <i className="bi bi-graph-down-arrow"></i>{" "}
+              {t("stats-poverty-tag")}
             </span>
-            <h2>Poverty Statistics</h2>
-            <p>2021 and 2023 City and Municipal Level Poverty Estimates</p>
+            <h2>{t("stats-poverty-title")}</h2>
+            <p>{t("stats-poverty-subtitle")}</p>
           </div>
 
           <div className="poverty-comparison">
@@ -487,7 +499,7 @@ export default function StatisticsPage() {
               <div className="poverty-bar">
                 <div className="poverty-fill" style={{ width: "12.46%" }}></div>
               </div>
-              <span className="poverty-ci">PSA small area estimate</span>
+              <span className="poverty-ci">{t("stats-poverty-ci")}</span>
             </div>
             <div className="poverty-arrow">
               <i className="bi bi-arrow-right"></i>
@@ -502,23 +514,24 @@ export default function StatisticsPage() {
               <div className="poverty-bar">
                 <div className="poverty-fill" style={{ width: "10.79%" }}></div>
               </div>
-              <span className="poverty-ci">PSA small area estimate</span>
+              <span className="poverty-ci">{t("stats-poverty-ci")}</span>
               <span className="poverty-badge">
-                <i className="bi bi-check-circle-fill"></i> Improved
+                <i className="bi bi-check-circle-fill"></i>{" "}
+                {t("stats-poverty-improved")}
               </span>
             </div>
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Philippine Statistics Authority (PSA)
+              {t("stats-source-psa")}
             </a>{" "}
-            - 2023 Poverty Estimates
+            {t("stats-source-poverty")}
           </p>
         </div>
       </section>
@@ -531,13 +544,11 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-trophy-fill"></i> Competitiveness
+              <i className="bi bi-trophy-fill"></i>{" "}
+              {t("stats-competitiveness-tag")}
             </span>
-            <h2>{siteConfig.municipalityName} Competitive Index</h2>
-            <p>
-              CMCI performance, 2016–2024 · 2024 overall rank: 44th (score
-              35.08)
-            </p>
+            <h2>{t("stats-cmci-title")}</h2>
+            <p>{t("stats-cmci-subtitle")}</p>
           </div>
 
           {/* Overview Grid */}
@@ -546,50 +557,55 @@ export default function StatisticsPage() {
               <div className="pillar-icon">
                 <i className="bi bi-graph-up-arrow"></i>
               </div>
-              <h4>Economic Dynamism</h4>
+              <h4>{t("stats-chart-economic-dynamism")}</h4>
               <div className="pillar-score">4.4403</div>
               <div className="pillar-trend trend-up">
-                <i className="bi bi-arrow-up"></i> Rank #247 (2023: #351)
+                <i className="bi bi-arrow-up"></i>{" "}
+                {t("stats-rank-up", { rank: 247, previous: 351 })}
               </div>
             </div>
             <div className="cmci-pillar-card">
               <div className="pillar-icon">
                 <i className="bi bi-building-check"></i>
               </div>
-              <h4>Government Efficiency</h4>
+              <h4>{t("stats-chart-government-efficiency")}</h4>
               <div className="pillar-score">8.5939</div>
               <div className="pillar-trend trend-up">
-                <i className="bi bi-arrow-up"></i> Rank #23 (2023: #155)
+                <i className="bi bi-arrow-up"></i>{" "}
+                {t("stats-rank-up", { rank: 23, previous: 155 })}
               </div>
             </div>
             <div className="cmci-pillar-card">
               <div className="pillar-icon">
                 <i className="bi bi-building-gear"></i>
               </div>
-              <h4>Infrastructure</h4>
+              <h4>{t("stats-chart-infrastructure")}</h4>
               <div className="pillar-score">3.3508</div>
               <div className="pillar-trend trend-up">
-                <i className="bi bi-arrow-up"></i> Rank #71 (2023: #168)
+                <i className="bi bi-arrow-up"></i>{" "}
+                {t("stats-rank-up", { rank: 71, previous: 168 })}
               </div>
             </div>
             <div className="cmci-pillar-card">
               <div className="pillar-icon">
                 <i className="bi bi-shield-check"></i>
               </div>
-              <h4>Resiliency</h4>
+              <h4>{t("stats-chart-resiliency")}</h4>
               <div className="pillar-score">11.2791</div>
               <div className="pillar-trend trend-up">
-                <i className="bi bi-arrow-up"></i> Rank #285 (2023: #529)
+                <i className="bi bi-arrow-up"></i>{" "}
+                {t("stats-rank-up", { rank: 285, previous: 529 })}
               </div>
             </div>
             <div className="cmci-pillar-card">
               <div className="pillar-icon">
                 <i className="bi bi-lightbulb"></i>
               </div>
-              <h4>Innovation</h4>
+              <h4>{t("stats-chart-innovation")}</h4>
               <div className="pillar-score">7.4175</div>
               <div className="pillar-trend trend-up">
-                <i className="bi bi-arrow-up"></i> Rank #34 (2023: #435)
+                <i className="bi bi-arrow-up"></i>{" "}
+                {t("stats-rank-up", { rank: 34, previous: 435 })}
               </div>
             </div>
           </div>
@@ -597,8 +613,8 @@ export default function StatisticsPage() {
           {/* Pillar Score Trend Chart */}
           <div className="cmci-chart-container">
             <h4>
-              <i className="bi bi-bar-chart-line"></i> Pillar Score Trends
-              (2016–2024)
+              <i className="bi bi-bar-chart-line"></i>{" "}
+              {t("stats-pillar-trends")}
             </h4>
             <div className="chart-wrapper">
               <PillarScoresTrendChart />
@@ -606,16 +622,15 @@ export default function StatisticsPage() {
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.cmci}
               target="_blank"
               rel="noopener noreferrer"
             >
-              DTI Cities and Municipalities Competitiveness Index (CMCI)
+              {t("stats-source-cmci")}
             </a>{" "}
-            · Scores are not directly comparable across years because pillar
-            weights changed. No comparable 2018 score was reported.
+            {t("stats-cmci-note")}
           </p>
         </div>
       </section>
@@ -625,10 +640,10 @@ export default function StatisticsPage() {
         <div className="container">
           <div className="section-header-minimal">
             <span className="section-tag">
-              <i className="bi bi-bar-chart-fill"></i> Visual
+              <i className="bi bi-bar-chart-fill"></i> {t("stats-visual-tag")}
             </span>
-            <h2>Population Bar Chart</h2>
-            <p>Comparative view of all 14 barangays</p>
+            <h2>{t("stats-bar-chart-title")}</h2>
+            <p>{t("stats-bar-chart-subtitle")}</p>
           </div>
 
           <div className="chart-wrapper chart-wrapper-bar">
@@ -636,15 +651,15 @@ export default function StatisticsPage() {
           </div>
 
           <p className="data-source">
-            <i className="bi bi-info-circle"></i> Source:{" "}
+            <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
               href={siteConfig.links.psa}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Philippine Statistics Authority (PSA)
+              {t("stats-source-psa")}
             </a>{" "}
-            - 2020 Census (barangay level)
+            {t("stats-source-psa-census")}
           </p>
         </div>
       </section>

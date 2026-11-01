@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { siteConfig } from "@/data/site.config";
 
 export default function NewsPage() {
   const { t } = useLanguage();
@@ -10,48 +9,43 @@ export default function NewsPage() {
   const newsItems = [
     {
       id: 1,
-      title: "Temporary Suspension of Operations",
+      titleKey: "news-item-1-title",
+      descKey: "news-item-1-desc",
       date: "Feb 2, 2026",
-      badge: "Advisory",
+      badgeKey: "home-news-advisory",
       badgeClass: "home-news-badge--warning",
-      description:
-        "The LGU advised the public that operations of a beach house in Barangay Pag-asa were temporarily suspended for lack of a business permit, in line with existing laws and local ordinances.",
     },
     {
       id: 2,
-      title: "MAS Bagac Congress 2025",
+      titleKey: "news-item-2-title",
+      descKey: "news-item-2-desc",
       date: "Aug 25, 2025",
-      badge: "Event",
+      badgeKey: "news-badge-event",
       badgeClass: "home-news-badge--info",
-      description:
-        "The MAS Bagac Congress 2025 was held at St. Vincent Ferrer Parish in Saysain, featuring a basketball tournament, fellowship, and leadership activities with MAS President Joven Nazareno.",
     },
     {
       id: 3,
-      title: "DOT Mobile Accreditation Caravan",
+      titleKey: "news-item-3-title",
+      descKey: "news-item-3-desc",
       date: "Apr 29, 2025",
-      badge: "Program",
+      badgeKey: "home-news-program",
       badgeClass: "home-news-badge--success",
-      description:
-        "The Department of Tourism conducted a mobile accreditation caravan in Bagac to help primary and secondary tourism enterprises learn about accreditation and its benefits.",
     },
     {
       id: 4,
-      title: "Bagac Tops FY 2023 SGLG Incentive Fund",
+      titleKey: "news-item-4-title",
+      descKey: "news-item-4-desc",
       date: "2023",
-      badge: "Recognition",
+      badgeKey: "home-news-recognition",
       badgeClass: "home-news-badge--success",
-      description:
-        "Bagac placed first nationwide among local government units in the complete FY 2023 Seal of Good Local Governance Incentive Fund (SGLGIF).",
     },
     {
       id: 5,
-      title: "International Coastal Cleanup",
+      titleKey: "news-item-5-title",
+      descKey: "news-item-5-desc",
       date: "Sep 21, 2024",
-      badge: "Environment",
+      badgeKey: "news-badge-environment",
       badgeClass: "home-news-badge--info",
-      description:
-        "Volunteers joined the cleanup in Barangay Pag-asa and the coastal barangays of Saysain, Paysawan, Binuangan, Quinawan, and Banawang.",
     },
   ];
 
@@ -59,10 +53,10 @@ export default function NewsPage() {
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
           <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">News & Announcements</span>
+          <span aria-current="page">{t("news-title")}</span>
         </nav>
       </div>
 
@@ -71,13 +65,10 @@ export default function NewsPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-newspaper"></i> News
+              <i className="bi bi-newspaper"></i> {t("news-badge")}
             </span>
-            <h1>News & Announcements</h1>
-            <p className="page-header-desc">
-              Stay updated with the latest news and announcements from the{" "}
-              {siteConfig.municipality.officialName}
-            </p>
+            <h1>{t("news-title")}</h1>
+            <p className="page-header-desc">{t("news-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -90,16 +81,16 @@ export default function NewsPage() {
               <article key={item.id} className="news-card">
                 <div className="news-card-meta">
                   <span className={`home-news-badge ${item.badgeClass}`}>
-                    {item.badge}
+                    {t(item.badgeKey)}
                   </span>
                   <span className="news-card-date">
                     <i className="bi bi-calendar3"></i> {item.date}
                   </span>
                 </div>
-                <h2 className="news-card-title">{item.title}</h2>
-                <p className="news-card-desc">{item.description}</p>
+                <h2 className="news-card-title">{t(item.titleKey)}</h2>
+                <p className="news-card-desc">{t(item.descKey)}</p>
                 <Link href={`/news/${item.id}`} className="news-card-link">
-                  Read More <i className="bi bi-arrow-right"></i>
+                  {t("news-read-more")} <i className="bi bi-arrow-right"></i>
                 </Link>
               </article>
             ))}

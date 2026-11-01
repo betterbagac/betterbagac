@@ -2,9 +2,155 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
+interface FlowStep {
+  num: string;
+  icon: string;
+  titleKey: string;
+  descKey: string;
+  final?: boolean;
+}
+
+const ordinanceSteps: FlowStep[] = [
+  {
+    num: "01",
+    icon: "bi-file-earmark-plus",
+    titleKey: "leg-ord-step-1-title",
+    descKey: "leg-ord-step-1-desc",
+  },
+  {
+    num: "02",
+    icon: "bi-book",
+    titleKey: "leg-ord-step-2-title",
+    descKey: "leg-ord-step-2-desc",
+  },
+  {
+    num: "03",
+    icon: "bi-people",
+    titleKey: "leg-ord-step-3-title",
+    descKey: "leg-ord-step-3-desc",
+  },
+  {
+    num: "04",
+    icon: "bi-file-text",
+    titleKey: "leg-ord-step-4-title",
+    descKey: "leg-ord-step-4-desc",
+  },
+  {
+    num: "05",
+    icon: "bi-journal-text",
+    titleKey: "leg-ord-step-5-title",
+    descKey: "leg-ord-step-5-desc",
+  },
+  {
+    num: "06",
+    icon: "bi-check2-square",
+    titleKey: "leg-ord-step-6-title",
+    descKey: "leg-ord-step-6-desc",
+  },
+  {
+    num: "07",
+    icon: "bi-calendar-check",
+    titleKey: "leg-ord-step-7-title",
+    descKey: "leg-ord-step-7-desc",
+  },
+  {
+    num: "08",
+    icon: "bi-send",
+    titleKey: "leg-ord-step-8-title",
+    descKey: "leg-ord-step-8-desc",
+  },
+  {
+    num: "09",
+    icon: "bi-hourglass-split",
+    titleKey: "leg-ord-step-9-title",
+    descKey: "leg-ord-step-9-desc",
+  },
+  {
+    num: "10",
+    icon: "bi-megaphone",
+    titleKey: "leg-ord-step-10-title",
+    descKey: "leg-ord-step-10-desc",
+  },
+  {
+    num: "11",
+    icon: "bi-rocket-takeoff",
+    titleKey: "leg-ord-step-11-title",
+    descKey: "leg-ord-step-11-desc",
+    final: true,
+  },
+];
+
+const resolutionSteps: FlowStep[] = [
+  {
+    num: "01",
+    icon: "bi-file-earmark-plus",
+    titleKey: "leg-res-step-1-title",
+    descKey: "leg-res-step-1-desc",
+  },
+  {
+    num: "02",
+    icon: "bi-calendar-event",
+    titleKey: "leg-res-step-2-title",
+    descKey: "leg-res-step-2-desc",
+  },
+  {
+    num: "03",
+    icon: "bi-people-fill",
+    titleKey: "leg-res-step-3-title",
+    descKey: "leg-res-step-3-desc",
+  },
+  {
+    num: "04",
+    icon: "bi-printer",
+    titleKey: "leg-res-step-4-title",
+    descKey: "leg-res-step-4-desc",
+  },
+  {
+    num: "05",
+    icon: "bi-pen",
+    titleKey: "leg-res-step-5-title",
+    descKey: "leg-res-step-5-desc",
+  },
+  {
+    num: "06",
+    icon: "bi-send-check",
+    titleKey: "leg-res-step-6-title",
+    descKey: "leg-res-step-6-desc",
+    final: true,
+  },
+];
+
+function FlowSteps({ steps }: { steps: FlowStep[] }) {
+  const { t } = useLanguage();
+
+  return (
+    <div className="leg-flow-container">
+      {steps.map((step) => (
+        <div
+          key={step.num}
+          className={`leg-flow-step ${step.final ? "leg-flow-final" : ""}`}
+        >
+          <div
+            className={`leg-flow-card ${step.final ? "leg-flow-card-final" : ""}`}
+          >
+            <div className="leg-flow-number">{step.num}</div>
+            <div className="leg-flow-icon">
+              <i className={`bi ${step.icon}`}></i>
+            </div>
+            <h4>{t(step.titleKey)}</h4>
+            <p>{t(step.descKey)}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function LegislativePage() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("ordinances");
 
   return (
@@ -13,10 +159,10 @@ export default function LegislativePage() {
 
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("leg-breadcrumb-aria")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Legislative</span>
+          <span aria-current="page">{t("nav-legislative")}</span>
         </nav>
       </div>
 
@@ -25,12 +171,13 @@ export default function LegislativePage() {
         <div className="container">
           <div className="leg-hero-content">
             <span className="leg-hero-badge">
-              <i className="bi bi-bank2"></i> Sangguniang Bayan
+              <i className="bi bi-bank2"></i> {t("footer-sangguniang-bayan")}
             </span>
-            <h1>Legislative Documents</h1>
+            <h1>{t("leg-title")}</h1>
             <p>
-              Ordinances and resolutions of the Sangguniang Bayan ng{" "}
-              {siteConfig.municipalityName}
+              {t("leg-subtitle", {
+                municipality: siteConfig.municipalityName,
+              })}
             </p>
           </div>
         </div>
@@ -48,13 +195,11 @@ export default function LegislativePage() {
                 <i className="bi bi-journal-bookmark-fill"></i>
               </div>
               <div className="leg-category-content">
-                <h2>Ordinance Framework</h2>
-                <p>
-                  Municipal ordinances enacted by the Sangguniang Bayan — local
-                  laws that govern the municipality and its residents.
-                </p>
+                <h2>{t("leg-ordinance-framework")}</h2>
+                <p>{t("leg-ordinance-framework-desc")}</p>
                 <span className="leg-category-link">
-                  Browse Ordinances <i className="bi bi-arrow-right"></i>
+                  {t("leg-browse-ordinances")}{" "}
+                  <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -66,13 +211,11 @@ export default function LegislativePage() {
                 <i className="bi bi-file-earmark-ruled-fill"></i>
               </div>
               <div className="leg-category-content">
-                <h2>Resolution Framework</h2>
-                <p>
-                  Resolutions passed by the Sangguniang Bayan expressing the
-                  will or opinion of the legislative body on various matters.
-                </p>
+                <h2>{t("leg-resolution-framework")}</h2>
+                <p>{t("leg-resolution-framework-desc")}</p>
                 <span className="leg-category-link">
-                  Browse Resolutions <i className="bi bi-arrow-right"></i>
+                  {t("leg-browse-resolutions")}{" "}
+                  <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -85,10 +228,10 @@ export default function LegislativePage() {
         <div className="container">
           <div className="leg-process-header">
             <span className="leg-info-tag">
-              <i className="bi bi-diagram-3-fill"></i> Process Flow
+              <i className="bi bi-diagram-3-fill"></i> {t("leg-process-flow")}
             </span>
-            <h2>Flowchart for Legislative Proposal</h2>
-            <p>Step-by-step process for enacting ordinances and resolutions</p>
+            <h2>{t("leg-flow-title")}</h2>
+            <p>{t("leg-flow-desc")}</p>
           </div>
 
           {/* Process Tabs */}
@@ -99,8 +242,8 @@ export default function LegislativePage() {
               onClick={() => setActiveTab("ordinances")}
             >
               <i className="bi bi-journal-bookmark-fill"></i>
-              <span>For Ordinances</span>
-              <small>11 Steps</small>
+              <span>{t("leg-tab-ordinances")}</span>
+              <small>{t("leg-steps", { count: ordinanceSteps.length })}</small>
             </button>
             <button
               type="button"
@@ -108,162 +251,16 @@ export default function LegislativePage() {
               onClick={() => setActiveTab("resolutions")}
             >
               <i className="bi bi-file-earmark-ruled-fill"></i>
-              <span>For Resolutions</span>
-              <small>6 Steps</small>
+              <span>{t("leg-tab-resolutions")}</span>
+              <small>{t("leg-steps", { count: resolutionSteps.length })}</small>
             </button>
           </div>
 
           {/* Ordinances Process Flow */}
-          {activeTab === "ordinances" && (
-            <div className="leg-flow-container">
-              {[
-                {
-                  num: "01",
-                  icon: "bi-file-earmark-plus",
-                  title: "File Proposed Ordinance",
-                  desc: "Submit the proposed ordinance to the Sangguniang Bayan for consideration",
-                },
-                {
-                  num: "02",
-                  icon: "bi-book",
-                  title: "First Reading / Referral to Committee",
-                  desc: "Initial reading and assignment to the relevant committee for review",
-                },
-                {
-                  num: "03",
-                  icon: "bi-people",
-                  title: "Public Hearing / Committee Action",
-                  desc: "Committee conducts public hearing and deliberates on the proposed ordinance",
-                },
-                {
-                  num: "04",
-                  icon: "bi-file-text",
-                  title: "Committee Report",
-                  desc: "Committee submits findings and recommendations to the Sangguniang Bayan",
-                },
-                {
-                  num: "05",
-                  icon: "bi-journal-text",
-                  title: "Second Reading",
-                  desc: "Detailed discussion and debate on the proposed ordinance",
-                },
-                {
-                  num: "06",
-                  icon: "bi-check2-square",
-                  title: "Third and Final Reading",
-                  desc: "Final voting on the proposed ordinance by the Sangguniang Bayan",
-                },
-                {
-                  num: "07",
-                  icon: "bi-calendar-check",
-                  title: "10-Day Mayor's Approval",
-                  desc: "Mayor reviews and approves the enacted ordinance within 10 days",
-                },
-                {
-                  num: "08",
-                  icon: "bi-send",
-                  title: "3-Day Submission to SP",
-                  desc: "Submit approved ordinance to Sangguniang Panlalawigan for review within 3 days",
-                },
-                {
-                  num: "09",
-                  icon: "bi-hourglass-split",
-                  title: "SP Review Period",
-                  desc: "60-day review for appropriation ordinances; 30-day review for others",
-                },
-                {
-                  num: "10",
-                  icon: "bi-megaphone",
-                  title: "Posting / Publication",
-                  desc: "Public posting and publication of the approved ordinance",
-                },
-                {
-                  num: "11",
-                  icon: "bi-rocket-takeoff",
-                  title: "Implementation",
-                  desc: "Ordinance takes effect and is enforced within the municipality",
-                  final: true,
-                },
-              ].map((step) => (
-                <div
-                  key={step.num}
-                  className={`leg-flow-step ${step.final ? "leg-flow-final" : ""}`}
-                >
-                  <div
-                    className={`leg-flow-card ${step.final ? "leg-flow-card-final" : ""}`}
-                  >
-                    <div className="leg-flow-number">{step.num}</div>
-                    <div className="leg-flow-icon">
-                      <i className={`bi ${step.icon}`}></i>
-                    </div>
-                    <h4>{step.title}</h4>
-                    <p>{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          {activeTab === "ordinances" && <FlowSteps steps={ordinanceSteps} />}
 
           {/* Resolutions Process Flow */}
-          {activeTab === "resolutions" && (
-            <div className="leg-flow-container">
-              {[
-                {
-                  num: "01",
-                  icon: "bi-file-earmark-plus",
-                  title: "File Proposed Resolution",
-                  desc: "Submit the proposed resolution to the Sangguniang Bayan",
-                },
-                {
-                  num: "02",
-                  icon: "bi-calendar-event",
-                  title: "Inclusion in Session Agenda",
-                  desc: "Resolution is scheduled for inclusion in the Sangguniang Bayan session",
-                },
-                {
-                  num: "03",
-                  icon: "bi-people-fill",
-                  title: "Committee Meeting / Approval",
-                  desc: "Committee reviews and approves the proposed resolution",
-                },
-                {
-                  num: "04",
-                  icon: "bi-printer",
-                  title: "Final Draft Printing",
-                  desc: "Legislative staff prepares and prints the final draft of the resolution",
-                },
-                {
-                  num: "05",
-                  icon: "bi-pen",
-                  title: "Official Signing",
-                  desc: "Secretary to the Sanggunian and Presiding Officer sign the resolution",
-                },
-                {
-                  num: "06",
-                  icon: "bi-send-check",
-                  title: "Posting / Transmittal",
-                  desc: "Resolution is posted publicly and transmitted to concerned parties",
-                  final: true,
-                },
-              ].map((step) => (
-                <div
-                  key={step.num}
-                  className={`leg-flow-step ${step.final ? "leg-flow-final" : ""}`}
-                >
-                  <div
-                    className={`leg-flow-card ${step.final ? "leg-flow-card-final" : ""}`}
-                  >
-                    <div className="leg-flow-number">{step.num}</div>
-                    <div className="leg-flow-icon">
-                      <i className={`bi ${step.icon}`}></i>
-                    </div>
-                    <h4>{step.title}</h4>
-                    <p>{step.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+          {activeTab === "resolutions" && <FlowSteps steps={resolutionSteps} />}
         </div>
       </section>
 
@@ -273,55 +270,39 @@ export default function LegislativePage() {
           <div className="leg-info-content">
             <div className="leg-info-header">
               <span className="leg-info-tag">
-                <i className="bi bi-info-circle-fill"></i> About
+                <i className="bi bi-info-circle-fill"></i> {t("leg-about")}
               </span>
-              <h2>Understanding Local Legislation</h2>
-              <p>
-                Learn about the legislative process of the Sangguniang Bayan
-              </p>
+              <h2>{t("leg-understanding-title")}</h2>
+              <p>{t("leg-understanding-desc")}</p>
             </div>
             <div className="leg-info-cards">
               <div className="leg-info-card">
                 <div className="leg-info-card-icon">
                   <i className="bi bi-journal-bookmark"></i>
                 </div>
-                <h3>Ordinances</h3>
-                <p>
-                  Local laws with permanent and general application that require
-                  compliance from residents and businesses within the
-                  municipality.
-                </p>
+                <h3>{t("legislative-ordinances")}</h3>
+                <p>{t("leg-info-ordinances-desc")}</p>
               </div>
               <div className="leg-info-card">
                 <div className="leg-info-card-icon">
                   <i className="bi bi-file-earmark-text"></i>
                 </div>
-                <h3>Resolutions</h3>
-                <p>
-                  Expressions of the legislative body&apos;s will or opinion on
-                  specific matters, often used for commendations, requests, or
-                  policy positions.
-                </p>
+                <h3>{t("legislative-resolutions")}</h3>
+                <p>{t("leg-info-resolutions-desc")}</p>
               </div>
               <div className="leg-info-card">
                 <div className="leg-info-card-icon">
                   <i className="bi bi-people"></i>
                 </div>
-                <h3>Public Participation</h3>
-                <p>
-                  Citizens can attend Sangguniang Bayan sessions and participate
-                  in public hearings for proposed ordinances.
-                </p>
+                <h3>{t("leg-info-participation")}</h3>
+                <p>{t("leg-info-participation-desc")}</p>
               </div>
               <div className="leg-info-card">
                 <div className="leg-info-card-icon">
                   <i className="bi bi-shield-check"></i>
                 </div>
-                <h3>Transparency</h3>
-                <p>
-                  All enacted ordinances and resolutions are made available to
-                  the public as part of our commitment to open governance.
-                </p>
+                <h3>{t("leg-info-transparency")}</h3>
+                <p>{t("leg-info-transparency-desc")}</p>
               </div>
             </div>
           </div>

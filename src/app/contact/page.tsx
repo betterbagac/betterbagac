@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("contact-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Contact</span>
+          <span aria-current="page">{t("nav-contact")}</span>
         </nav>
       </div>
 
@@ -20,13 +23,10 @@ export default function ContactPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-envelope-fill"></i> Contact
+              <i className="bi bi-envelope-fill"></i> {t("nav-contact")}
             </span>
-            <h1>Contact Us</h1>
-            <p className="page-header-desc">
-              We&apos;re here to help. Reach out to us through any of these
-              channels.
-            </p>
+            <h1>{t("contact-title")}</h1>
+            <p className="page-header-desc">{t("contact-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -43,10 +43,10 @@ export default function ContactPage() {
                 <i className="bi bi-envelope-fill"></i>
               </div>
               <div className="contact-card-content">
-                <h3>Email</h3>
+                <h3>{t("contact-email")}</h3>
                 <p className="contact-card-value">{siteConfig.contact.email}</p>
                 <span className="contact-card-note">
-                  We&apos;ll respond within 24 hours
+                  {t("contact-response")}
                 </span>
               </div>
             </a>
@@ -58,13 +58,11 @@ export default function ContactPage() {
                 <i className="bi bi-phone-fill"></i>
               </div>
               <div className="contact-card-content">
-                <h3>Mobile</h3>
+                <h3>{t("contact-mobile")}</h3>
                 <p className="contact-card-value">
                   {siteConfig.contact.mobileDisplay}
                 </p>
-                <span className="contact-card-note">
-                  {siteConfig.contact.hours}
-                </span>
+                <span className="contact-card-note">{t("contact-hours")}</span>
               </div>
             </a>
             <a
@@ -75,13 +73,11 @@ export default function ContactPage() {
                 <i className="bi bi-telephone-fill"></i>
               </div>
               <div className="contact-card-content">
-                <h3>Phone</h3>
+                <h3>{t("contact-phone")}</h3>
                 <p className="contact-card-value">
                   {siteConfig.contact.phoneDisplay}
                 </p>
-                <span className="contact-card-note">
-                  {siteConfig.contact.hours}
-                </span>
+                <span className="contact-card-note">{t("contact-hours")}</span>
               </div>
             </a>
           </div>
@@ -94,43 +90,49 @@ export default function ContactPage() {
           <div className="office-hours-inner">
             <div className="office-hours-header">
               <i className="bi bi-clock-fill"></i>
-              <h2>Office Hours</h2>
+              <h2>{t("contact-office-hours")}</h2>
             </div>
             <div className="office-hours-schedule">
               <div className="office-hours-item office-hours-item--open">
                 <span className="office-hours-day">
-                  {siteConfig.contact.officeDays}
+                  {t("contact-weekdays")}
                 </span>
                 <span className="office-hours-time">
                   {siteConfig.contact.officeOpen}
                 </span>
                 <span className="office-hours-status">
-                  <i className="bi bi-check-circle-fill"></i> Open
+                  <i className="bi bi-check-circle-fill"></i>{" "}
+                  {t("contact-status-open")}
                 </span>
               </div>
               <div className="office-hours-item office-hours-item--break">
-                <span className="office-hours-day">Lunch Break</span>
+                <span className="office-hours-day">
+                  {t("contact-lunch-break")}
+                </span>
                 <span className="office-hours-time">
                   {siteConfig.contact.lunchBreak}
                 </span>
                 <span className="office-hours-status">
-                  <i className="bi bi-pause-circle-fill"></i> Break
-                </span>
-              </div>
-              <div className="office-hours-item office-hours-item--closed">
-                <span className="office-hours-day">Saturday &amp; Sunday</span>
-                <span className="office-hours-time">Closed</span>
-                <span className="office-hours-status">
-                  <i className="bi bi-x-circle-fill"></i> Closed
+                  <i className="bi bi-pause-circle-fill"></i>{" "}
+                  {t("contact-status-break")}
                 </span>
               </div>
               <div className="office-hours-item office-hours-item--closed">
                 <span className="office-hours-day">
-                  National &amp; Local Holidays
+                  {t("contact-weekends")}
                 </span>
-                <span className="office-hours-time">Closed</span>
+                <span className="office-hours-time">{t("contact-closed")}</span>
                 <span className="office-hours-status">
-                  <i className="bi bi-x-circle-fill"></i> Closed
+                  <i className="bi bi-x-circle-fill"></i> {t("contact-closed")}
+                </span>
+              </div>
+              <div className="office-hours-item office-hours-item--closed">
+                <span className="office-hours-day">
+                  {t("contact-holidays")}
+                </span>
+                <span className="office-hours-time">{t("contact-closed")}</span>
+                <span className="office-hours-status">
+                  <i className="bi bi-x-circle-fill"></i> {t("contact-closed")}
                 </span>
               </div>
             </div>
@@ -144,11 +146,12 @@ export default function ContactPage() {
           <div className="hotlines-header">
             <div className="hotlines-title">
               <span className="hotlines-badge">
-                <i className="bi bi-exclamation-triangle-fill"></i> Emergency
+                <i className="bi bi-exclamation-triangle-fill"></i>{" "}
+                {t("contact-emergency")}
               </span>
-              <h2>Emergency Hotlines</h2>
+              <h2>{t("contact-emergency-hotlines")}</h2>
             </div>
-            <p>For emergencies and inquiries, contact these numbers anytime.</p>
+            <p>{t("contact-emergency-desc")}</p>
           </div>
           <div className="hotlines-grid">
             <a
@@ -156,7 +159,9 @@ export default function ContactPage() {
               className="hotline-card"
             >
               <i className="bi bi-exclamation-triangle-fill"></i>
-              <span className="hotline-card-label">National Emergency</span>
+              <span className="hotline-card-label">
+                {t("contact-national-emergency")}
+              </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
               </span>
@@ -167,7 +172,7 @@ export default function ContactPage() {
             >
               <i className="bi bi-building-fill"></i>
               <span className="hotline-card-label">
-                {siteConfig.municipalityName} Municipal Hall
+                {siteConfig.municipalityName} {t("contact-municipal-hall")}
               </span>
               <span className="hotline-card-number">
                 {siteConfig.contact.phoneDisplay}
@@ -178,7 +183,9 @@ export default function ContactPage() {
               className="hotline-card"
             >
               <i className="bi bi-person-badge-fill"></i>
-              <span className="hotline-card-label">Mayor&apos;s Office</span>
+              <span className="hotline-card-label">
+                {t("contact-mayor-office")}
+              </span>
               <span className="hotline-card-number">
                 {siteConfig.contact.mobileDisplay}
               </span>
@@ -189,7 +196,9 @@ export default function ContactPage() {
             >
               <i className="bi bi-shield-fill"></i>
               <span className="hotline-card-label">
-                PNP {siteConfig.municipalityName}
+                {t("contact-pnp", {
+                  municipality: siteConfig.municipalityName,
+                })}
               </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
@@ -201,7 +210,9 @@ export default function ContactPage() {
             >
               <i className="bi bi-fire"></i>
               <span className="hotline-card-label">
-                BFP {siteConfig.municipalityName}
+                {t("contact-bfp", {
+                  municipality: siteConfig.municipalityName,
+                })}
               </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
@@ -213,7 +224,9 @@ export default function ContactPage() {
             >
               <i className="bi bi-broadcast"></i>
               <span className="hotline-card-label">
-                MDRRMO {siteConfig.municipalityName}
+                {t("contact-mdrrmo", {
+                  municipality: siteConfig.municipalityName,
+                })}
               </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
@@ -227,7 +240,9 @@ export default function ContactPage() {
             >
               <i className="bi bi-facebook"></i>
               <span className="hotline-card-label">{siteConfig.lguName}</span>
-              <span className="hotline-card-number">Official Facebook</span>
+              <span className="hotline-card-number">
+                {t("contact-official-facebook")}
+              </span>
             </a>
             <a
               href={siteConfig.links.contactUs}
@@ -237,7 +252,7 @@ export default function ContactPage() {
             >
               <i className="bi bi-globe2"></i>
               <span className="hotline-card-label">
-                {siteConfig.lguName} Website
+                {t("contact-website", { lgu: siteConfig.lguName })}
               </span>
               <span className="hotline-card-number">
                 {new URL(siteConfig.links.officialPortal).host}
@@ -253,11 +268,11 @@ export default function ContactPage() {
           <div className="hotlines-header">
             <div className="hotlines-title">
               <span className="hotlines-badge hotlines-badge--medical">
-                <i className="bi bi-hospital-fill"></i> Medical
+                <i className="bi bi-hospital-fill"></i> {t("contact-medical")}
               </span>
-              <h2>Medical Emergency Hotlines</h2>
+              <h2>{t("contact-medical-hotlines")}</h2>
             </div>
-            <p>For medical emergencies and hospital inquiries.</p>
+            <p>{t("contact-medical-desc")}</p>
           </div>
           <div className="hotlines-grid">
             <a
@@ -266,7 +281,9 @@ export default function ContactPage() {
             >
               <i className="bi bi-hospital"></i>
               <span className="hotline-card-label">
-                {siteConfig.municipalityName} Rural Health Unit
+                {t("contact-rhu", {
+                  municipality: siteConfig.municipalityName,
+                })}
               </span>
               <span className="hotline-card-number">
                 {siteConfig.contact.phoneDisplay}
@@ -277,7 +294,9 @@ export default function ContactPage() {
               className="hotline-card hotline-card--medical"
             >
               <i className="bi bi-plus-circle-fill"></i>
-              <span className="hotline-card-label">Philippine Red Cross</span>
+              <span className="hotline-card-label">
+                {t("contact-red-cross")}
+              </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.redCross}
               </span>
@@ -287,7 +306,9 @@ export default function ContactPage() {
               className="hotline-card hotline-card--medical"
             >
               <i className="bi bi-truck"></i>
-              <span className="hotline-card-label">Medical Emergency</span>
+              <span className="hotline-card-label">
+                {t("contact-medical-emergency")}
+              </span>
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
               </span>

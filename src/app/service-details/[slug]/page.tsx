@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localizeServiceDetail } from "@/data/i18n/content/serviceDetailsFil";
 import { getServiceDetail } from "@/data/serviceDetailsContent";
 
 interface Props {
@@ -10,19 +12,22 @@ interface Props {
 }
 
 export default function ServiceDetailPage({ params }: Props) {
-  const service = getServiceDetail(params.slug);
+  const { t, language } = useLanguage();
+  const rawService = getServiceDetail(params.slug);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  if (!service) notFound();
+  if (!rawService) notFound();
+
+  const service = localizeServiceDetail(rawService, language);
 
   return (
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <Link href="/services">Services</Link>
+          <Link href="/services">{t("nav-services")}</Link>
           <span>/</span>
           <Link href={service.categoryLink}>{service.category}</Link>
           <span>/</span>
@@ -63,9 +68,9 @@ export default function ServiceDetailPage({ params }: Props) {
         <div className="container">
           <div className="section-header">
             <h2>
-              <i className="bi bi-list-ol"></i> Step-by-Step Process
+              <i className="bi bi-list-ol"></i> {t("svc-process-title")}
             </h2>
-            <p>Follow these steps to complete this service</p>
+            <p>{t("svc-process-subtitle")}</p>
           </div>
           <div className="process-grid">
             {service.processSteps.map((step, idx) => (
@@ -90,9 +95,10 @@ export default function ServiceDetailPage({ params }: Props) {
               {/* Requirements */}
               <div className="section-header">
                 <h2>
-                  <i className="bi bi-clipboard-check"></i> Requirements
+                  <i className="bi bi-clipboard-check"></i>{" "}
+                  {t("svc-requirements-title")}
                 </h2>
-                <p>Documents needed for your application</p>
+                <p>{t("svc-requirements-subtitle")}</p>
               </div>
               {service.requirements.map((req, idx) => (
                 <div
@@ -118,8 +124,7 @@ export default function ServiceDetailPage({ params }: Props) {
                 <>
                   <div className="section-header" style={{ marginTop: "20px" }}>
                     <h2>
-                      <i className="bi bi-question-circle"></i> Frequently Asked
-                      Questions
+                      <i className="bi bi-question-circle"></i> {t("faq-title")}
                     </h2>
                   </div>
                   {service.faqs.map((faq, idx) => (
@@ -145,7 +150,7 @@ export default function ServiceDetailPage({ params }: Props) {
             <div>
               <div className="sidebar-card">
                 <h4>
-                  <i className="bi bi-building"></i> Office Information
+                  <i className="bi bi-building"></i> {t("svc-office-info")}
                 </h4>
                 <p>
                   <strong>{service.office.name}</strong>
@@ -162,7 +167,8 @@ export default function ServiceDetailPage({ params }: Props) {
               {service.relatedServices.length > 0 && (
                 <div className="sidebar-card">
                   <h4>
-                    <i className="bi bi-link-45deg"></i> Related Services
+                    <i className="bi bi-link-45deg"></i>{" "}
+                    {t("svc-related-services")}
                   </h4>
                   <ul className="req-list">
                     {service.relatedServices.map((related, idx) => (
@@ -176,11 +182,11 @@ export default function ServiceDetailPage({ params }: Props) {
 
               <div className="sidebar-card">
                 <h4>
-                  <i className="bi bi-info-circle"></i> Need Help?
+                  <i className="bi bi-info-circle"></i> {t("svc-need-help")}
                 </h4>
-                <p>Contact us for assistance with this service.</p>
+                <p>{t("svc-need-help-desc")}</p>
                 <Link href="/contact" className="btn btn-primary btn-block">
-                  Contact Us
+                  {t("contact-title")}
                 </Link>
               </div>
             </div>

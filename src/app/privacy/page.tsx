@@ -1,19 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function PrivacyPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <link rel="stylesheet" href="/assets/css/legal.css" />
 
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Privacy Policy</span>
+          <span aria-current="page">{t("footer-privacy")}</span>
         </nav>
       </div>
 
@@ -22,10 +25,10 @@ export default function PrivacyPage() {
         <div className="container">
           <div className="legal-hero-content">
             <span className="legal-hero-badge">
-              <i className="bi bi-shield-lock"></i> Privacy
+              <i className="bi bi-shield-lock"></i> {t("privacy-badge")}
             </span>
-            <h1>Privacy Policy</h1>
-            <p>How we collect, use, and protect your information</p>
+            <h1>{t("footer-privacy")}</h1>
+            <p>{t("privacy-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -37,7 +40,7 @@ export default function PrivacyPage() {
             {/* Table of Contents */}
             <aside className="legal-toc">
               <h4>
-                <i className="bi bi-list-ul"></i> Contents
+                <i className="bi bi-list-ul"></i> {t("legal-toc-title")}
               </h4>
               <nav>
                 <a href="#introduction">Introduction</a>

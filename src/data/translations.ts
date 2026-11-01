@@ -1,3 +1,15 @@
+import { budgetPage } from "@/data/i18n/budgetPage";
+import { contactPage } from "@/data/i18n/contactPage";
+import { faqPage } from "@/data/i18n/faqPage";
+import { governmentPage } from "@/data/i18n/governmentPage";
+import { homePage } from "@/data/i18n/homePage";
+import { legalPages } from "@/data/i18n/legalPages";
+import { legislativePage } from "@/data/i18n/legislativePage";
+import { miscPages } from "@/data/i18n/miscPages";
+import { servicePages } from "@/data/i18n/servicePages";
+import { shell } from "@/data/i18n/shell";
+import { statisticsPage } from "@/data/i18n/statisticsPage";
+import type { TranslationDictionary } from "@/data/i18n/types";
 import { siteConfig } from "@/data/site.config";
 import type { Language, TranslationKeys } from "@/types";
 
@@ -7,9 +19,25 @@ export const LANGUAGE_STORAGE_KEY = "betterbagac-lang";
 /** Legacy key written by the old context hook, still read on first load. */
 export const LEGACY_LANGUAGE_STORAGE_KEY = "betterbagac_lang";
 
-// Single translation dictionary. LGU-specific wording comes from site.config
-// so a fork only edits that file.
-export const translations: Record<Language, TranslationKeys> = {
+/**
+ * Page-scoped dictionaries, merged below. Add new page keys to the matching
+ * module in `src/data/i18n/` rather than growing this file.
+ */
+const pageDictionaries: TranslationDictionary[] = [
+  shell,
+  homePage,
+  governmentPage,
+  legislativePage,
+  budgetPage,
+  statisticsPage,
+  contactPage,
+  servicePages,
+  miscPages,
+  faqPage,
+  legalPages,
+];
+
+const base: Record<Language, TranslationKeys> = {
   en: {
     // Navigation
     "nav-home": "Home",
@@ -29,6 +57,9 @@ export const translations: Record<Language, TranslationKeys> = {
 
     // Popular Services
     "section-popular": "Popular Services",
+    "section-popular-desc":
+      "Quick access to frequently requested municipal services",
+    "service-view-all-desc": "Browse complete directory",
     "service-certificates": "Certificates",
     "service-certificates-desc": "Birth, marriage, death certificates",
     "service-business": "Business Permits",
@@ -157,6 +188,9 @@ export const translations: Record<Language, TranslationKeys> = {
 
     // Popular Services
     "section-popular": "Mga Sikat na Serbisyo",
+    "section-popular-desc":
+      "Mabilis na pag-access sa mga madalas na serbisyong munisipyo",
+    "service-view-all-desc": "Tingnan ang buong direktoryo",
     "service-certificates": "Mga Sertipiko",
     "service-certificates-desc":
       "Sertipiko ng kapanganakan, kasal, at kamatayan",
@@ -268,4 +302,10 @@ export const translations: Record<Language, TranslationKeys> = {
     "footer-terms": "Mga Tuntunin ng Paggamit",
     "accessibility-statement": "Pahayag ng Aksesibilidad",
   },
+};
+
+/** Flat dictionary per language: base keys plus every page module. */
+export const translations: Record<Language, TranslationKeys> = {
+  en: Object.assign({}, base.en, ...pageDictionaries.map((page) => page.en)),
+  fil: Object.assign({}, base.fil, ...pageDictionaries.map((page) => page.fil)),
 };

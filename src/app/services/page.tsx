@@ -12,8 +12,8 @@ function ServicesContent() {
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
           <span aria-current="page">{t("nav-services")}</span>
         </nav>
@@ -38,7 +38,7 @@ function ServicesContent() {
                 <div className="search-input-wrapper">
                   <i className="bi bi-search search-icon"></i>
                   <SearchAutocomplete
-                    placeholder="Search services (e.g., birth certificate, business permit)"
+                    placeholder={t("svc-search-placeholder")}
                     className="services-page-search"
                   />
                 </div>
@@ -67,7 +67,7 @@ function ServicesContent() {
                   {t("cat-certificates-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -81,7 +81,7 @@ function ServicesContent() {
                   {t("cat-business-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -96,7 +96,7 @@ function ServicesContent() {
                 <h3 className="service-category-title">{t("cat-social")}</h3>
                 <p className="service-category-desc">{t("cat-social-desc")}</p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -108,7 +108,7 @@ function ServicesContent() {
                 <h3 className="service-category-title">{t("cat-health")}</h3>
                 <p className="service-category-desc">{t("cat-health-desc")}</p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -123,7 +123,7 @@ function ServicesContent() {
                 <h3 className="service-category-title">{t("cat-tax")}</h3>
                 <p className="service-category-desc">{t("cat-tax-desc")}</p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -142,7 +142,7 @@ function ServicesContent() {
                   {t("cat-agriculture-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -161,7 +161,7 @@ function ServicesContent() {
                   {t("cat-infrastructure-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -175,7 +175,7 @@ function ServicesContent() {
                   {t("cat-education-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -190,7 +190,7 @@ function ServicesContent() {
                 <h3 className="service-category-title">{t("cat-safety")}</h3>
                 <p className="service-category-desc">{t("cat-safety-desc")}</p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -209,7 +209,7 @@ function ServicesContent() {
                   {t("cat-environment-desc")}
                 </p>
                 <span className="service-category-link">
-                  View Services <i className="bi bi-arrow-right"></i>
+                  {t("svc-view-services")} <i className="bi bi-arrow-right"></i>
                 </span>
               </div>
             </Link>
@@ -265,11 +265,13 @@ function ServicesContent() {
 }
 
 export default function ServicesPage() {
+  const { t } = useLanguage();
+
   return (
     <Suspense
       fallback={
         <div className="container">
-          <p>Loading...</p>
+          <p>{t("svc-loading")}</p>
         </div>
       }
     >

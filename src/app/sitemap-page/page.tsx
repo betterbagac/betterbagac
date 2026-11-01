@@ -1,17 +1,20 @@
 "use client";
 
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function SitemapPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("svc-breadcrumb")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <span aria-current="page">Sitemap</span>
+          <span aria-current="page">{t("footer-sitemap")}</span>
         </nav>
       </div>
 
@@ -20,12 +23,10 @@ export default function SitemapPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-diagram-3-fill"></i> Navigation
+              <i className="bi bi-diagram-3-fill"></i> {t("sm-nav-badge")}
             </span>
-            <h1>Sitemap</h1>
-            <p className="page-header-desc">
-              Navigate all pages and services of {siteConfig.displayName}
-            </p>
+            <h1>{t("footer-sitemap")}</h1>
+            <p className="page-header-desc">{t("sm-subtitle")}</p>
           </div>
         </div>
       </section>
@@ -38,38 +39,39 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon">
                 <i className="bi bi-house-door"></i>
               </span>
-              <h2>Main Navigation</h2>
+              <h2>{t("header-main-nav")}</h2>
             </div>
             <div className="sitemap-links-grid">
               <Link href="/" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Home
+                <i className="bi bi-arrow-right"></i> {t("nav-home")}
               </Link>
               <Link href="/services" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Services
+                <i className="bi bi-arrow-right"></i> {t("nav-services")}
               </Link>
               <Link href="/government" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Government
+                <i className="bi bi-arrow-right"></i> {t("nav-government")}
               </Link>
               <Link href="/statistics" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Statistics
+                <i className="bi bi-arrow-right"></i> {t("nav-statistics")}
               </Link>
               <Link href="/legislative" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Legislative
+                <i className="bi bi-arrow-right"></i> {t("nav-legislative")}
               </Link>
               <Link href="/budget" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Transparency
+                <i className="bi bi-arrow-right"></i> {t("nav-transparency")}
               </Link>
               <Link href="/contact" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Contact
+                <i className="bi bi-arrow-right"></i> {t("nav-contact")}
               </Link>
               <Link href="/news" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> News
+                <i className="bi bi-arrow-right"></i> {t("news-badge")}
               </Link>
               <Link href="/faq" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> FAQ
+                <i className="bi bi-arrow-right"></i> {t("faq-badge")}
               </Link>
               <Link href="/accessibility" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Accessibility
+                <i className="bi bi-arrow-right"></i>{" "}
+                {t("footer-accessibility")}
               </Link>
             </div>
           </div>
@@ -80,48 +82,47 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon">
                 <i className="bi bi-grid-3x3-gap"></i>
               </span>
-              <h2>Service Categories</h2>
+              <h2>{t("sm-service-categories")}</h2>
             </div>
             <div className="sitemap-links-grid">
               <Link href="/services/certificates" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Certificates &amp; Vital
-                Records
+                <i className="bi bi-arrow-right"></i> {t("cat-certificates")}
               </Link>
               <Link href="/services/business" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Business Services
+                <i className="bi bi-arrow-right"></i> {t("cat-business")}
               </Link>
               <Link
                 href="/services/social-services"
                 className="sitemap-link-item"
               >
-                <i className="bi bi-arrow-right"></i> Social Services
+                <i className="bi bi-arrow-right"></i> {t("cat-social")}
               </Link>
               <Link href="/services/health" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Health &amp; Wellness
+                <i className="bi bi-arrow-right"></i> {t("cat-health")}
               </Link>
               <Link href="/services/tax-payments" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Tax &amp; Payments
+                <i className="bi bi-arrow-right"></i> {t("cat-tax")}
               </Link>
               <Link href="/services/agriculture" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Agriculture
+                <i className="bi bi-arrow-right"></i> {t("cat-agriculture")}
               </Link>
               <Link
                 href="/services/infrastructure"
                 className="sitemap-link-item"
               >
-                <i className="bi bi-arrow-right"></i> Infrastructure
+                <i className="bi bi-arrow-right"></i> {t("cat-infrastructure")}
               </Link>
               <Link href="/services/education" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Education
+                <i className="bi bi-arrow-right"></i> {t("cat-education")}
               </Link>
               <Link href="/services/environment" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Environment
+                <i className="bi bi-arrow-right"></i> {t("cat-environment")}
               </Link>
               <Link
                 href="/services/public-safety"
                 className="sitemap-link-item"
               >
-                <i className="bi bi-arrow-right"></i> Public Safety
+                <i className="bi bi-arrow-right"></i> {t("cat-safety")}
               </Link>
             </div>
           </div>
@@ -132,7 +133,7 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon">
                 <i className="bi bi-building"></i>
               </span>
-              <h2>Municipal Offices</h2>
+              <h2>{t("sm-offices")}</h2>
             </div>
             <div className="sitemap-links-grid sitemap-links-grid--4col">
               <Link
@@ -240,29 +241,32 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon">
                 <i className="bi bi-bank"></i>
               </span>
-              <h2>Government &amp; Legislative</h2>
+              <h2>{t("sm-gov-legislative")}</h2>
             </div>
             <div className="sitemap-links-grid">
               <Link href="/government" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Government Structure
+                <i className="bi bi-arrow-right"></i> {t("sm-gov-structure")}
               </Link>
               <Link href="/government/officials" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Elected Officials
+                <i className="bi bi-arrow-right"></i>{" "}
+                {t("sm-elected-officials")}
               </Link>
               <Link href="/legislative" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Legislative Documents
+                <i className="bi bi-arrow-right"></i> {t("leg-title")}
               </Link>
               <Link
                 href="/legislative/ordinance-framework"
                 className="sitemap-link-item"
               >
-                <i className="bi bi-arrow-right"></i> Ordinance Framework
+                <i className="bi bi-arrow-right"></i>{" "}
+                {t("leg-ordinance-framework")}
               </Link>
               <Link
                 href="/legislative/resolution-framework"
                 className="sitemap-link-item"
               >
-                <i className="bi bi-arrow-right"></i> Resolution Framework
+                <i className="bi bi-arrow-right"></i>{" "}
+                {t("leg-resolution-framework")}
               </Link>
             </div>
           </div>
@@ -273,8 +277,8 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon sitemap-section-icon--online">
                 <i className="bi bi-globe2"></i>
               </span>
-              <h2>Online Services</h2>
-              <span className="sitemap-badge">via Filipizen</span>
+              <h2>{t("sm-online-services")}</h2>
+              <span className="sitemap-badge">{t("sm-via-filipizen")}</span>
             </div>
             <div className="sitemap-links-grid">
               <a
@@ -283,8 +287,7 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Business Billing
-                &amp; Payment
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-online-1")}
               </a>
               <a
                 href={siteConfig.links.filipizen.newBusiness}
@@ -292,8 +295,7 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> New Business
-                Application
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-online-2")}
               </a>
               <a
                 href={siteConfig.links.filipizen.renewBusiness}
@@ -301,8 +303,7 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Business Permit
-                Renewal
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-online-3")}
               </a>
               <a
                 href={siteConfig.links.filipizen.realPropertyTax}
@@ -310,8 +311,7 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Real Property Tax
-                Payment
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-online-4")}
               </a>
               <a
                 href={siteConfig.links.filipizen.paymentOrder}
@@ -319,8 +319,7 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Online Payment
-                Order
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-online-5")}
               </a>
             </div>
           </div>
@@ -331,7 +330,7 @@ export default function SitemapPage() {
               <span className="sitemap-section-icon">
                 <i className="bi bi-link-45deg"></i>
               </span>
-              <h2>External Resources</h2>
+              <h2>{t("sm-external-resources")}</h2>
             </div>
             <div className="sitemap-links-grid">
               <a
@@ -340,8 +339,8 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Official{" "}
-                {siteConfig.municipalityName} Website
+                <i className="bi bi-box-arrow-up-right"></i>{" "}
+                {t("sm-official-website")}
               </a>
               <a
                 href={siteConfig.links.sangguniangBayan}
@@ -349,7 +348,8 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Sangguniang Bayan
+                <i className="bi bi-box-arrow-up-right"></i>{" "}
+                {t("footer-sangguniang-bayan")}
               </a>
               <a
                 href={siteConfig.links.facebook}
@@ -357,13 +357,13 @@ export default function SitemapPage() {
                 rel="noopener noreferrer"
                 className="sitemap-link-item sitemap-link-item--external"
               >
-                <i className="bi bi-box-arrow-up-right"></i> Facebook Page
+                <i className="bi bi-box-arrow-up-right"></i> {t("sm-facebook")}
               </a>
               <Link href="/terms" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Terms of Use
+                <i className="bi bi-arrow-right"></i> {t("footer-terms")}
               </Link>
               <Link href="/privacy" className="sitemap-link-item">
-                <i className="bi bi-arrow-right"></i> Privacy Policy
+                <i className="bi bi-arrow-right"></i> {t("footer-privacy")}
               </Link>
             </div>
           </div>

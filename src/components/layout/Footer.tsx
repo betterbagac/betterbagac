@@ -1,6 +1,10 @@
+"use client";
+
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -45,10 +49,10 @@ export default function Footer() {
             </div>
           </div>
           <div className="footer-column">
-            <h4>Quick Links</h4>
+            <h4>{t("footer-quick-links")}</h4>
             <ul className="footer-links-new">
               <li>
-                <a href="/sitemap-page">Sitemap</a>
+                <a href="/sitemap-page">{t("footer-sitemap")}</a>
               </li>
               <li>
                 <a
@@ -56,25 +60,25 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Citizen&apos;s Charter
+                  {t("footer-citizens-charter")}
                 </a>
               </li>
               <li>
-                <a href="/terms">Terms of Use</a>
+                <a href="/terms">{t("footer-terms")}</a>
               </li>
               <li>
-                <a href="/privacy">Privacy Policy</a>
+                <a href="/privacy">{t("footer-privacy")}</a>
               </li>
               <li>
-                <a href="/accessibility">Accessibility</a>
+                <a href="/accessibility">{t("footer-accessibility")}</a>
               </li>
               <li>
-                <a href="/faq">FAQ</a>
+                <a href="/faq">{t("footer-faq")}</a>
               </li>
             </ul>
           </div>
           <div className="footer-column">
-            <h4>Resources</h4>
+            <h4>{t("footer-resources")}</h4>
             <ul className="footer-links-new">
               <li>
                 <a
@@ -82,7 +86,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Open Data Philippines
+                  {t("footer-open-data")}
                 </a>
               </li>
               <li>
@@ -91,7 +95,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Freedom of Information
+                  {t("footer-foi")}
                 </a>
               </li>
               <li>
@@ -100,7 +104,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Official {siteConfig.lguName} Portal
+                  {t("footer-official-portal")}
                 </a>
               </li>
               <li>
@@ -109,7 +113,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Sangguniang Bayan
+                  {t("footer-sangguniang-bayan")}
                 </a>
               </li>
               <li>
@@ -118,7 +122,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {siteConfig.lguName} Facebook
+                  {t("footer-facebook")}
                 </a>
               </li>
               <li>
@@ -127,7 +131,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  BLGF Portal
+                  {t("footer-blgf")}
                 </a>
               </li>
               <li>
@@ -136,14 +140,14 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  CMCI DTI Portal
+                  {t("footer-cmci")}
                 </a>
               </li>
             </ul>
           </div>
           <div className="footer-column">
             <div className="footer-cost">
-              Cost to the People of {siteConfig.municipalityName} ={" "}
+              {t("footer-cost")}{" "}
               <span className="footer-cost-value">
                 {siteConfig.costToPeople}
               </span>
@@ -153,7 +157,7 @@ export default function Footer() {
               className="footer-contribute"
             >
               <i className="bi bi-envelope-heart" aria-hidden="true"></i>{" "}
-              Volunteer with us
+              {t("footer-volunteer")}
             </a>
             <a
               href={siteConfig.repo}
@@ -161,8 +165,8 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i className="bi bi-github" aria-hidden="true"></i> Contribute
-              code with us
+              <i className="bi bi-github" aria-hidden="true"></i>{" "}
+              {t("footer-contribute")}
             </a>
           </div>
         </div>
@@ -170,12 +174,11 @@ export default function Footer() {
           <div className="footer-copyright">
             <span>
               &copy; {currentYear} {siteConfig.displayName}.{" "}
-              {siteConfig.license} All public information sourced from official
-              government portals.
+              {siteConfig.license} {t("footer-source-note")}
             </span>
             <span className="footer-version">
-              <i className="bi bi-boxes" aria-hidden="true"></i> Ver.{" "}
-              {siteConfig.version}
+              <i className="bi bi-boxes" aria-hidden="true"></i>{" "}
+              {t("footer-version")} {siteConfig.version}
             </span>
           </div>
         </div>

@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 import { useCurrency } from "@/hooks/useCurrency";
 import { useWeather } from "@/hooks/useWeather";
 
 export default function InfoBar() {
+  const { t, language } = useLanguage();
   const [dateTime, setDateTime] = useState({
     date: "--- --, ----",
     time: "--:-- --",
@@ -14,6 +16,7 @@ export default function InfoBar() {
   const { weather } = useWeather();
 
   useEffect(() => {
+    const locale = language === "fil" ? "fil-PH" : "en-US";
     const updateDateTime = () => {
       const now = new Date();
       const dateOptions: Intl.DateTimeFormatOptions = {
@@ -29,17 +32,17 @@ export default function InfoBar() {
         hour12: true,
       };
       setDateTime({
-        date: now.toLocaleDateString("en-US", dateOptions),
-        time: now.toLocaleTimeString("en-US", timeOptions),
+        date: now.toLocaleDateString(locale, dateOptions),
+        time: now.toLocaleTimeString(locale, timeOptions),
       });
     };
     updateDateTime();
     const interval = setInterval(updateDateTime, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [language]);
 
   return (
-    <aside className="info-bar" aria-label="Real-time information">
+    <aside className="info-bar" aria-label={t("infobar-aria")}>
       <div className="container">
         <div className="info-bar-inner" aria-live="polite" aria-atomic="false">
           <div className="info-bar-item info-bar-rates">

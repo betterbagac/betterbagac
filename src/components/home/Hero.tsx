@@ -16,10 +16,10 @@ export default function Hero() {
             <p>{t("hero-subtitle")}</p>
             <div className="home-hero-v2-actions">
               <Link href="/services" className="btn btn-primary">
-                Browse Services <i className="bi bi-arrow-right"></i>
+                {t("hero-browse-services")} <i className="bi bi-arrow-right" />
               </Link>
               <Link href="/contact" className="btn btn-outline">
-                Contact Us
+                {t("hero-contact-us")}
               </Link>
             </div>
           </div>
@@ -33,26 +33,28 @@ export default function Hero() {
                 onSubmit={(e) => e.preventDefault()}
               >
                 <div className="search-input-wrapper">
-                  <SearchAutocomplete placeholder="e.g., birth certificate, business permit" />
+                  <SearchAutocomplete
+                    placeholder={t("hero-search-placeholder")}
+                  />
                   <button
                     type="submit"
                     className="search-submit-btn"
-                    aria-label="Search"
+                    aria-label={t("hero-search-aria")}
                   >
                     <i className="bi bi-arrow-right"></i>
                   </button>
                 </div>
               </search>
               <div className="home-search-tags">
-                <span>Popular:</span>
+                <span>{t("hero-popular")}</span>
                 <Link href="/service-details/birth-certificate">
-                  Birth Certificate
+                  {t("hero-tag-birth")}
                 </Link>
                 <Link href="/service-details/business-permits-licensing">
-                  Business Permit
+                  {t("hero-tag-business")}
                 </Link>
                 <Link href="/service-details/municipal-treasurer">
-                  Real Property Tax
+                  {t("hero-tag-rpt")}
                 </Link>
               </div>
             </div>

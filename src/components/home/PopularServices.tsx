@@ -59,7 +59,7 @@ export default function PopularServices() {
       <div className="container">
         <div className="home-section-header">
           <h2>{t("section-popular")}</h2>
-          <p>Quick access to frequently requested municipal services</p>
+          <p>{t("section-popular-desc")}</p>
         </div>
         <div className="home-services-grid">
           {services.map((service) => (
@@ -74,7 +74,7 @@ export default function PopularServices() {
               <div className="home-service-content">
                 <h3>{t(service.titleKey)}</h3>
                 {service.descKey && <p>{t(service.descKey)}</p>}
-                {service.isViewAll && <p>Browse complete directory</p>}
+                {service.isViewAll && <p>{t("service-view-all-desc")}</p>}
               </div>
               <i className="bi bi-arrow-right home-service-arrow" />
             </Link>

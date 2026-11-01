@@ -1,6 +1,11 @@
+"use client";
+
 import Link from "next/link";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function NotFound() {
+  const { t } = useLanguage();
+
   return (
     <section
       className="error-page"
@@ -36,7 +41,7 @@ export default function NotFound() {
             color: "var(--color-text)",
           }}
         >
-          Page Not Found
+          {t("nf-404-title")}
         </h1>
         <p
           className="error-desc"
@@ -48,10 +53,7 @@ export default function NotFound() {
             lineHeight: 1.6,
           }}
         >
-          The requested page is not accessible at this time. It may be
-          undergoing development, subject to approval, or reserved for research
-          purposes. We appreciate your understanding and encourage you to
-          revisit soon.
+          {t("nf-404-desc")}
         </p>
         <div
           className="error-actions"
@@ -63,10 +65,10 @@ export default function NotFound() {
           }}
         >
           <Link href="/" className="btn btn-primary">
-            Go to Homepage
+            {t("error-home")}
           </Link>
           <Link href="/services" className="btn btn-secondary">
-            Browse Services
+            {t("nf-browse-services")}
           </Link>
         </div>
       </div>

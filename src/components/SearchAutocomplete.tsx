@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { localizeServiceCopy } from "@/data/i18n/content/categoriesFil";
 import { highlightMatch, useSearch } from "@/hooks/useSearch";
 
 interface SearchAutocompleteProps {
@@ -14,11 +16,12 @@ const optionId = (group: string, index: number) =>
   `search-option-${group}-${index}`;
 
 export default function SearchAutocomplete({
-  placeholder = "Search services (e.g., birth certificate, business permit)",
+  placeholder,
   className = "",
   onResultClick,
 }: SearchAutocompleteProps) {
   const router = useRouter();
+  const { t, language } = useLanguage();
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -94,6 +97,18 @@ export default function SearchAutocomplete({
   const activeDescendant =
     selectedIndex >= 0 ? optionIds[selectedIndex] : undefined;
 
+  // Search data is English; swap in the catalog's Filipino copy when active.
+  const localizedResults = useMemo(
+    () =>
+      results.map((result) =>
+        localizeServiceCopy(
+          { ...result, description: result.description ?? "" },
+          language,
+        ),
+      ),
+    [results, language],
+  );
+
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     handleKeyDown(e);
     if (e.key !== "Enter" || e.defaultPrevented || selectedIndex < 0) return;
@@ -128,8 +143,8 @@ export default function SearchAutocomplete({
         ref={inputRef}
         type="search"
         className="service-search-input"
-        placeholder={placeholder}
-        aria-label="Search services"
+        placeholder={placeholder ?? t("hero-search-placeholder")}
+        aria-label={t("hero-search-aria")}
         role="combobox"
         aria-autocomplete="list"
         aria-expanded={showDropdown}
@@ -147,7 +162,7 @@ export default function SearchAutocomplete({
           ref={dropdownRef}
           id="search-autocomplete-listbox"
           role="listbox"
-          aria-label="Search results"
+          aria-label={t("svc-search-results-aria")}
           className="search-autocomplete"
         >
           <div className="search-filters" aria-hidden="true">
@@ -157,7 +172,7 @@ export default function SearchAutocomplete({
               data-category=""
               tabIndex={-1}
             >
-              All
+              {t("svc-filter-all")}
             </button>
             <button
               type="button"
@@ -165,7 +180,7 @@ export default function SearchAutocomplete({
               data-category="certificates"
               tabIndex={-1}
             >
-              Certificates
+              {t("svc-filter-certificates")}
             </button>
             <button
               type="button"
@@ -173,7 +188,7 @@ export default function SearchAutocomplete({
               data-category="business"
               tabIndex={-1}
             >
-              Business
+              {t("svc-filter-business")}
             </button>
             <button
               type="button"
@@ -181,7 +196,7 @@ export default function SearchAutocomplete({
               data-category="social"
               tabIndex={-1}
             >
-              Social
+              {t("svc-filter-social")}
             </button>
             <button
               type="button"
@@ -189,7 +204,7 @@ export default function SearchAutocomplete({
               data-category="health"
               tabIndex={-1}
             >
-              Health
+              {t("svc-filter-health")}
             </button>
             <button
               type="button"
@@ -197,7 +212,7 @@ export default function SearchAutocomplete({
               data-category="taxation"
               tabIndex={-1}
             >
-              Taxation
+              {t("svc-filter-taxation")}
             </button>
           </div>
 
@@ -206,7 +221,8 @@ export default function SearchAutocomplete({
             <div className="search-section">
               <div className="search-section-header">
                 <span>
-                  <i className="bi bi-clock-history"></i> Recent Searches
+                  <i className="bi bi-clock-history"></i>{" "}
+                  {t("svc-recent-searches")}
                 </span>
                 <button
                   className="search-clear-recent"
@@ -216,7 +232,7 @@ export default function SearchAutocomplete({
                     setIsOpen(false);
                   }}
                 >
-                  Clear
+                  {t("svc-clear")}
                 </button>
               </div>
               {suggestions.recent.map((term, idx) => (
@@ -244,7 +260,7 @@ export default function SearchAutocomplete({
             <div className="search-section">
               <div className="search-section-header">
                 <span>
-                  <i className="bi bi-fire"></i> Popular Searches
+                  <i className="bi bi-fire"></i> {t("svc-popular-searches")}
                 </span>
               </div>
               {suggestions.popular.map((term, idx) => (
@@ -272,7 +288,7 @@ export default function SearchAutocomplete({
               <div className="search-section">
                 <div className="search-section-header">
                   <span>
-                    <i className="bi bi-lightbulb"></i> Did you mean?
+                    <i className="bi bi-lightbulb"></i> {t("svc-did-you-mean")}
                   </span>
                 </div>
                 {suggestions.suggestions.slice(0, 5).map((term, idx) => (
@@ -297,13 +313,13 @@ export default function SearchAutocomplete({
             suggestions.suggestions.length === 0 && (
               <div className="search-no-results">
                 <i className="bi bi-search"></i>
-                <p>No services found</p>
-                <small>Try different keywords or check spelling</small>
+                <p>{t("svc-no-results")}</p>
+                <small>{t("svc-no-results-hint")}</small>
               </div>
             )}
 
           {/* Search Results */}
-          {results.map((result, index) => (
+          {localizedResults.map((result, index) => (
             <button
               key={result.id}
               id={optionId("result", index)}
@@ -320,7 +336,7 @@ export default function SearchAutocomplete({
                   }}
                 />
                 {result.processingTime?.toLowerCase().includes("same day") && (
-                  <span className="search-result-badge">Fast</span>
+                  <span className="search-result-badge">{t("svc-fast")}</span>
                 )}
               </div>
               <div className="search-result-meta">
@@ -353,18 +369,20 @@ export default function SearchAutocomplete({
           {results.length > 0 && (
             <div className="search-footer">
               <span className="search-footer-count" role="status">
-                {results.length} service{results.length !== 1 ? "s" : ""} found
+                {results.length === 1
+                  ? t("svc-results-count-one", { count: results.length })
+                  : t("svc-results-count-other", { count: results.length })}
               </span>
               <span className="search-keyboard-hint">
                 <span>
                   <kbd>↑</kbd>
-                  <kbd>↓</kbd> Navigate
+                  <kbd>↓</kbd> {t("svc-key-hint-navigate")}
                 </span>
                 <span>
-                  <kbd>Enter</kbd> Select
+                  <kbd>Enter</kbd> {t("svc-key-hint-select")}
                 </span>
                 <span>
-                  <kbd>Esc</kbd> Close
+                  <kbd>Esc</kbd> {t("svc-key-hint-close")}
                 </span>
               </span>
             </div>

@@ -1,23 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import { LegislativeRecords } from "@/components/legislative/LegislativeRecords";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 
-export const metadata = {
-  title: "Resolution Framework",
-  description: `Browse resolutions passed by the Sangguniang Bayan of ${siteConfig.municipalityName}, ${siteConfig.province}.`,
-};
-
 export default function ResolutionFrameworkPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       {/* Breadcrumbs */}
       <div className="container">
-        <nav className="breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Home</Link>
+        <nav className="breadcrumbs" aria-label={t("leg-breadcrumb-aria")}>
+          <Link href="/">{t("nav-home")}</Link>
           <span>/</span>
-          <Link href="/legislative">Legislative</Link>
+          <Link href="/legislative">{t("nav-legislative")}</Link>
           <span>/</span>
-          <span aria-current="page">Resolution Framework</span>
+          <span aria-current="page">{t("leg-resolution-framework")}</span>
         </nav>
       </div>
 
@@ -26,12 +26,13 @@ export default function ResolutionFrameworkPage() {
         <div className="container">
           <div className="page-header-content">
             <span className="page-header-badge">
-              <i className="bi bi-file-earmark-text"></i> Legislative
+              <i className="bi bi-file-earmark-text"></i> {t("nav-legislative")}
             </span>
-            <h1>Resolution Framework</h1>
+            <h1>{t("leg-resolution-framework")}</h1>
             <p className="page-header-desc">
-              Resolutions passed by the Sangguniang Bayan ng{" "}
-              {siteConfig.municipalityName}
+              {t("leg-resolution-framework-subtitle", {
+                municipality: siteConfig.municipalityName,
+              })}
             </p>
           </div>
         </div>
@@ -45,18 +46,9 @@ export default function ResolutionFrameworkPage() {
               <i className="bi bi-info-circle"></i>
             </div>
             <div className="info-card-content">
-              <h3>What is a Resolution?</h3>
-              <p>
-                A resolution is a formal expression of the opinion or will of
-                the Sangguniang Bayan. Unlike ordinances, resolutions do not
-                have the force and effect of law but serve as official
-                statements of the legislative body.
-              </p>
-              <p>
-                Resolutions are commonly used for: commendations, requests to
-                higher government agencies, expressions of support or
-                opposition, and administrative matters of the Sangguniang Bayan.
-              </p>
+              <h3>{t("leg-res-what-title")}</h3>
+              <p>{t("leg-res-what-p1")}</p>
+              <p>{t("leg-res-what-p2")}</p>
             </div>
           </div>
         </div>
@@ -78,19 +70,13 @@ export default function ResolutionFrameworkPage() {
               <i className="bi bi-file-earmark-check"></i>
             </div>
             <div className="info-card-content">
-              <h3>Where to find passed resolutions</h3>
+              <h3>{t("leg-res-where-title")}</h3>
               <p>
-                Copies of resolutions are available from the Sangguniang Bayan
-                Secretariat at the {siteConfig.municipalityName} Municipal Hall
-                during office hours. Requests may be made in person, in writing,
-                or through the national Freedom of Information portal.
+                {t("leg-res-where-p1", {
+                  municipality: siteConfig.municipalityName,
+                })}
               </p>
-              <p>
-                This portal does not reproduce resolution text. Where a number
-                and title are confirmed by a published source they appear in the
-                list above; the full text and the complete register are still
-                issued by the Secretariat.
-              </p>
+              <p>{t("leg-res-where-p2")}</p>
             </div>
           </div>
           <div
@@ -108,8 +94,7 @@ export default function ResolutionFrameworkPage() {
               rel="noopener noreferrer"
               className="btn btn-primary"
             >
-              <i className="bi bi-box-arrow-up-right"></i> Visit the Sangguniang
-              Bayan
+              <i className="bi bi-box-arrow-up-right"></i> {t("leg-visit-sb")}
             </a>
             <a
               href={siteConfig.links.transparencySeal}
@@ -117,7 +102,8 @@ export default function ResolutionFrameworkPage() {
               rel="noopener noreferrer"
               className="btn btn-secondary"
             >
-              <i className="bi bi-shield-check"></i> Transparency Seal
+              <i className="bi bi-shield-check"></i>{" "}
+              {t("leg-transparency-seal")}
             </a>
             <a
               href={siteConfig.links.foi}
@@ -125,7 +111,7 @@ export default function ResolutionFrameworkPage() {
               rel="noopener noreferrer"
               className="btn btn-secondary"
             >
-              <i className="bi bi-envelope-paper"></i> Request via FOI
+              <i className="bi bi-envelope-paper"></i> {t("leg-request-foi")}
             </a>
           </div>
         </div>
