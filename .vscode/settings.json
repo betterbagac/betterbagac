@@ -1,0 +1,5 @@
+{
+  "[typescript]": { "editor.tabSize": 2, "editor.insertSpaces": true },
+  "[typescriptreact]": { "editor.tabSize": 2, "editor.insertSpaces": true },
+  "editor.defaultFormatter": "biomejs.biome"
+}
