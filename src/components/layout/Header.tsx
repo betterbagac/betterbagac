@@ -2,13 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const { language, setLanguage, t } = useLanguage();
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: pathname is the trigger.
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="site-header">
@@ -24,19 +29,22 @@ export default function Header() {
         </div>
 
         <nav
+          id="main-nav"
           className={`main-nav ${mobileMenuOpen ? "active" : ""}`}
           aria-label="Main Navigation"
         >
           <ul>
             <li>
-              <Link href="/" className={pathname === "/" ? "active" : ""}>
+              <Link
+                href="/"
+                className={pathname === "/" ? "active" : ""}
+                aria-current={pathname === "/" ? "page" : undefined}
+              >
                 {t("nav-home")}
               </Link>
             </li>
             <li className="has-dropdown">
-              <Link href="/services" aria-haspopup="true" aria-expanded="false">
-                {t("nav-services")}
-              </Link>
+              <Link href="/services">{t("nav-services")}</Link>
               <ul className="dropdown-menu">
                 <li>
                   <Link href="/services/certificates">Certificates</Link>
@@ -77,13 +85,7 @@ export default function Header() {
               <Link href="/statistics">{t("nav-statistics")}</Link>
             </li>
             <li className="has-dropdown">
-              <Link
-                href="/legislative"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                {t("nav-legislative")}
-              </Link>
+              <Link href="/legislative">{t("nav-legislative")}</Link>
               <ul className="dropdown-menu">
                 <li>
                   <Link href="/legislative/ordinance-framework">
@@ -130,8 +132,12 @@ export default function Header() {
         <button
           type="button"
           className="mobile-menu-toggle btn btn-secondary"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle Navigation"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="main-nav"
+          aria-label={
+            mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
         >
           <i
             className={`bi ${mobileMenuOpen ? "bi-x-lg" : "bi-list"}`}

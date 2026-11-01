@@ -127,6 +127,22 @@ Legacy `.html` service URLs (for example `/services/business.html`) are redirect
 
 Static datasets live in `src/data/` and should be updated there when new figures are published.
 
+## Customising for another LGU
+
+### What to change
+
+| File | Purpose |
+| --- | --- |
+| `src/data/site.config.ts` | Municipality name, province, logos, contact details, outbound links, version |
+| `src/data/**` | Services, legislative records, translations, statistics |
+| `public/assets/images/logo/` | Your own logo files |
+| `public/assets/css/theme.local.css` | Colour and typography token overrides (the only stylesheet you may edit) |
+
+### Styling contract
+
+The stylesheets in `public/assets/css/` are shared by every LGU portal. Editing
+them locally means the fork drifts and stops receiving upstream fixes.
+
 ## Contributing
 
 1. Fork the repository and create a branch from `main`

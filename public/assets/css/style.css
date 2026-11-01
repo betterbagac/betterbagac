@@ -335,7 +335,8 @@ p {
     gap: 0
 }
 
-.main-nav .has-dropdown:hover .dropdown-menu {
+.main-nav .has-dropdown:hover .dropdown-menu,
+.main-nav .has-dropdown:focus-within .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0)
@@ -8838,5 +8839,17 @@ a.a11y-contact-item:hover i {
 
     .search-footer {
         border-radius: 0 0 12px 12px;
+    }
+}
+
+@media (max-width: 991px) {
+    .main-nav .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        min-width: 0;
+        padding: 0 0 0 var(--spacing-sm)
     }
 }

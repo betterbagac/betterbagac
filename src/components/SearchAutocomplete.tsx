@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { highlightMatch, useSearch } from "@/hooks/useSearch";
 
 interface SearchAutocompleteProps {
@@ -9,6 +9,9 @@ interface SearchAutocompleteProps {
   className?: string;
   onResultClick?: () => void;
 }
+
+const optionId = (group: string, index: number) =>
+  `search-option-${group}-${index}`;
 
 export default function SearchAutocomplete({
   placeholder = "Search services (e.g., birth certificate, business permit)",
@@ -68,6 +71,57 @@ export default function SearchAutocomplete({
       suggestions.recent.length > 0 ||
       suggestions.popular.length > 0);
 
+  const optionIds = useMemo(() => {
+    const ids: string[] = [];
+    if (query.length < 2) {
+      suggestions.recent.forEach((_, i) => {
+        ids.push(optionId("recent", i));
+      });
+      suggestions.popular.forEach((_, i) => {
+        ids.push(optionId("popular", i));
+      });
+    } else if (results.length === 0) {
+      suggestions.suggestions.slice(0, 5).forEach((_, i) => {
+        ids.push(optionId("suggestion", i));
+      });
+    }
+    results.forEach((_, i) => {
+      ids.push(optionId("result", i));
+    });
+    return ids;
+  }, [query, results, suggestions]);
+
+  const activeDescendant =
+    selectedIndex >= 0 ? optionIds[selectedIndex] : undefined;
+
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    handleKeyDown(e);
+    if (e.key !== "Enter" || e.defaultPrevented || selectedIndex < 0) return;
+
+    if (query.length < 2) {
+      const recentCount = suggestions.recent.length;
+      if (selectedIndex < recentCount) {
+        e.preventDefault();
+        handleSuggestion(suggestions.recent[selectedIndex]);
+      } else {
+        const popular = suggestions.popular[selectedIndex - recentCount];
+        if (popular !== undefined) {
+          e.preventDefault();
+          handleSuggestion(popular);
+        }
+      }
+      return;
+    }
+
+    if (results.length === 0) {
+      const suggestion = suggestions.suggestions[selectedIndex];
+      if (suggestion !== undefined) {
+        e.preventDefault();
+        handleSuggestion(suggestion);
+      }
+    }
+  };
+
   return (
     <div className={`search-autocomplete-wrapper ${className}`}>
       <input
@@ -76,21 +130,32 @@ export default function SearchAutocomplete({
         className="service-search-input"
         placeholder={placeholder}
         aria-label="Search services"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-expanded={showDropdown}
+        aria-controls="search-autocomplete-listbox"
+        aria-activedescendant={activeDescendant}
         autoComplete="off"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => setIsOpen(true)}
-        onKeyDown={handleKeyDown}
+        onKeyDown={handleInputKeyDown}
       />
 
       {showDropdown && (
-        <div ref={dropdownRef} className="search-autocomplete">
-          {/* Category Filter Tabs */}
-          <div className="search-filters">
+        <div
+          ref={dropdownRef}
+          id="search-autocomplete-listbox"
+          role="listbox"
+          aria-label="Search results"
+          className="search-autocomplete"
+        >
+          <div className="search-filters" aria-hidden="true">
             <button
               type="button"
               className="search-filter-btn active"
               data-category=""
+              tabIndex={-1}
             >
               All
             </button>
@@ -98,6 +163,7 @@ export default function SearchAutocomplete({
               type="button"
               className="search-filter-btn"
               data-category="certificates"
+              tabIndex={-1}
             >
               Certificates
             </button>
@@ -105,6 +171,7 @@ export default function SearchAutocomplete({
               type="button"
               className="search-filter-btn"
               data-category="business"
+              tabIndex={-1}
             >
               Business
             </button>
@@ -112,6 +179,7 @@ export default function SearchAutocomplete({
               type="button"
               className="search-filter-btn"
               data-category="social"
+              tabIndex={-1}
             >
               Social
             </button>
@@ -119,6 +187,7 @@ export default function SearchAutocomplete({
               type="button"
               className="search-filter-btn"
               data-category="health"
+              tabIndex={-1}
             >
               Health
             </button>
@@ -126,6 +195,7 @@ export default function SearchAutocomplete({
               type="button"
               className="search-filter-btn"
               data-category="taxation"
+              tabIndex={-1}
             >
               Taxation
             </button>
@@ -152,11 +222,18 @@ export default function SearchAutocomplete({
               {suggestions.recent.map((term, idx) => (
                 <button
                   key={`recent-${idx}`}
+                  id={optionId("recent", idx)}
+                  role="option"
+                  aria-selected={selectedIndex === idx}
                   className={`search-suggestion-item ${selectedIndex === idx ? "selected" : ""}`}
                   onClick={() => handleSuggestion(term)}
                   type="button"
                 >
-                  <i className="bi bi-arrow-counterclockwise"></i> {term}
+                  <i
+                    className="bi bi-arrow-counterclockwise"
+                    aria-hidden="true"
+                  ></i>{" "}
+                  {term}
                 </button>
               ))}
             </div>
@@ -173,11 +250,16 @@ export default function SearchAutocomplete({
               {suggestions.popular.map((term, idx) => (
                 <button
                   key={`popular-${idx}`}
+                  id={optionId("popular", idx)}
+                  role="option"
+                  aria-selected={
+                    selectedIndex === suggestions.recent.length + idx
+                  }
                   className={`search-suggestion-item ${selectedIndex === suggestions.recent.length + idx ? "selected" : ""}`}
                   onClick={() => handleSuggestion(term)}
                   type="button"
                 >
-                  <i className="bi bi-search"></i> {term}
+                  <i className="bi bi-search" aria-hidden="true"></i> {term}
                 </button>
               ))}
             </div>
@@ -196,11 +278,14 @@ export default function SearchAutocomplete({
                 {suggestions.suggestions.slice(0, 5).map((term, idx) => (
                   <button
                     key={`suggestion-${idx}`}
+                    id={optionId("suggestion", idx)}
+                    role="option"
+                    aria-selected={selectedIndex === idx}
                     className={`search-suggestion-item ${selectedIndex === idx ? "selected" : ""}`}
                     onClick={() => handleSuggestion(term)}
                     type="button"
                   >
-                    <i className="bi bi-search"></i> {term}
+                    <i className="bi bi-search" aria-hidden="true"></i> {term}
                   </button>
                 ))}
               </div>
@@ -221,6 +306,9 @@ export default function SearchAutocomplete({
           {results.map((result, index) => (
             <button
               key={result.id}
+              id={optionId("result", index)}
+              role="option"
+              aria-selected={selectedIndex === index}
               className={`search-result-item ${selectedIndex === index ? "selected" : ""}`}
               onClick={() => handleResultClick(result.url)}
               type="button"
@@ -264,7 +352,7 @@ export default function SearchAutocomplete({
           {/* Footer */}
           {results.length > 0 && (
             <div className="search-footer">
-              <span className="search-footer-count">
+              <span className="search-footer-count" role="status">
                 {results.length} service{results.length !== 1 ? "s" : ""} found
               </span>
               <span className="search-keyboard-hint">
