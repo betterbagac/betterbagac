@@ -29,6 +29,16 @@ interface SearchSuggestions {
 
 const RECENT_SEARCHES_KEY = "betterbagac_recent_searches";
 const MAX_RECENT_SEARCHES = 10;
+const MAX_RESULTS = 10;
+
+/** Filter ids; must match `categoryId` in services.json. */
+export type ServiceCategoryFilter =
+  | ""
+  | "certificates"
+  | "business"
+  | "social-services"
+  | "health"
+  | "tax-payments";
 
 const CURATED_POPULAR = [
   "birth certificate",
@@ -148,10 +158,12 @@ function calculateScore(
     if (processingTime.includes(term)) score += 8;
   });
 
-  // Boost for services with more complete data
-  if (service.fee) score += 2;
-  if (service.processingTime) score += 2;
-  if (service.description) score += 1;
+  // Only boost complete records when something already matched.
+  if (score > 0) {
+    if (service.fee) score += 2;
+    if (service.processingTime) score += 2;
+    if (service.description) score += 1;
+  }
 
   return score;
 }
@@ -183,7 +195,7 @@ function addRecentSearch(query: string): void {
 }
 
 // Clear recent searches
-function clearRecentSearches(): void {
+function clearRecentSearchesStorage(): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.removeItem(RECENT_SEARCHES_KEY);
@@ -193,7 +205,8 @@ function clearRecentSearches(): void {
 }
 
 export function useSearch() {
-  const [query, setQuery] = useState("");
+  const [query, setQueryState] = useState("");
+  const [category, setCategoryState] = useState<ServiceCategoryFilter>("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [suggestions, setSuggestions] = useState<SearchSuggestions>({
     popular: [],
@@ -205,16 +218,14 @@ export function useSearch() {
 
   const services = useMemo(() => servicesData.services as Service[], []);
 
-  // Search function
+  // Lists the whole category when there is no query.
   const search = useCallback(
-    (searchQuery: string, category?: string) => {
-      if (!searchQuery || searchQuery.length < 2) {
-        setResults([]);
-        return [];
-      }
+    (rawQuery: string, activeCategory: ServiceCategoryFilter = "") => {
+      const trimmedQuery = rawQuery.trim();
+      const searchTerms = tokenize(trimmedQuery);
+      const hasQuery = trimmedQuery.length >= 2 && searchTerms.length > 0;
 
-      const searchTerms = tokenize(searchQuery);
-      if (searchTerms.length === 0) {
+      if (!hasQuery && !activeCategory) {
         setResults([]);
         return [];
       }
@@ -222,24 +233,24 @@ export function useSearch() {
       const searchResults: SearchResult[] = [];
 
       services.forEach((service) => {
-        // Category filter
-        if (
-          category &&
-          service.categoryId !== category &&
-          !service.category.toLowerCase().includes(category.toLowerCase())
-        ) {
+        if (activeCategory && service.categoryId !== activeCategory) return;
+
+        if (!hasQuery) {
+          searchResults.push({ ...service, score: 0, _query: trimmedQuery });
           return;
         }
 
-        const score = calculateScore(service, searchTerms, searchQuery);
+        const score = calculateScore(service, searchTerms, trimmedQuery);
         if (score > 0) {
-          searchResults.push({ ...service, score, _query: searchQuery });
+          searchResults.push({ ...service, score, _query: trimmedQuery });
         }
       });
 
       const sorted = searchResults
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 10);
+        .sort((a, b) =>
+          hasQuery ? b.score - a.score : a.title.localeCompare(b.title),
+        )
+        .slice(0, MAX_RESULTS);
 
       setResults(sorted);
       return sorted;
@@ -291,81 +302,49 @@ export function useSearch() {
   }, [query, getSuggestions]);
 
   // Handle query change
-  const handleQueryChange = useCallback(
+  const setQuery = useCallback(
     (newQuery: string) => {
-      setQuery(newQuery);
+      setQueryState(newQuery);
       setSelectedIndex(-1);
-
-      if (newQuery.length >= 2) {
-        search(newQuery);
-      } else {
-        setResults([]);
-      }
+      setIsOpen(true);
+      search(newQuery, category);
     },
-    [search],
+    [search, category],
   );
 
-  // Handle search submit
-  const handleSubmit = useCallback(
-    (searchQuery?: string) => {
-      const q = searchQuery || query;
-      if (q.length >= 2) {
-        addRecentSearch(q);
-        search(q);
-      }
+  // Handle category filter change
+  const setCategory = useCallback(
+    (nextCategory: ServiceCategoryFilter) => {
+      setCategoryState(nextCategory);
+      setSelectedIndex(-1);
+      setIsOpen(true);
+      search(query, nextCategory);
     },
-    [query, search],
+    [search, query],
   );
 
   // Handle suggestion click
   const handleSuggestionClick = useCallback(
     (suggestion: string) => {
-      setQuery(suggestion);
-      search(suggestion);
+      setQueryState(suggestion);
+      setSelectedIndex(-1);
+      setIsOpen(true);
+      search(suggestion, category);
       addRecentSearch(suggestion);
     },
-    [search],
+    [search, category],
   );
 
-  // Handle keyboard navigation
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
-      const totalItems =
-        results.length +
-        suggestions.suggestions.length +
-        suggestions.recent.length +
-        suggestions.popular.length;
-
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        setSelectedIndex((prev) => Math.min(prev + 1, totalItems - 1));
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        setSelectedIndex((prev) => Math.max(prev - 1, -1));
-      } else if (e.key === "Enter") {
-        if (selectedIndex >= 0) {
-          e.preventDefault();
-          // Handle selection based on index
-          if (results.length > 0 && selectedIndex < results.length) {
-            addRecentSearch(query);
-            window.location.href = results[selectedIndex].url;
-          }
-        } else if (results.length > 0) {
-          e.preventDefault();
-          addRecentSearch(query);
-          window.location.href = results[0].url;
-        }
-      } else if (e.key === "Escape") {
-        setIsOpen(false);
-        setSelectedIndex(-1);
-      }
-    },
-    [results, suggestions, selectedIndex, query],
-  );
+  const clearRecentSearches = useCallback(() => {
+    clearRecentSearchesStorage();
+    setSuggestions((prev) => ({ ...prev, recent: [] }));
+  }, []);
 
   return {
     query,
-    setQuery: handleQueryChange,
+    setQuery,
+    category,
+    setCategory,
     results,
     suggestions,
     isOpen,
@@ -373,27 +352,41 @@ export function useSearch() {
     selectedIndex,
     setSelectedIndex,
     search,
-    handleSubmit,
     handleSuggestionClick,
-    handleKeyDown,
     clearRecentSearches,
     addRecentSearch,
   };
 }
 
-// Highlight matching text
-export function highlightMatch(text: string, query: string): string {
-  if (!query) return text;
-  const terms = tokenize(query);
-  let result = text;
-  terms.forEach((term) => {
-    if (term.length >= 2) {
-      const regex = new RegExp(
-        `(${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`,
-        "gi",
-      );
-      result = result.replace(regex, "<mark>$1</mark>");
-    }
-  });
-  return result;
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+export interface HighlightSegment {
+  text: string;
+  match: boolean;
+  start: number;
+}
+
+/** Splits text into segments so matches can be highlighted as React nodes. */
+export function highlightMatch(
+  text: string,
+  query: string,
+): HighlightSegment[] {
+  const terms = tokenize(query).filter((term) => term.length >= 2);
+  if (terms.length === 0) return [{ text, match: false, start: 0 }];
+
+  const alternatives = terms.map(escapeRegExp).join("|");
+  const pattern = new RegExp(`(${alternatives})`, "gi");
+  const isMatch = new RegExp(`^(?:${alternatives})$`, "i");
+
+  let cursor = 0;
+  return text
+    .split(pattern)
+    .filter((part) => part !== "")
+    .map((part) => {
+      const segment = { text: part, match: isMatch.test(part), start: cursor };
+      cursor += part.length;
+      return segment;
+    });
 }

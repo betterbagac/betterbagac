@@ -28,21 +28,11 @@ export default function Hero() {
               <h2>
                 <i className="bi bi-search"></i> {t("hero-find-service")}
               </h2>
-              <search
-                className="search-form"
-                onSubmit={(e) => e.preventDefault()}
-              >
+              <search className="search-form">
                 <div className="search-input-wrapper">
                   <SearchAutocomplete
                     placeholder={t("hero-search-placeholder")}
                   />
-                  <button
-                    type="submit"
-                    className="search-submit-btn"
-                    aria-label={t("hero-search-aria")}
-                  >
-                    <i className="bi bi-arrow-right"></i>
-                  </button>
                 </div>
               </search>
               <div className="home-search-tags">
