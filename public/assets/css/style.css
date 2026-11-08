@@ -313,6 +313,7 @@ p {
 .logo-container {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     gap: var(--spacing-sm)
 }
 
@@ -347,7 +348,8 @@ p {
 
 .main-nav ul {
     display: flex;
-    gap: var(--spacing-md)
+    flex-wrap: wrap;
+    gap: var(--spacing-xs) 20px
 }
 
 .main-nav a {
@@ -356,6 +358,7 @@ p {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-size: .9375rem;
     font-weight: 500
 }
 
@@ -428,6 +431,7 @@ p {
 .header-actions {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     gap: var(--spacing-xs)
 }
 
@@ -676,8 +680,10 @@ p {
 .hotline-inner {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-md);
     flex-wrap: wrap;
+    text-align: center;
 }
 
 .hotline-label {
@@ -691,6 +697,7 @@ p {
 .hotline-items {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--spacing-sm);
     flex-wrap: wrap;
 }
@@ -720,19 +727,10 @@ p {
 }
 
 @media (max-width: 991px) {
-    .hotline-inner {
-        justify-content: center;
-        text-align: center;
-    }
-
     .hotline-label {
         width: 100%;
         justify-content: center;
         margin-bottom: 4px;
-    }
-
-    .hotline-items {
-        justify-content: center;
     }
 }
 
