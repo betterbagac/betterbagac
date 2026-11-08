@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-08T00:00:00.000Z",
+  "title": "Design System: BetterBagac",
+  "extensions": {
+    "colorMeta": {
+      "bataan-deep": {
+        "role": "primary",
+        "displayName": "Bataan Deep",
+        "canonical": "#0032a0",
+        "tonalRamp": ["#0a1c42", "#0c307e", "#0032a0", "#0654fe", "#4c81f6", "#8cacf3", "#bdcef5", "#eaeffb"]
+      },
+      "bataan-deep-press": {
+        "role": "primary",
+        "displayName": "Bataan Deep Press",
+        "canonical": "#002170",
+        "tonalRamp": ["#081536", "#001a54", "#002170", "#0a4fb8", "#4c81f6", "#8cacf3", "#bdcef5", "#eaeffb"]
+      },
+      "deep-channel": {
+        "role": "primary",
+        "displayName": "Deep Channel",
+        "canonical": "#003D82",
+        "tonalRamp": ["#0a2542", "#0c417e", "#003d82", "#067afe", "#4c9bf6", "#8cbcf3", "#bdd7f5", "#eaf2fb"]
+      },
+      "marker-amber": {
+        "role": "secondary",
+        "displayName": "Marker Amber",
+        "canonical": "#F77F00",
+        "tonalRamp": ["#42270a", "#7e460c", "#be6608", "#f77f00", "#f6a34c", "#f3c18c", "#f5dabd", "#fbf2ea"]
+      },
+      "marker-amber-ink": {
+        "role": "secondary",
+        "displayName": "Marker Amber Ink",
+        "canonical": "#9A4E00",
+        "tonalRamp": ["#3d2407", "#6b3505", "#9a4e00", "#c26305", "#e08a36", "#eeb489", "#f5d9bd", "#fbf2ea"]
+      },
+      "verified-green": {
+        "role": "tertiary",
+        "displayName": "Verified Green",
+        "canonical": "#0A7C5E",
+        "tonalRamp": ["#0e3e32", "#0b5a45", "#0a7c5e", "#0f9e78", "#3fb896", "#7fd2b8", "#bde7d8", "#e9f7f2"]
+      },
+      "alert-red": {
+        "role": "tertiary",
+        "displayName": "Alert Red",
+        "canonical": "#D62828",
+        "tonalRamp": ["#391313", "#6c1e1e", "#a22525", "#d62828", "#db6666", "#e39c9c", "#ecc6c6", "#f8eded"]
+      },
+      "reference-blue": {
+        "role": "tertiary",
+        "displayName": "Reference Blue",
+        "canonical": "#0B5C8F",
+        "tonalRamp": ["#0e2c3e", "#145075", "#0b5c8f", "#189aec", "#58b1e9", "#93c9eb", "#c1def1", "#ebf4f9"]
+      },
+      "reading-white": {
+        "role": "neutral",
+        "displayName": "Reading White",
+        "canonical": "#FFFFFF",
+        "tonalRamp": ["#1a1a1a", "#3d3d3d", "#6b6b6b", "#9c9c9c", "#c4c4c4", "#dedede", "#f0f0f0", "#ffffff"]
+      },
+      "cool-paper": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#F8F9FA",
+        "tonalRamp": ["#22262b", "#3b454e", "#546373", "#6d8297", "#92a1af", "#b7bfc8", "#d9dde0", "#f8f9fa"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#1A1A1A",
+        "tonalRamp": ["#1a1a1a", "#333333", "#4d4d4d", "#6e6e6e", "#949494", "#b8b8b8", "#d6d6d6", "#f2f2f2"]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Ink Muted",
+        "canonical": "#666666",
+        "tonalRamp": ["#262626", "#454545", "#666666", "#828282", "#a1a1a1", "#bfbfbf", "#d9d9d9", "#f2f2f2"]
+      },
+      "night-watch": {
+        "role": "neutral",
+        "displayName": "Night Watch",
+        "canonical": "#00184D",
+        "tonalRamp": ["#061027", "#001333", "#00184d", "#0a3f9e", "#4c81f6", "#8cacf3", "#bdcef5", "#eaeffb"]
+      },
+      "slate-footer": {
+        "role": "neutral",
+        "displayName": "Slate Footer",
+        "canonical": "#1A1A1A",
+        "tonalRamp": ["#0d0d0d", "#1a1a1a", "#2e2e2e", "#454545", "#666666", "#8c8c8c", "#b8b8b8", "#e0e0e0"]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#E5E7EB",
+        "tonalRamp": ["#20242a", "#3b4149", "#5b636d", "#7d858f", "#a3aab2", "#c6cbd1", "#e5e7eb", "#f6f7f8"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero and page headlines only." },
+      "headline": { "displayName": "Headline", "purpose": "Section and page-header titles." },
+      "title": { "displayName": "Title", "purpose": "Card and subsection titles." },
+      "body": { "displayName": "Body", "purpose": "All reading copy, capped near 70ch." },
+      "label": { "displayName": "Label", "purpose": "Badges, table headers, stat captions." }
+    },
+    "shadows": [
+      { "name": "hairline-rest", "value": "0 2px 4px rgba(0, 0, 0, 0.05)", "purpose": "Sticky header only." },
+      { "name": "panel-rest", "value": "0 4px 8px rgba(0, 0, 0, 0.1)", "purpose": "Dropdown menus and overlays." },
+      { "name": "card-lift", "value": "0 4px 16px rgba(0, 50, 160, 0.1)", "purpose": "Hover on a clickable card, paired with a 2-4px translate." },
+      { "name": "focus-ring", "value": "0 0 0 3px rgba(0, 50, 160, 0.1)", "purpose": "Inset focus on inputs alongside a Bataan Deep border." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "ease", "purpose": "Default 0.2s state transition for color, border, shadow." },
+      { "name": "ease-lift", "value": "ease", "purpose": "0.2s transform + shadow on card hover." },
+      { "name": "duration-focus", "value": "0.2s", "purpose": "Language switch and link hover." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "575px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "sidebar-collapse", "value": "991px" },
+      { "name": "container", "value": "1200px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single main action on a view; filled Bataan Deep.",
+      "html": "<button class=\"ds-btn-primary\">View all services</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 22px; border: 2px solid transparent; border-radius: 4px; background-color: #0032a0; color: #ffffff; font-family: Inter, sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; box-shadow: 0 2px 8px rgba(0, 50, 160, 0.2); transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; } .ds-btn-primary:hover { background-color: #002170; box-shadow: 0 4px 12px rgba(0, 50, 160, 0.3); transform: translateY(-2px); } .ds-btn-primary:focus-visible { outline: 2px solid #0032a0; outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; transform: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The paired action next to a primary; outlined on reading white.",
+      "html": "<button class=\"ds-btn-secondary\">Contact the LGU</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 22px; border: 2px solid rgba(0, 50, 160, 0.2); border-radius: 4px; background-color: #ffffff; color: #0032a0; font-family: Inter, sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background-color 0.2s ease, border-color 0.2s ease; } .ds-btn-secondary:hover { background-color: rgba(0, 50, 160, 0.04); border-color: #0032a0; } .ds-btn-secondary:focus-visible { outline: 2px solid #0032a0; outline-offset: 2px; }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Service search on white paper; focus replaces the default outline with a blue ring.",
+      "html": "<input class=\"ds-input-search\" type=\"search\" placeholder=\"hal., sertipiko ng kapanganakan\" aria-label=\"Search services\" />",
+      "css": ".ds-input-search { width: 100%; padding: 12px 16px; border: 1px solid #e5e7eb; border-radius: 4px; background-color: #ffffff; color: #1a1a1a; font-family: Inter, sans-serif; font-size: 1rem; transition: border-color 0.2s ease, box-shadow 0.2s ease; } .ds-input-search::placeholder { color: #666666; } .ds-input-search:hover { border-color: #c6cbd1; } .ds-input-search:focus { outline: none; border-color: #0032a0; box-shadow: 0 0 0 3px rgba(0, 50, 160, 0.1); } .ds-input-search:disabled { background-color: #f8f9fa; color: #666666; cursor: not-allowed; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "A clickable destination card: hairline at rest, Bataan Deep border and lift on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><span class=\"ds-card-icon\">&#9679;</span><span class=\"ds-card-title\">Pay your taxes</span><span class=\"ds-card-text\">Real property and business taxes</span></a>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 8px; padding: 24px; border: 1px solid #e5e7eb; border-radius: 6px; background-color: #ffffff; color: #1a1a1a; font-family: Inter, sans-serif; text-decoration: none; transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease; } .ds-card:hover { border-color: #0032a0; box-shadow: 0 4px 16px rgba(0, 50, 160, 0.1); transform: translateY(-2px); } .ds-card:focus-visible { outline: 2px solid #0032a0; outline-offset: 2px; } .ds-card-icon { color: #0032a0; font-size: 1.25rem; } .ds-card-title { font-size: 1.125rem; font-weight: 600; } .ds-card-text { color: #666666; font-size: 0.875rem; line-height: 1.6; }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Verified / in-progress / informational marker; tint plus ink of the same hue.",
+      "html": "<span class=\"ds-badge ds-badge--verified\">Verified</span>",
+      "css": ".ds-badge { display: inline-block; padding: 4px 8px; border-radius: 2px; font-family: Inter, sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; } .ds-badge--verified { background-color: #e6f4ea; color: #0a7c5e; } .ds-badge:hover { filter: brightness(0.97); }"
+    },
+    {
+      "name": "Hotline Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "A destination inside the emergency hotline bar; translucent white on alert red.",
+      "html": "<a class=\"ds-chip-hotline\" href=\"tel:911\">Emergency: 911</a>",
+      "css": ".ds-chip-hotline { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 2px; background-color: rgba(255, 255, 255, 0.15); color: #ffffff; font-family: Inter, sans-serif; font-size: 0.8125rem; text-decoration: none; transition: background-color 0.2s ease; } .ds-chip-hotline:hover { background-color: rgba(255, 255, 255, 0.3); } .ds-chip-hotline:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }"
+    },
+    {
+      "name": "Site Header Link",
+      "kind": "nav",
+      "refersTo": "card",
+      "description": "Primary navigation link; hover and current section both resolve to Bataan Deep.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link ds-nav-link--active\" href=\"#\">Services</a><a class=\"ds-nav-link\" href=\"#\">Government</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 24px; font-family: Inter, sans-serif; } .ds-nav-link { color: #1a1a1a; font-size: 0.9375rem; font-weight: 500; text-decoration: none; transition: color 0.2s ease; } .ds-nav-link:hover, .ds-nav-link--active { color: #0032a0; } .ds-nav-link:focus-visible { outline: 2px solid #0032a0; outline-offset: 3px; }"
+    },
+    {
+      "name": "Data Table Header",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Column labels for contract and budget tables; Bataan Deep ground, tabular figures in cells.",
+      "html": "<table class=\"ds-table\"><thead><tr><th>Contract</th><th>Amount</th></tr></thead><tbody><tr><td>Road concreting</td><td class=\"ds-table-num\">&#8369;4,250,000.00</td></tr></tbody></table>",
+      "css": ".ds-table { width: 100%; border-collapse: collapse; background-color: #ffffff; font-family: Inter, sans-serif; font-size: 0.9375rem; } .ds-table th { padding: 16px; background-color: #0032a0; color: #ffffff; font-weight: 600; text-align: left; } .ds-table td { padding: 16px; border-bottom: 1px solid #f8f9fa; color: #1a1a1a; } .ds-table tbody tr:hover { background-color: #f8f9fa; } .ds-table-num { font-variant-numeric: tabular-nums; text-align: right; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Municipal Reading Room",
+    "overview": "BetterBagac is a reading room, not a storefront. The system treats every page as a counter where a resident can sit down with one thing — a service, a contract row, an ordinance, a figure — and leave knowing where it came from. Bataan Deep carries the room's serious half: headers, links, table heads, the band behind the hero. Cool Paper and Reading White carry the other half: the quiet, high-legibility surfaces a person actually reads in, dense enough to hold a 118-row table without turning into a dashboard.\n\nThe voice is plain and neighborly. Type is one family at honest sizes, never decoratively scaled; spacing is tight within a group and generous between them, so a section reads as a paragraph rather than a card grid. Marker Amber is used the way a librarian uses a highlighter: a small mark that points at one thing, never a surface, never a paragraph. Nothing is glossy, nothing floats, and nothing is animated for its own sake.\n\nBilingualism is a visual constraint, not a feature: Filipino strings run longer than English ones, so components are sized for the longer language first, and no headline, chip, or button may depend on English word lengths.",
+    "keyCharacteristics": [
+      "One blue family (deep navy to channel blue) for structure, one amber mark for attention.",
+      "Flat at rest: hairline borders and tonal paper instead of resting shadows.",
+      "Three corner steps only — container, control, chip — plus true circles.",
+      "One type family in five roles; hierarchy from weight and size, never a second face.",
+      "Every surface legible at 4.5:1 for text, before any aesthetic question is asked."
+    ],
+    "rules": [
+      { "name": "The Marker Rule", "body": "Amber is a mark, not a surface. It may cover at most a small element on a screen — a badge, a rail, a single icon — and never a card, band, or paragraph. If amber has to carry a word, the word is set in Marker Amber Ink.", "section": "colors" },
+      { "name": "The Two-Temperature Rule", "body": "Structure is always cool blue; attention is always warm amber. Status greens and reds exist, but they describe a record's state, never the brand's mood.", "section": "colors" },
+      { "name": "The Single Voice Rule", "body": "One family carries every role, in both languages. A second face — a serif for headings, a mono for numbers — is out of scope for this system; if hierarchy is not reading clearly, fix the size and weight steps.", "section": "typography" },
+      { "name": "The Honest Figure Rule", "body": "Numbers that a resident may compare (fees, populations, contract amounts, dates) are set in tabular figures and never letter-spaced.", "section": "typography" },
+      { "name": "The Flat-at-Rest Rule", "body": "A surface at rest has a border, not a shadow. If depth is needed without interaction, use a Cool Paper fill or a 1px Hairline — never a resting drop shadow.", "section": "elevation" },
+      { "name": "The One Lift Rule", "body": "Hover may raise a card by 2–4px and deepen its shadow; nothing else moves. No parallax, no scale, no shadow that appears on content the pointer is not over.", "section": "elevation" },
+      { "name": "The Three-Step Rule", "body": "6 container, 4 control, 2 chip, plus true circles. If a value is not on this list, it is a defect, not a variation.", "section": "shapes" },
+      { "name": "The No-Stripe Rule", "body": "A colored left or right border above 1px never stands in for state or category. Use the fill, the border color, or the icon.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep one structural blue family and let Cool Paper bands create separation.",
+      "Do keep every corner on the 6 / 4 / 2 scale, with 50% only for true circles.",
+      "Do size components for the longer Filipino string, then check English.",
+      "Do give every figure a visible source and a date near it; the type system supports annotation, so use it.",
+      "Do keep text at 4.5:1 and placeholder text at 4.5:1 — placeholders are text."
+    ],
+    "donts": [
+      "Don't use Marker Amber as a surface, a band, or body text.",
+      "Don't add a colored side stripe (border-left/right above 1px) to a card, list item, or alert.",
+      "Don't put a resting drop shadow on a card, and don't make the shadow neutral grey when it does appear — tint it with Bataan Deep.",
+      "Don't introduce gradient text, glass panels, or blur as decoration; the hero gradient is a two-stop structural blue band and nothing else.",
+      "Don't build a second typeface or use monospace as a \"technical\" costume — tabular figures handle numbers.",
+      "Don't stack cards inside cards; a card in a Cool Paper section is the deepest container."
+    ]
+  }
+}
