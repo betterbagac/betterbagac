@@ -3,18 +3,15 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { formatPesoMillions, fy2024Finance } from "@/data/finance";
 import { siteConfig } from "@/data/site.config";
 import { DPWHProjectsTable } from "./DPWHProjectsTable";
 
-// FY 2024 financial data (BLGF)
-const financialData = {
-  revenue: "₱236.6 M",
-  expenditure: "₱197.4 M",
-  netOperating: "₱39.2 M",
-  assets: "₱739.4 M",
-  liabilities: "₱192.9 M",
-  netAssets: "₱546.5 M",
-};
+const revenue = formatPesoMillions(fy2024Finance.receipts.total);
+const localRevenue = formatPesoMillions(fy2024Finance.receipts.local);
+const externalRevenue = formatPesoMillions(fy2024Finance.receipts.external);
+const expenditure = formatPesoMillions(fy2024Finance.expenditure);
+const netOperating = formatPesoMillions(fy2024Finance.netOperating);
 
 export default function BudgetPage() {
   const { t } = useLanguage();
@@ -84,9 +81,7 @@ export default function BudgetPage() {
                 <i className="bi bi-arrow-down-circle"></i>
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">
-                  {financialData.revenue}
-                </span>
+                <span className="sre-metric-value">{revenue}</span>
                 <span className="sre-metric-label">
                   {t("budget-metric-revenue")}
                 </span>
@@ -97,9 +92,7 @@ export default function BudgetPage() {
                 <i className="bi bi-arrow-up-circle"></i>
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">
-                  {financialData.expenditure}
-                </span>
+                <span className="sre-metric-value">{expenditure}</span>
                 <span className="sre-metric-label">
                   {t("budget-metric-expenditure")}
                 </span>
@@ -110,9 +103,7 @@ export default function BudgetPage() {
                 <i className="bi bi-plus-slash-minus"></i>
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">
-                  {financialData.netOperating}
-                </span>
+                <span className="sre-metric-value">{netOperating}</span>
                 <span className="sre-metric-label">
                   {t("budget-metric-net-operating")}
                 </span>
@@ -123,9 +114,9 @@ export default function BudgetPage() {
                 <i className="bi bi-wallet2"></i>
               </div>
               <div className="sre-metric-data">
-                <span className="sre-metric-value">{financialData.assets}</span>
+                <span className="sre-metric-value">{localRevenue}</span>
                 <span className="sre-metric-label">
-                  {t("budget-metric-assets")}
+                  {t("budget-metric-local-revenue")}
                 </span>
               </div>
             </div>
@@ -144,48 +135,42 @@ export default function BudgetPage() {
                     <span className="sre-item-indicator sre-indicator-local"></span>
                     <div className="sre-item-info">
                       <span className="sre-item-name">
-                        {t("budget-metric-assets")}
+                        {t("budget-item-local-sources")}
                       </span>
                       <span className="sre-item-detail">
-                        {t("budget-fy-2024")}
+                        {t("budget-item-local-sources-detail")}
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.assets}
-                      </span>
+                      <span className="sre-item-amount">{localRevenue}</span>
                     </div>
                   </div>
                   <div className="sre-breakdown-item" data-type="external">
                     <span className="sre-item-indicator sre-indicator-external"></span>
                     <div className="sre-item-info">
                       <span className="sre-item-name">
-                        {t("budget-item-liabilities")}
+                        {t("budget-item-external-sources")}
                       </span>
                       <span className="sre-item-detail">
-                        {t("budget-fy-2024")}
+                        {t("budget-item-external-sources-detail")}
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.liabilities}
-                      </span>
+                      <span className="sre-item-amount">{externalRevenue}</span>
                     </div>
                   </div>
                   <div className="sre-breakdown-item" data-type="gps">
                     <span className="sre-item-indicator sre-indicator-gps"></span>
                     <div className="sre-item-info">
                       <span className="sre-item-name">
-                        {t("budget-item-net-assets")}
+                        {t("budget-item-revenue")}
                       </span>
                       <span className="sre-item-detail">
-                        {t("budget-item-net-assets-detail")}
+                        {t("budget-fy-2024")}
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.netAssets}
-                      </span>
+                      <span className="sre-item-amount">{revenue}</span>
                     </div>
                   </div>
                 </div>
@@ -211,9 +196,7 @@ export default function BudgetPage() {
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.revenue}
-                      </span>
+                      <span className="sre-item-amount">{revenue}</span>
                     </div>
                   </div>
                   <div className="sre-breakdown-item" data-type="social">
@@ -227,9 +210,7 @@ export default function BudgetPage() {
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.expenditure}
-                      </span>
+                      <span className="sre-item-amount">{expenditure}</span>
                     </div>
                   </div>
                   <div className="sre-breakdown-item" data-type="economic">
@@ -243,9 +224,7 @@ export default function BudgetPage() {
                       </span>
                     </div>
                     <div className="sre-item-values">
-                      <span className="sre-item-amount">
-                        {financialData.netOperating}
-                      </span>
+                      <span className="sre-item-amount">{netOperating}</span>
                     </div>
                   </div>
                 </div>
@@ -256,7 +235,7 @@ export default function BudgetPage() {
           <p className="sre-source">
             <i className="bi bi-info-circle"></i> {t("budget-source-label")}{" "}
             <a
-              href={siteConfig.links.blgf}
+              href={fy2024Finance.source.url}
               target="_blank"
               rel="noopener noreferrer"
             >

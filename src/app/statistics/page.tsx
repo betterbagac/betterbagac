@@ -9,7 +9,18 @@ import {
   PopulationTrendsChart,
 } from "@/components/charts/Charts";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  formatPesoMillions,
+  fy2024Finance,
+  localRevenueShare,
+} from "@/data/finance";
 import { siteConfig } from "@/data/site.config";
+
+const revenue = formatPesoMillions(fy2024Finance.receipts.total);
+const expenditure = formatPesoMillions(fy2024Finance.expenditure);
+const netOperating = formatPesoMillions(fy2024Finance.netOperating);
+const localRevenue = formatPesoMillions(fy2024Finance.receipts.local);
+const localShare = localRevenueShare(fy2024Finance.receipts);
 
 export default function StatisticsPage() {
   const { t } = useLanguage();
@@ -131,7 +142,7 @@ export default function StatisticsPage() {
                 <i className="bi bi-graph-up-arrow"></i>
                 <span>{t("stats-annual-revenue")}</span>
               </div>
-              <div className="finance-card-value">₱236.6M</div>
+              <div className="finance-card-value">{revenue}</div>
               <div className="finance-card-detail">FY 2024</div>
             </div>
             <div className="finance-card">
@@ -139,17 +150,17 @@ export default function StatisticsPage() {
                 <i className="bi bi-cash-stack"></i>
                 <span>{t("stats-total-expenditure")}</span>
               </div>
-              <div className="finance-card-value">₱197.4M</div>
+              <div className="finance-card-value">{expenditure}</div>
               <div className="finance-card-detail">FY 2024</div>
             </div>
             <div className="finance-card">
               <div className="finance-card-header">
                 <i className="bi bi-bank"></i>
-                <span>{t("stats-total-assets")}</span>
+                <span>{t("stats-net-operating")}</span>
               </div>
-              <div className="finance-card-value">₱739.4M</div>
+              <div className="finance-card-value">{netOperating}</div>
               <div className="finance-card-detail">
-                {t("stats-liabilities-detail")}
+                {t("stats-net-operating-detail")}
               </div>
             </div>
           </div>
@@ -159,11 +170,14 @@ export default function StatisticsPage() {
             <div className="breakdown-legend">
               <div className="legend-item">
                 <span className="legend-dot legend-ira"></span>
-                {t("stats-revenue-exceeds")}
+                {t("stats-revenue-exceeds", { revenue, expenditure })}
               </div>
               <div className="legend-item">
                 <span className="legend-dot legend-local"></span>
-                {t("stats-assets-exceed")}
+                {t("stats-local-share", {
+                  local: localRevenue,
+                  percent: localShare,
+                })}
               </div>
             </div>
           </div>
@@ -171,7 +185,7 @@ export default function StatisticsPage() {
           <p className="data-source">
             <i className="bi bi-info-circle"></i> {t("stats-source")}{" "}
             <a
-              href={siteConfig.links.blgf}
+              href={fy2024Finance.source.url}
               target="_blank"
               rel="noopener noreferrer"
             >

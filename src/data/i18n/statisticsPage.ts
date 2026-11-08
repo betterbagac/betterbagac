@@ -24,17 +24,21 @@ export const statisticsPage: TranslationDictionary = {
     // Finance
     "stats-finance-tag": "Finance",
     "stats-finance-title": "Municipal Income",
-    "stats-finance-subtitle": "Financial standing for fiscal year 2023",
+    "stats-finance-subtitle":
+      "Statement of receipts and expenditures, FY 2024 (final)",
     "stats-annual-revenue": "Annual Revenue",
     "stats-total-expenditure": "Total Expenditure",
-    "stats-total-assets": "Total Assets",
-    "stats-liabilities-detail": "Liabilities: ₱192.9M (FY 2024)",
-    "stats-financial-position": "Financial Position",
-    "stats-revenue-exceeds": "Revenue exceeds expenditure by ₱39.2M in FY 2024",
-    "stats-assets-exceed": "Assets exceed liabilities by ₱546.5M",
+    "stats-net-operating": "Net Operating Income",
+    "stats-net-operating-detail": "Revenue less expenditure",
+    "stats-financial-position": "Operating Result",
+    "stats-revenue-exceeds":
+      "Revenue of {revenue} exceeds expenditure of {expenditure} in FY 2024",
+    "stats-local-share":
+      "Locally sourced revenue {local}, {percent}% of total revenue",
     "stats-source": "Source:",
     "stats-source-blgf": "Bureau of Local Government Finance (BLGF)",
-    "stats-source-blgf-detail": "– FY 2024 local government financial data",
+    "stats-source-blgf-detail":
+      "– FY 2024 statement of receipts and expenditures by LGU (final)",
 
     // Population trends
     "stats-growth-tag": "Growth",
@@ -124,19 +128,21 @@ export const statisticsPage: TranslationDictionary = {
     // Finance
     "stats-finance-tag": "Pananalapi",
     "stats-finance-title": "Kita ng Munisipalidad",
-    "stats-finance-subtitle": "Kalagayang pinansyal para sa taong piskal 2023",
+    "stats-finance-subtitle":
+      "Pahayag ng mga resibo at gastos, FY 2024 (final)",
     "stats-annual-revenue": "Taunang Kita",
     "stats-total-expenditure": "Kabuuang Gastos",
-    "stats-total-assets": "Kabuuang Ari-arian",
-    "stats-liabilities-detail": "Mga Pananagutan: ₱192.9M (FY 2024)",
-    "stats-financial-position": "Kalagayang Pinansyal",
+    "stats-net-operating": "Netong Kita sa Operasyon",
+    "stats-net-operating-detail": "Kita bawas ang gastos",
+    "stats-financial-position": "Resulta ng Operasyon",
     "stats-revenue-exceeds":
-      "Lumalampas ang kita sa gastos ng ₱39.2M noong FY 2024",
-    "stats-assets-exceed": "Lumalampas ang ari-arian sa pananagutan ng ₱546.5M",
+      "Lumalampas ang kita na {revenue} sa gastos na {expenditure} noong FY 2024",
+    "stats-local-share":
+      "Lokal na kitang {local}, {percent}% ng kabuuang kita",
     "stats-source": "Pinagmulan:",
     "stats-source-blgf": "Bureau of Local Government Finance (BLGF)",
     "stats-source-blgf-detail":
-      "– Datos pinansyal ng pamahalaang lokal para sa FY 2024",
+      "– Pahayag ng mga resibo at gastos ayon sa LGU para sa FY 2024 (final)",
 
     // Population trends
     "stats-growth-tag": "Paglago",
