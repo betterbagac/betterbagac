@@ -479,6 +479,21 @@ export function localizeServiceCopy<
   return copy ? { ...service, ...copy } : service;
 }
 
+/**
+ * Localize the category labels shown on detail pages assembled from the
+ * service catalog, which have no hand-written category string of their own.
+ */
+export function localizeCategoryLabels(
+  categoryId: string,
+  fallback: { category: string; badgeText: string },
+  language: Language,
+): { category: string; badgeText: string } {
+  if (language !== "fil") return fallback;
+  const translation = categoryTranslations[categoryId];
+  if (!translation) return fallback;
+  return { category: translation.name, badgeText: translation.badgeText };
+}
+
 export function localizeCategory(
   category: CategoryContent,
   language: Language,

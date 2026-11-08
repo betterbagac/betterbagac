@@ -4,8 +4,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  localizeCategoryLabels,
+  localizeServiceCopy,
+} from "@/data/i18n/content/categoriesFil";
 import { localizeServiceDetail } from "@/data/i18n/content/serviceDetailsFil";
 import { getServiceDetail } from "@/data/serviceDetailsContent";
+import { buildServiceDetail, getServiceBySlug } from "@/data/services";
 
 interface Props {
   params: { slug: string };
@@ -13,12 +18,35 @@ interface Props {
 
 export default function ServiceDetailPage({ params }: Props) {
   const { t, language } = useLanguage();
-  const rawService = getServiceDetail(params.slug);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  // Hand-written content wins. Anything else in the catalog still gets a page
+  // built from the data we hold, so no service link dead-ends.
+  const authored = getServiceDetail(params.slug);
+  const catalogEntry = authored ? undefined : getServiceBySlug(params.slug);
+  const rawService =
+    authored ??
+    (catalogEntry
+      ? buildServiceDetail(catalogEntry, {
+          processing: t("svc-stat-processing"),
+          fee: t("svc-stat-fee"),
+          office: t("svc-stat-office"),
+          allServices: t("svc-all-services"),
+        })
+      : undefined);
 
   if (!rawService) notFound();
 
-  const service = localizeServiceDetail(rawService, language);
+  const service = rawService.isPartial
+    ? {
+        ...localizeServiceCopy(rawService, language),
+        ...localizeCategoryLabels(
+          catalogEntry?.categoryId ?? "",
+          { category: rawService.category, badgeText: rawService.badgeText },
+          language,
+        ),
+      }
+    : localizeServiceDetail(rawService, language);
 
   return (
     <>
@@ -48,103 +76,136 @@ export default function ServiceDetailPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Quick Stats */}
-      <section className="bc-section">
-        <div className="container">
-          <div className="quick-stats">
-            {service.quickStats.map((stat, idx) => (
-              <div key={idx} className="stat-card">
-                <i className={`bi ${stat.icon}`}></i>
-                <h4>{stat.label}</h4>
-                <p>{stat.value}</p>
+      {/* Incomplete content notice */}
+      {service.isPartial && (
+        <section className="bc-section">
+          <div className="container">
+            <div className="partial-notice" role="note">
+              <i className="bi bi-info-circle"></i>
+              <div>
+                <h3>{t("svc-partial-title")}</h3>
+                <p>{t("svc-partial-desc")}</p>
               </div>
-            ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Quick Stats */}
+      {service.quickStats.length > 0 && (
+        <section className="bc-section">
+          <div className="container">
+            <div className="quick-stats">
+              {service.quickStats.map((stat, idx) => (
+                <div key={idx} className="stat-card">
+                  <i className={`bi ${stat.icon}`}></i>
+                  <h4>{stat.label}</h4>
+                  <p>{stat.value}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Step-by-Step Process */}
-      <section className="bc-section alt-bg">
-        <div className="container">
-          <div className="section-header">
-            <h2>
-              <i className="bi bi-list-ol"></i> {t("svc-process-title")}
-            </h2>
-            <p>{t("svc-process-subtitle")}</p>
+      {service.processSteps.length > 0 && (
+        <section className="bc-section alt-bg">
+          <div className="container">
+            <div className="section-header">
+              <h2>
+                <i className="bi bi-list-ol"></i> {t("svc-process-title")}
+              </h2>
+              <p>{t("svc-process-subtitle")}</p>
+            </div>
+            <div className="process-grid">
+              {service.processSteps.map((step, idx) => (
+                <div
+                  key={idx}
+                  className={`process-card ${step.isFinal ? "final" : ""}`}
+                >
+                  <div className="step-num">{idx + 1}</div>
+                  <h4>{step.title}</h4>
+                  <p>{step.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="process-grid">
-            {service.processSteps.map((step, idx) => (
-              <div
-                key={idx}
-                className={`process-card ${step.isFinal ? "final" : ""}`}
-              >
-                <div className="step-num">{idx + 1}</div>
-                <h4>{step.title}</h4>
-                <p>{step.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Requirements & Info */}
       <section className="bc-section">
         <div className="container">
-          <div className="info-grid">
-            <div>
-              {/* Requirements */}
-              <div className="section-header">
-                <h2>
-                  <i className="bi bi-clipboard-check"></i>{" "}
-                  {t("svc-requirements-title")}
-                </h2>
-                <p>{t("svc-requirements-subtitle")}</p>
-              </div>
-              {service.requirements.map((req, idx) => (
-                <div
-                  key={idx}
-                  className="req-box"
-                  style={{ marginBottom: "14px" }}
-                >
-                  <h4>
-                    <i className={`bi ${req.icon}`}></i> {req.title}
-                  </h4>
-                  <ul className="req-list">
-                    {req.items.map((item, itemIdx) => (
-                      <li key={itemIdx}>
-                        <i className="bi bi-check-circle-fill"></i> {item}
-                      </li>
-                    ))}
-                  </ul>
+          <div
+            className={`info-grid ${
+              service.requirements.length === 0 && service.faqs.length === 0
+                ? "info-grid-single"
+                : ""
+            }`}
+          >
+            {(service.requirements.length > 0 || service.faqs.length > 0) && (
+              <div>
+                {/* Requirements */}
+                <div className="section-header">
+                  <h2>
+                    <i className="bi bi-clipboard-check"></i>{" "}
+                    {t("svc-requirements-title")}
+                  </h2>
+                  <p>{t("svc-requirements-subtitle")}</p>
                 </div>
-              ))}
-
-              {/* FAQs */}
-              {service.faqs.length > 0 && (
-                <>
-                  <div className="section-header" style={{ marginTop: "20px" }}>
-                    <h2>
-                      <i className="bi bi-question-circle"></i> {t("faq-title")}
-                    </h2>
+                {service.requirements.map((req, idx) => (
+                  <div
+                    key={idx}
+                    className="req-box"
+                    style={{ marginBottom: "14px" }}
+                  >
+                    <h4>
+                      <i className={`bi ${req.icon}`}></i> {req.title}
+                    </h4>
+                    <ul className="req-list">
+                      {req.items.map((item, itemIdx) => (
+                        <li key={itemIdx}>
+                          <i className="bi bi-check-circle-fill"></i> {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  {service.faqs.map((faq, idx) => (
+                ))}
+
+                {/* FAQs */}
+                {service.faqs.length > 0 && (
+                  <>
                     <div
-                      key={idx}
-                      className={`faq-item ${openFaq === idx ? "active" : ""}`}
+                      className="section-header"
+                      style={{ marginTop: "20px" }}
                     >
-                      <div
-                        className="faq-question"
-                        onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                      >
-                        <span>{faq.question}</span>
-                        <i className="bi bi-chevron-down"></i>
-                      </div>
-                      <div className="faq-answer">{faq.answer}</div>
+                      <h2>
+                        <i className="bi bi-question-circle"></i>{" "}
+                        {t("faq-title")}
+                      </h2>
                     </div>
-                  ))}
-                </>
-              )}
-            </div>
+                    {service.faqs.map((faq, idx) => (
+                      <div
+                        key={idx}
+                        className={`faq-item ${openFaq === idx ? "active" : ""}`}
+                      >
+                        <div
+                          className="faq-question"
+                          onClick={() =>
+                            setOpenFaq(openFaq === idx ? null : idx)
+                          }
+                        >
+                          <span>{faq.question}</span>
+                          <i className="bi bi-chevron-down"></i>
+                        </div>
+                        <div className="faq-answer">{faq.answer}</div>
+                      </div>
+                    ))}
+                  </>
+                )}
+              </div>
+            )}
 
             {/* Sidebar */}
             <div>
@@ -155,13 +216,18 @@ export default function ServiceDetailPage({ params }: Props) {
                 <p>
                   <strong>{service.office.name}</strong>
                 </p>
-                <p>{service.office.location}</p>
+                {service.office.location && <p>{service.office.location}</p>}
                 <p>
                   <i className="bi bi-telephone"></i> {service.office.phone}
                 </p>
-                <p>
-                  <i className="bi bi-clock"></i> {service.office.hours}
-                </p>
+                {service.office.hours && (
+                  <p>
+                    <i className="bi bi-clock"></i> {service.office.hours}
+                  </p>
+                )}
+                {service.isPartial && (
+                  <p className="sidebar-note">{t("svc-office-confirm")}</p>
+                )}
               </div>
 
               {service.relatedServices.length > 0 && (
@@ -203,17 +269,17 @@ export default function ServiceDetailPage({ params }: Props) {
         .section-header h2 i { color: var(--color-primary); font-size: 1rem; }
         .section-header p { color: var(--color-text-light); font-size: 0.8125rem; margin: 0; }
         .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-        .stat-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 12px; text-align: center; }
+        .stat-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); padding: 12px; text-align: center; }
         .stat-card i { font-size: 1rem; color: var(--color-primary); margin-bottom: 4px; display: block; }
         .stat-card h4 { font-size: 0.625rem; color: var(--color-text-light); margin-bottom: 2px; font-weight: 500; text-transform: uppercase; }
         .stat-card p { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin: 0; }
         .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .process-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 14px; }
-        .process-card .step-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--color-primary, #0032a0); color: white; font-size: 0.625rem; font-weight: 700; border-radius: 5px; margin-bottom: 8px; }
+        .process-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); padding: 14px; }
+        .process-card .step-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--color-primary, #0032a0); color: white; font-size: 0.625rem; font-weight: 700; border-radius: var(--radius-chip); margin-bottom: 8px; }
         .process-card h4 { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin-bottom: 4px; }
         .process-card p { font-size: 0.6875rem; color: var(--color-text-light); margin-bottom: 0; line-height: 1.4; }
         .process-card.final .step-num { background: var(--color-success, #28a745); }
-        .req-box { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 14px; }
+        .req-box { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); padding: 14px; }
         .req-box h4 { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
         .req-box h4 i { color: var(--color-primary); }
         .req-list { list-style: none; padding: 0; margin: 0; }
@@ -221,7 +287,7 @@ export default function ServiceDetailPage({ params }: Props) {
         .req-list li i { color: var(--color-primary); font-size: 0.625rem; margin-top: 3px; flex-shrink: 0; }
         .req-list li a { color: var(--color-primary); text-decoration: none; }
         .req-list li a:hover { text-decoration: underline; }
-        .faq-item { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+        .faq-item { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); margin-bottom: 8px; overflow: hidden; }
         .faq-question { padding: 12px 14px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-size: 0.8125rem; font-weight: 600; color: var(--color-text); }
         .faq-question:hover { background: rgba(0,50,160,0.02); }
         .faq-question i { color: var(--color-primary); transition: transform 0.2s; }
@@ -229,11 +295,17 @@ export default function ServiceDetailPage({ params }: Props) {
         .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .info-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
-        .sidebar-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: 8px; padding: 14px; margin-bottom: 10px; }
+        .info-grid.info-grid-single { grid-template-columns: 1fr; }
+        .partial-notice { display: flex; align-items: flex-start; gap: 10px; background: rgba(0,50,160,0.04); border: 1px solid rgba(0,50,160,0.25); border-radius: var(--radius-control); padding: 14px; }
+        .partial-notice > i { color: var(--color-primary); font-size: 1rem; margin-top: 1px; }
+        .partial-notice h3 { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin: 0 0 4px; }
+        .partial-notice p { font-size: 0.75rem; color: var(--color-text-light); margin: 0; line-height: 1.5; }
+        .sidebar-card { background: white; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); padding: 14px; margin-bottom: 10px; }
         .sidebar-card h4 { font-size: 0.8125rem; font-weight: 600; color: var(--color-text); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
         .sidebar-card h4 i { color: var(--color-primary); }
         .sidebar-card p { font-size: 0.75rem; color: var(--color-text-light); margin: 0 0 6px; }
-        .sidebar-card .btn.btn-primary { display: block; text-align: center; margin-top: 10px; text-decoration: none; color: white !important; font-weight: 500; padding: 10px 16px; border-radius: 6px; background: var(--color-primary, #0032a0); }
+        .sidebar-card p.sidebar-note { font-size: 0.6875rem; font-style: italic; margin: 10px 0 0; }
+        .sidebar-card .btn.btn-primary { display: block; text-align: center; margin-top: 10px; text-decoration: none; color: white !important; font-weight: 500; padding: 10px 16px; border-radius: var(--radius-control); background: var(--color-primary, #0032a0); }
         .sidebar-card .btn.btn-primary:hover { background: var(--color-primary-dark, #001a80); }
         @media (max-width: 992px) { .process-grid { grid-template-columns: repeat(2, 1fr); } .info-grid { grid-template-columns: 1fr; } }
         @media (max-width: 768px) { .quick-stats { grid-template-columns: repeat(2, 1fr); } }

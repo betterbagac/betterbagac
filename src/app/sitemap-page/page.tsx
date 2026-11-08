@@ -137,7 +137,7 @@ export default function SitemapPage() {
             </div>
             <div className="sitemap-links-grid sitemap-links-grid--4col">
               <Link
-                href="/service-details/civil-registrar"
+                href="/service-details/municipal-civil-registrar"
                 className="sitemap-link-item"
               >
                 <i className="bi bi-arrow-right"></i> Local Civil Registrar

@@ -60,7 +60,13 @@ export default function SearchAutocomplete({
     addRecentSearch(query);
     setIsOpen(false);
     onResultClick?.();
-    router.push(url.startsWith("/") ? url : `/${url}`);
+    // A few catalog entries (Filipizen billing) live on another host; they must
+    // not be pushed as an in-app route.
+    if (/^https?:\/\//.test(url)) {
+      window.open(url, "_blank", "noopener,noreferrer");
+      return;
+    }
+    router.push(url);
   };
 
   const handleSuggestion = (suggestion: string) => {

@@ -23,6 +23,15 @@ export const servicePages: TranslationDictionary = {
     "svc-related-services": "Related Services",
     "svc-need-help": "Need Help?",
     "svc-need-help-desc": "Contact us for assistance with this service.",
+    "svc-stat-processing": "Processing",
+    "svc-stat-fee": "Fee",
+    "svc-stat-office": "Office",
+    "svc-all-services": "All services",
+    "svc-partial-title": "We're still documenting this service",
+    "svc-partial-desc":
+      "The fee, processing time, and office below come from our service catalog. The steps and requirements have not been verified yet, so confirm with the office before you visit.",
+    "svc-office-confirm":
+      "Call ahead to confirm the exact location and office hours.",
 
     // Search autocomplete
     "svc-filter-all": "All",
@@ -68,6 +77,15 @@ export const servicePages: TranslationDictionary = {
     "svc-need-help": "Kailangan ng Tulong?",
     "svc-need-help-desc":
       "Makipag-ugnayan sa amin para sa tulong sa serbisyong ito.",
+    "svc-stat-processing": "Pagproseso",
+    "svc-stat-fee": "Bayad",
+    "svc-stat-office": "Opisina",
+    "svc-all-services": "Lahat ng serbisyo",
+    "svc-partial-title": "Kasalukuyan pa naming dokumentado ang serbisyong ito",
+    "svc-partial-desc":
+      "Ang bayad, oras ng pagproseso, at opisina sa ibaba ay mula sa aming katalogo ng serbisyo. Hindi pa nakumpirma ang mga hakbang at kinakailangan, kaya magtanong sa opisina bago pumunta.",
+    "svc-office-confirm":
+      "Tumawag muna upang kumpirmahin ang lokasyon at oras ng opisina.",
 
     // Search autocomplete
     "svc-filter-all": "Lahat",

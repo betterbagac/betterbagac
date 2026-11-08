@@ -53,6 +53,12 @@ export interface ServiceDetail {
   faqs: FAQ[];
   office: OfficeInfo;
   relatedServices: RelatedService[];
+  /**
+   * True when this page is assembled from the service catalog instead of
+   * hand-written content: steps and requirements are genuinely unknown, so the
+   * page says so instead of showing empty sections.
+   */
+  isPartial?: boolean;
 }
 
 const serviceDetailsData: ServiceDetail[] = [

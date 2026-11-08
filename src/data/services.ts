@@ -1,4 +1,8 @@
-import type { ServiceCategory } from "@/types";
+import type { Service, ServiceCategory } from "@/types";
+import { categoriesContent } from "./categoriesContent";
+import type { ServiceDetail } from "./serviceDetailsContent";
+import servicesData from "./services.json";
+import { siteConfig } from "./site.config";
 
 export const serviceCategories: ServiceCategory[] = [
   {
@@ -84,5 +88,87 @@ export const serviceCategories: ServiceCategory[] = [
   },
 ];
 
-// Services data will be imported from JSON
-export { default as services } from "./services.json";
+// The catalog. Every entry either points at an internal route under
+// /service-details or, for services hosted elsewhere (Filipizen billing),
+// at an absolute URL.
+export const services = servicesData.services as Service[];
+
+const EXTERNAL_URL = /^https?:\/\//;
+
+export const isExternalServiceUrl = (url: string): boolean =>
+  EXTERNAL_URL.test(url);
+
+/** Slug used by `/service-details/[slug]`, derived from the stored route. */
+export const getServiceSlug = (service: Service): string =>
+  service.url.replace(/^\/service-details\//, "").replace(/\/+$/, "");
+
+export const getServiceBySlug = (slug: string): Service | undefined =>
+  services.find(
+    (service) =>
+      !isExternalServiceUrl(service.url) && getServiceSlug(service) === slug,
+  );
+
+/** Labels the fallback detail page needs in the active language. */
+export interface ServiceDetailLabels {
+  processing: string;
+  fee: string;
+  office: string;
+  allServices: string;
+}
+
+/**
+ * Builds a detail page for a catalog service that has no hand-written content
+ * in `serviceDetailsContent.ts`. Only fields we actually hold are shown; the
+ * page flags `isPartial` and points at the office rather than inventing steps,
+ * requirements, or fees we cannot verify.
+ */
+export function buildServiceDetail(
+  service: Service,
+  labels: ServiceDetailLabels,
+): ServiceDetail {
+  const category = serviceCategories.find((c) => c.id === service.categoryId);
+  const hasCategoryPage = categoriesContent.some(
+    (c) => c.id === service.categoryId,
+  );
+  const categoryLink = hasCategoryPage
+    ? `/services/${service.categoryId}`
+    : "/services";
+
+  const quickStats = [
+    {
+      icon: "bi-clock",
+      label: labels.processing,
+      value: service.processingTime,
+    },
+    { icon: "bi-cash", label: labels.fee, value: service.fee },
+    { icon: "bi-building", label: labels.office, value: service.office },
+  ].filter((stat) => Boolean(stat.value));
+
+  return {
+    id: service.id,
+    title: service.title,
+    fullTitle: service.title,
+    category: category?.name ?? service.category,
+    categoryLink,
+    badgeText: category?.name ?? service.category,
+    badgeIcon: category?.icon ?? "bi-grid",
+    description: service.description,
+    quickStats,
+    processSteps: [],
+    requirements: [],
+    faqs: [],
+    office: {
+      name: service.office,
+      location: "",
+      phone: siteConfig.contact.phoneDisplay,
+      hours: "",
+    },
+    relatedServices: [
+      ...(hasCategoryPage
+        ? [{ title: category?.name ?? service.category, link: categoryLink }]
+        : []),
+      { title: labels.allServices, link: "/services" },
+    ],
+    isPartial: true,
+  };
+}
