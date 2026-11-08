@@ -68,6 +68,15 @@ export default function GovernmentPage() {
             <p style={{ color: "var(--color-text-light)" }}>
               {t("gov-executive-desc", { municipality })}
             </p>
+            <p
+              style={{
+                color: "var(--color-text-light)",
+                fontSize: "0.875rem",
+                marginTop: "var(--spacing-xs)",
+              }}
+            >
+              {t("gov-contact-note")}
+            </p>
           </div>
 
           <div className="grid grid-2" style={{ gap: "var(--spacing-lg)" }}>

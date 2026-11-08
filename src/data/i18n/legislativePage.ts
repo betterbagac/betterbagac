@@ -94,7 +94,7 @@ export const legislativePage: TranslationDictionary = {
       "Citizens can attend Sangguniang Bayan sessions and participate in public hearings for proposed ordinances.",
     "leg-info-transparency": "Transparency",
     "leg-info-transparency-desc":
-      "All enacted ordinances and resolutions are made available to the public as part of our commitment to open governance.",
+      "Enacted ordinances and resolutions are public records. This project links to them wherever the LGU publishes them; certified copies are issued by the Sangguniang Bayan Secretariat.",
 
     // Framework pages
     "leg-ordinance-framework-subtitle":
@@ -243,7 +243,7 @@ export const legislativePage: TranslationDictionary = {
       "Maaaring dumalo ang mga mamamayan sa mga sesyon ng Sangguniang Bayan at makibahagi sa public hearing para sa mga panukalang ordinansa.",
     "leg-info-transparency": "Transparensiya",
     "leg-info-transparency-desc":
-      "Ang lahat ng naipatibay na ordinansa at resolusyon ay bukas sa publiko bilang bahagi ng aming pangako sa bukas na pamamahala.",
+      "Ang mga naipatibay na ordinansa at resolusyon ay pampublikong talaan. Nililink ng proyektong ito ang mga ito saanman inilalathala ng LGU; ang mga sertipikadong kopya ay ipinagkakaloob ng Secretariat ng Sangguniang Bayan.",
 
     // Framework pages
     "leg-ordinance-framework-subtitle":

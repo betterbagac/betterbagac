@@ -13,6 +13,8 @@ export const homePage: TranslationDictionary = {
     "hero-tag-birth": "Birth Certificate",
     "hero-tag-business": "Business Permit",
     "hero-tag-rpt": "Real Property Tax",
+    "home-leadership-note":
+      "Contact details are the ones the LGU publishes for each office. BetterBagac reproduces them and does not relay messages.",
 
     // Quick stats
     "quickstats-title": `${siteConfig.municipalityName} at a Glance`,
@@ -82,6 +84,8 @@ export const homePage: TranslationDictionary = {
     "hero-tag-birth": "Sertipiko ng Kapanganakan",
     "hero-tag-business": "Permit sa Negosyo",
     "hero-tag-rpt": "Buwis sa Ari-arian",
+    "home-leadership-note":
+      "Ang mga detalye ng ugnayan ay yaong inilalathala ng LGU para sa bawat opisina. Ginagaya lamang ng BetterBagac ang mga ito at hindi ito nagpapasa ng mensahe.",
 
     // Quick stats
     "quickstats-title": `${siteConfig.municipalityName} sa Isang Tingin`,

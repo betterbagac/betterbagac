@@ -260,7 +260,7 @@ export default function FAQPage() {
                 <p>{t("faq-contact-help")}</p>
               </div>
               <Link href="/contact" className="btn btn-primary">
-                {t("contact-title")}
+                {t("faq-contact-cta")}
               </Link>
             </div>
           </div>

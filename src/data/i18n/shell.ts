@@ -8,12 +8,17 @@ export const shell: TranslationDictionary = {
   en: {
     // Header
     "header-main-nav": "Main Navigation",
+    "header-budget-overview": "Budget overview",
+    "nav-public-record": "Public record",
     "header-ordinance-framework": "Ordinance Framework",
     "header-resolution-framework": "Resolution Framework",
     "header-switch-en": "Switch to English",
     "header-switch-fil": "Switch to Filipino",
     "header-open-menu": "Open navigation menu",
     "header-close-menu": "Close navigation menu",
+
+    // Skip link
+    "shell-skip-link": "Skip to main content",
 
     // Hotline bar
     "hotline-emergency": "Emergency",
@@ -40,7 +45,7 @@ export const shell: TranslationDictionary = {
     "footer-volunteer": "Volunteer with us",
     "footer-contribute": "Contribute code with us",
     "footer-source-note":
-      "All public information sourced from official government portals.",
+      "Public information is compiled from official government portals. BetterBagac is an independent, volunteer-run project, not an official government website.",
     "footer-version": "Ver.",
 
     // Error pages
@@ -58,12 +63,17 @@ export const shell: TranslationDictionary = {
   fil: {
     // Header
     "header-main-nav": "Pangunahing Nabigasyon",
+    "header-budget-overview": "Buod ng badyet",
+    "nav-public-record": "Pampublikong talaan",
     "header-ordinance-framework": "Balangkas ng Ordinansa",
     "header-resolution-framework": "Balangkas ng Resolusyon",
     "header-switch-en": "Ilipat sa Ingles",
     "header-switch-fil": "Ilipat sa Filipino",
     "header-open-menu": "Buksan ang menu ng nabigasyon",
     "header-close-menu": "Isara ang menu ng nabigasyon",
+
+    // Skip link
+    "shell-skip-link": "Lumaktaw sa pangunahing nilalaman",
 
     // Hotline bar
     "hotline-emergency": "Emerhensiya",
@@ -90,7 +100,7 @@ export const shell: TranslationDictionary = {
     "footer-volunteer": "Magboluntaryo kasama namin",
     "footer-contribute": "Mag-ambag ng code kasama namin",
     "footer-source-note":
-      "Lahat ng pampublikong impormasyon ay mula sa mga opisyal na portal ng pamahalaan.",
+      "Hinango ang pampublikong impormasyon mula sa mga opisyal na portal ng pamahalaan. Ang BetterBagac ay isang malaya at boluntaryong proyekto, hindi opisyal na website ng pamahalaan.",
     "footer-version": "Bersyon",
 
     // Error pages

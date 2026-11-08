@@ -9,6 +9,8 @@ export const governmentPage: TranslationDictionary = {
     "gov-executive-branch": "Executive Branch",
     "gov-executive-desc":
       "The executive officials leading {municipality}'s governance",
+    "gov-contact-note":
+      "Contact details below are the ones the LGU publishes for these offices. BetterBagac reproduces them as-is: it cannot take messages, decide, or act on your behalf.",
     "gov-legislative-branch": "Legislative Branch",
     "gov-sb-members": "Sangguniang Bayan Members",
     "gov-sb-members-desc":
@@ -34,7 +36,7 @@ export const governmentPage: TranslationDictionary = {
     "gov-committee-youth": "Youth and Sports Development",
     "gov-barangay-units": "Barangay Units",
     "gov-barangays-title": "Barangays of {municipality}",
-    "gov-barangays-desc": "14 barangays serving our community",
+    "gov-barangays-desc": "14 barangays in the municipality",
   },
   fil: {
     "gov-breadcrumb-aria": "Landas ng pahina",
@@ -44,6 +46,8 @@ export const governmentPage: TranslationDictionary = {
     "gov-executive-branch": "Sangay Tagapagpaganap",
     "gov-executive-desc":
       "Ang mga opisyal na tagapagpaganap na namumuno sa pamamahala ng {municipality}",
+    "gov-contact-note":
+      "Ang mga detalye sa ibaba ay yaong inilalathala ng LGU para sa mga opisinang ito. Ginagaya lamang ng BetterBagac ang mga ito: hindi ito makakatanggap ng mensahe, makakapagpasya, o kumilos para sa inyo.",
     "gov-legislative-branch": "Sangay Lehislatibo",
     "gov-sb-members": "Mga Miyembro ng Sangguniang Bayan",
     "gov-sb-members-desc":
@@ -69,6 +73,6 @@ export const governmentPage: TranslationDictionary = {
     "gov-committee-youth": "Pagpapaunlad ng Kabataan at Palakasan",
     "gov-barangay-units": "Mga Yunit ng Barangay",
     "gov-barangays-title": "Mga Barangay ng {municipality}",
-    "gov-barangays-desc": "14 na barangay na naglilingkod sa ating komunidad",
+    "gov-barangays-desc": "14 na barangay sa munisipyo",
   },
 };

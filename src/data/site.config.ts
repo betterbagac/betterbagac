@@ -32,10 +32,10 @@ export const siteConfig = {
 
   fullName,
 
-  title: `${fullName} | Official Portal`,
+  title: `${fullName} | Independent Bagac Community Portal`,
   titleTemplate: `%s | ${fullName}`,
-  description: `${fullName} - Your digital gateway to ${municipality.lguName} services.`,
-  tagline: `Empowering the people of ${municipality.name} with transparent access to the services, programs, and public funds of ${municipality.lguName}.`,
+  description: `${fullName} is an independent, volunteer-run portal that compiles the services, budgets, statistics, and public records of the ${municipality.officialName}, ${municipality.province}. It is not an official government website.`,
+  tagline: `An independent, volunteer-run guide to the services, programs, and public funds of the ${municipality.officialName} — built by residents of ${municipality.name}, for residents.`,
   keywords: [
     project.name,
     `${municipality.name} ${municipality.province}`,
@@ -43,7 +43,7 @@ export const siteConfig = {
     "municipal services",
   ],
 
-  themeColor: "#1a5f2a",
+  themeColor: "#0a3d5c",
 
   assets: {
     logo: "/assets/images/logo/betterbagac-logo-long.svg",
@@ -52,6 +52,31 @@ export const siteConfig = {
     openGraph: "/assets/images/banners/opengraph.png",
   },
 
+  /**
+   * Categorical series colours for Chart.js, in draw order. Charts render to a
+   * canvas, so they cannot read CSS custom properties; keeping the ramp here
+   * means a fork restyles the charts in the same place as the rest of the
+   * brand. Mirrors the palette in `public/assets/css/style.css`.
+   */
+  chartPalette: [
+    "#0A3D5C", // Sea Navy
+    "#FCD116", // Flag Yellow
+    "#0A7C5E", // Verified Green
+    "#0B5C8F", // Reference Blue
+    "#0F5375", // Sea Mid
+    "#7EB8B0", // Sea Glass
+    "#5B3A24", // Narra
+    "#C9A227", // Flag Yellow, deep
+    "#8CACF3", // Reference Blue, light
+    "#9A4E00", // Flag Ink
+  ],
+
+  /**
+   * Contact details **published by the LGU** and reproduced here so residents can
+   * find them. BetterBagac does not operate these lines and cannot transact or
+   * decide for the Municipality. The project's own inbox is `project.volunteerEmail`.
+   * Update from https://bagac.gov.ph/contact-us/ when it changes.
+   */
   contact: {
     email: "ronmichaelalexisdelrosario@gmail.com",
     mobile: "09608848515",
@@ -80,6 +105,8 @@ export const siteConfig = {
   },
 
   links: {
+    /** Separate deployment: the FY2027 budget record. Not part of this app. */
+    publicRecord: "https://transparency.betterbagac.org/",
     officialPortal: "https://bagac.gov.ph/",
     facebook: "https://www.facebook.com/LGUbagac",
     transparencySeal: "https://bagac.gov.ph/transparency-seal/",

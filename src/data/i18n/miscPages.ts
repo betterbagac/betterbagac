@@ -6,10 +6,11 @@ export const miscPages: TranslationDictionary = {
   en: {
     // Accessibility statement
     "acc-title": "Accessibility Statement",
-    "acc-subtitle": "Our commitment to digital accessibility for all citizens",
+    "acc-subtitle":
+      "How this volunteer project works to keep the site usable for everyone",
     "acc-conformant": "Conformant",
-    "acc-commitment": "Our Commitment",
-    "acc-commitment-desc": `${siteConfig.displayName} is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards.`,
+    "acc-commitment": "Commitment",
+    "acc-commitment-desc": `${siteConfig.displayName} is a volunteer project, not an LGU office. We try to follow recognised accessibility practice and fix issues as they are reported. This statement describes this website only — not the municipality's own services or documents.`,
     "acc-features": "Accessibility Features",
     "acc-feature-keyboard-title": "Keyboard Navigation",
     "acc-feature-keyboard-desc":
@@ -33,8 +34,8 @@ export const miscPages: TranslationDictionary = {
     "acc-alternative-desc":
       "If you encounter difficulty accessing any information, contact us:",
     "acc-technical": "Technical Specifications",
-    "acc-promise": "Our Promise",
-    "acc-promise-desc": `${siteConfig.displayName} is committed to ensuring that our digital services are accessible to all citizens, regardless of ability. We view accessibility not as a feature, but as a fundamental right.`,
+    "acc-promise": "What we can promise",
+    "acc-promise-desc": `${siteConfig.displayName} is run by volunteers, so accessibility here is ongoing work rather than a certification. If something on this site is hard to use, tell us and we will try to fix it.`,
     "acc-last-updated": "Last updated: {date}",
 
     // News
@@ -84,10 +85,10 @@ export const miscPages: TranslationDictionary = {
     // Accessibility statement
     "acc-title": "Pahayag ng Aksesibilidad",
     "acc-subtitle":
-      "Aming pangako sa digital na aksesibilidad para sa lahat ng mamamayan",
+      "Paano pinagsisikapang panatilihing madaling gamitin ng lahat ang site na ito",
     "acc-conformant": "Sumusunod",
-    "acc-commitment": "Aming Pangako",
-    "acc-commitment-desc": `${siteConfig.displayName} ay nangangakong tiyakin ang digital na aksesibilidad para sa mga taong may kapansanan. Patuloy naming pinapabuti ang karanasan ng lahat at inilalapat ang mga kaugnay na pamantayan sa aksesibilidad.`,
+    "acc-commitment": "Pangako",
+    "acc-commitment-desc": `Ang ${siteConfig.displayName} ay isang boluntaryong proyekto, hindi opisina ng LGU. Sinusunod namin ang kinikilalang mga pamantayan sa aksesibilidad at inaayos ang mga isyung iniuulat. Tungkol lamang sa website na ito ang pahayag na ito — hindi sa mga serbisyo o dokumento ng munisipyo.`,
     "acc-features": "Mga Tampok ng Aksesibilidad",
     "acc-feature-keyboard-title": "Nabigasyon sa Keyboard",
     "acc-feature-keyboard-desc":
@@ -114,8 +115,8 @@ export const miscPages: TranslationDictionary = {
     "acc-alternative-desc":
       "Kung nahihirapan kang ma-access ang anumang impormasyon, makipag-ugnayan sa amin:",
     "acc-technical": "Teknikal na Detalye",
-    "acc-promise": "Aming Pangako",
-    "acc-promise-desc": `${siteConfig.displayName} ay nangangakong tiyakin na ang aming mga digital na serbisyo ay naa-access ng lahat ng mamamayan, anuman ang kakayahan. Itinuturing namin ang aksesibilidad hindi lamang bilang tampok kundi bilang pangunahing karapatan.`,
+    "acc-promise": "Ang maipapangako namin",
+    "acc-promise-desc": `Pinapatakbo ng mga boluntaryo ang ${siteConfig.displayName}, kaya patuloy na gawain ang aksesibilidad dito at hindi sertipikasyon. Kung may mahirap gamitin sa site na ito, sabihin sa amin at susubukan naming ayusin.`,
     "acc-last-updated": "Huling na-update: {date}",
 
     // News

@@ -91,6 +91,7 @@ export default function HomePage() {
               <span>{t("btn-view-officials")}</span>{" "}
               <i className="bi bi-arrow-right"></i>
             </Link>
+            <p>{t("home-leadership-note")}</p>
           </div>
           <div className="home-leadership-grid">
             <div className="home-leader-card">
@@ -132,6 +133,7 @@ export default function HomePage() {
             <Link href="/contact" className="home-section-link">
               {t("btn-view-all")} <i className="bi bi-arrow-right"></i>
             </Link>
+            <p>{t("section-contact-note")}</p>
           </div>
           <div className="home-contact-v2-grid">
             <a

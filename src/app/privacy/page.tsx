@@ -410,11 +410,14 @@ export default function PrivacyPage() {
               </section>
 
               <section id="contact" className="legal-section">
-                <h2>Contact Us</h2>
+                <h2>Contact the BetterBagac team</h2>
                 <p>
-                  If you have questions about this Privacy Policy, wish to
-                  exercise your data privacy rights, or have concerns about how
-                  your information is handled, please contact us:
+                  {siteConfig.fullName} is an independent, volunteer-run
+                  project, not an official government website. If you have
+                  questions about this Privacy Policy, wish to exercise your
+                  data privacy rights, or have concerns about how your
+                  information is handled on this site, write to the volunteers
+                  who run it:
                 </p>
                 <div className="legal-contact">
                   <a

@@ -52,7 +52,7 @@ const base: Record<Language, TranslationKeys> = {
 
     // Hero Section
     "hero-welcome": `Welcome to ${siteConfig.fullName}`,
-    "hero-subtitle": `Access government services, information, and resources for the people of ${siteConfig.municipalityName}, ${siteConfig.province}.`,
+    "hero-subtitle": `An independent, volunteer-run index of government services, records, and statistics for ${siteConfig.municipalityName}, ${siteConfig.province} — compiled from publicly available sources online.`,
     "hero-find-service": "Find a Service",
 
     // Popular Services
@@ -83,12 +83,14 @@ const base: Record<Language, TranslationKeys> = {
     "btn-view-officials": "View All Officials",
 
     // Contact Section
-    "section-contact": "Contact Information",
-    "contact-phone": "Phone",
-    "contact-email": "Email",
+    "section-contact": "Municipal Hall Contacts",
+    "section-contact-note":
+      "Published by the Municipal Government of Bagac. BetterBagac is an independent project: it does not operate these lines, cannot process transactions, and does not speak for the LGU.",
+    "contact-phone": "Municipal Hall trunkline",
+    "contact-email": "Mayor's Office email",
     "contact-address": "Address",
     "contact-hours": siteConfig.contact.hours,
-    "contact-response": "We'll respond within 24 hours",
+    "contact-response": "Published by the LGU",
     "contact-municipal-hall": "Municipal Hall",
 
     // Services Page
@@ -148,7 +150,8 @@ const base: Record<Language, TranslationKeys> = {
     "faq-technical": "Technical Questions",
     "faq-still-questions": "Still have questions?",
     "faq-contact-help":
-      "If you didn't find the answer you were looking for, please don't hesitate to contact us.",
+      "This site only compiles public information. For a decision on your own case, contact the municipal office that handles it — or email us if a page here is wrong or incomplete.",
+    "faq-contact-cta": "See contact details",
 
     // Legislative
     "legislative-ordinances": "Ordinances",
@@ -156,7 +159,7 @@ const base: Record<Language, TranslationKeys> = {
 
     // Footer
     "footer-title": siteConfig.displayName,
-    "footer-desc": `A service-first information portal for the ${siteConfig.municipality.officialName}, ${siteConfig.province}.`,
+    "footer-desc": `An independent, volunteer-run information portal for ${siteConfig.municipalityName}, ${siteConfig.province}. Not an official government website.`,
     "footer-quick-links": "Quick Links",
     "footer-all-services": "All Services",
     "footer-officials": "Officials",
@@ -183,7 +186,7 @@ const base: Record<Language, TranslationKeys> = {
 
     // Hero Section
     "hero-welcome": `Maligayang Pagdating sa ${siteConfig.fullName}`,
-    "hero-subtitle": `I-access ang mga serbisyo ng pamahalaan, impormasyon, at mga mapagkukunan para sa mga mamamayan ng ${siteConfig.municipalityName}, ${siteConfig.province}.`,
+    "hero-subtitle": `Isang malaya at boluntaryong indeks ng mga serbisyo, talaan, at estadistika ng pamahalaan para sa ${siteConfig.municipalityName}, ${siteConfig.province} — hinango mula sa mga pampublikong mapagkukunan sa internet.`,
     "hero-find-service": "Maghanap ng Serbisyo",
 
     // Popular Services
@@ -215,12 +218,14 @@ const base: Record<Language, TranslationKeys> = {
     "btn-view-officials": "Tingnan Lahat ng Opisyal",
 
     // Contact Section
-    "section-contact": "Impormasyon sa Pakikipag-ugnayan",
-    "contact-phone": "Telepono",
-    "contact-email": "Email",
+    "section-contact": "Mga Ugnayan sa Munisipyo",
+    "section-contact-note":
+      "Inilathala ng Pamahalaang Munisipal ng Bagac. Ang BetterBagac ay isang malayang proyekto: hindi nito pinapatakbo ang mga linyang ito, hindi ito makakapagproseso ng transaksyon, at hindi ito nagsasalita para sa LGU.",
+    "contact-phone": "Pangunahing linya ngMunisipyo",
+    "contact-email": "Email ng Opisina ng Punong Bayan",
     "contact-address": "Tirahan",
     "contact-hours": `Lunes-Biyernes: ${siteConfig.contact.officeOpen}`,
-    "contact-response": "Sasagutin namin sa loob ng 24 na oras",
+    "contact-response": "Inilathala ng LGU",
     "contact-municipal-hall": "Munisipyo",
 
     // Services Page
@@ -282,7 +287,8 @@ const base: Record<Language, TranslationKeys> = {
     "faq-technical": "Mga Teknikal na Tanong",
     "faq-still-questions": "May tanong pa ba kayo?",
     "faq-contact-help":
-      "Kung hindi ninyo nakita ang sagot na hinahanap, huwag mag-atubiling makipag-ugnayan sa amin.",
+      "Nangongolekta lamang ng pampublikong impormasyon ang site na ito. Para sa desisyon sa inyong sariling usapin, makipag-ugnayan sa opisina ng munisipyo na humahawak nito — o mag-email sa amin kung may mali o kulang sa pahina dito.",
+    "faq-contact-cta": "Tingnan ang mga detalye ng ugnayan",
 
     // Legislative
     "legislative-ordinances": "Mga Ordinansa",
@@ -290,7 +296,7 @@ const base: Record<Language, TranslationKeys> = {
 
     // Footer
     "footer-title": siteConfig.displayName,
-    "footer-desc": `Isang portal ng impormasyon na inuuna ang serbisyo para sa ${siteConfig.municipality.officialName}, ${siteConfig.province}.`,
+    "footer-desc": `Isang malaya at boluntaryong portal ng impormasyon para sa ${siteConfig.municipalityName}, ${siteConfig.province}. Hindi ito opisyal na website ng pamahalaan.`,
     "footer-quick-links": "Mabilis na Links",
     "footer-all-services": "Lahat ng Serbisyo",
     "footer-officials": "Mga Opisyal",
