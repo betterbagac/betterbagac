@@ -12,11 +12,19 @@ export default function Footer() {
       <div className="container">
         <div className="footer-main-new">
           <div className="footer-brand">
-            <img
-              src={siteConfig.assets.logoWhite}
-              alt={`${siteConfig.displayName} logo`}
-              className="footer-logo"
-            />
+            <div className="footer-lockup">
+              <img
+                src={siteConfig.assets.markWhite}
+                alt=""
+                className="footer-mark"
+                width={490}
+                height={608}
+              />
+              <span className="footer-wordmark">
+                {siteConfig.name}
+                <span className="footer-wordmark-tld">.org</span>
+              </span>
+            </div>
             <p className="footer-tagline">{siteConfig.tagline}</p>
             <div className="footer-social-new">
               <a

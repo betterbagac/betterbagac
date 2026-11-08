@@ -317,9 +317,39 @@ p {
     gap: var(--spacing-sm)
 }
 
-.logo-img {
-    height: 50px;
-    width: auto
+.site-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none
+}
+
+.site-logo:hover {
+    text-decoration: none
+}
+
+.logo-mark {
+    display: block;
+    height: 44px;
+    width: auto;
+    flex-shrink: 0
+}
+
+.logo-wordmark {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
+    white-space: nowrap
+}
+
+/* Mirrors the wordmark SVG: the TLD sits on the baseline at ~63% of the cap height. */
+.logo-wordmark-tld {
+    font-size: 0.63em;
+    font-weight: 600;
+    letter-spacing: 0
 }
 
 .logo-text {
@@ -1083,6 +1113,8 @@ p {
     background: var(--color-bg-alt);
     border-radius: var(--radius-control);
     transition: all 0.2s ease;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .executive-contacts a:hover {
@@ -1093,6 +1125,7 @@ p {
 .executive-contacts i {
     color: var(--color-primary);
     font-size: 1rem;
+    flex-shrink: 0;
 }
 
 /* Page Header - Services & Other Pages */
@@ -1332,6 +1365,7 @@ p {
 
 .contact-card-content {
     flex: 1;
+    min-width: 0;
     padding: var(--spacing-md);
 }
 
@@ -1349,6 +1383,7 @@ p {
     font-weight: 600;
     color: var(--color-text);
     margin: 0 0 4px 0;
+    overflow-wrap: anywhere;
 }
 
 .contact-card-note {
@@ -2231,11 +2266,6 @@ h6 {
     flex-direction: column;
     gap: var(--spacing-md);
     align-items: flex-start;
-}
-
-.footer-logo {
-    height: 80px;
-    width: auto;
 }
 
 .footer-tagline {
@@ -5688,6 +5718,9 @@ cklist with Icons - Proper Indentation */
     gap: 8px;
     font-size: 0.875rem;
     color: var(--color-text-light);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: center;
 }
 
 .home-leader-contacts a:hover {
@@ -6059,6 +6092,7 @@ cklist with Icons - Proper Indentation */
     font-weight: 600;
     color: var(--color-text);
     margin: 0 0 4px;
+    overflow-wrap: anywhere;
 }
 
 .home-contact-v2-note {

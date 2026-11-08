@@ -20,12 +20,18 @@ export default function Header() {
     <header className="site-header">
       <div className="container header-inner">
         <div className="logo-container">
-          <Link href="/">
+          <Link href="/" className="site-logo">
             <img
-              src={siteConfig.assets.logo}
-              alt={`${siteConfig.displayName} Logo`}
-              className="logo-img"
+              src={siteConfig.assets.mark}
+              alt=""
+              className="logo-mark"
+              width={490}
+              height={608}
             />
+            <span className="logo-wordmark">
+              {siteConfig.name}
+              <span className="logo-wordmark-tld">.org</span>
+            </span>
           </Link>
         </div>
 

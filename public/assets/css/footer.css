@@ -25,10 +25,33 @@
     max-width: 320px;
 }
 
-.footer-logo {
-    height: 48px;
-    width: auto;
+.footer-lockup {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-bottom: 16px;
+}
+
+.footer-mark {
+    display: block;
+    height: 44px;
+    width: auto;
+    flex-shrink: 0;
+}
+
+.footer-wordmark {
+    font-family: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-white);
+}
+
+.footer-wordmark-tld {
+    font-size: 0.63em;
+    font-weight: 600;
+    letter-spacing: 0;
 }
 
 .footer-tagline {
@@ -218,6 +241,10 @@ ter Columns */
         max-width: 100%;
         text-align: center;
     }
+
+    .footer-lockup {
+        justify-content: center;
+    }
     
     .footer-social-new {
         justify-content: center;
@@ -236,11 +263,6 @@ ter Columns */
         flex-direction: column;
         align-items: center;
         text-align: center;
-    }
-    
-    .footer-logo {
-        margin-left: auto;
-        margin-right: auto;
     }
     
     .footer-column {

@@ -48,6 +48,8 @@ export const siteConfig = {
   assets: {
     logo: "/assets/images/logo/betterbagac-logo-long.svg",
     logoWhite: "/assets/images/logo/betterbagac-logo-long-white.svg",
+    mark: "/assets/images/logo/betterbagac-mark.svg",
+    markWhite: "/assets/images/logo/betterbagac-mark-white.svg",
     favicon: "/assets/images/logo/favicon.svg",
     openGraph: "/assets/images/banners/opengraph.png",
   },
