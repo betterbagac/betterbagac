@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import HotlineBar from "@/components/layout/HotlineBar";
 import InfoBar from "@/components/layout/InfoBar";
+import SkipLink from "@/components/layout/SkipLink";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { siteConfig } from "@/data/site.config";
 import { Providers } from "./providers";
@@ -79,9 +80,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <LanguageProvider>
-            <a href="#main-content" className="skip-link">
-              Skip to main content
-            </a>
+            <SkipLink />
             <HotlineBar />
             <Header />
             <InfoBar />
