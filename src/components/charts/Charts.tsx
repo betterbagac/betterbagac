@@ -15,6 +15,12 @@ import {
 } from "chart.js";
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { siteConfig } from "@/data/site.config";
+
+// Series colours live in site.config so a fork restyles charts without touching
+// this component. Chart.js paints to a canvas, so CSS custom properties cannot
+// be read here.
+const palette = siteConfig.chartPalette;
 
 // Register Chart.js components
 ChartJS.register(
@@ -39,12 +45,12 @@ export function PopulationTrendsChart() {
       {
         label: t("stats-chart-population"),
         data: [18241, 20906, 22353, 24202, 25568, 26936, 31365, 32799],
-        borderColor: "#0032a0",
+        borderColor: palette[0],
         backgroundColor: "rgba(0, 50, 160, 0.12)",
         fill: true,
         tension: 0.35,
-        pointBackgroundColor: "#0032a0",
-        pointBorderColor: "#fff",
+        pointBackgroundColor: palette[0],
+        pointBorderColor: "#ffffff",
         pointBorderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7,
@@ -123,19 +129,8 @@ export function PopulationDistributionChart() {
     datasets: [
       {
         data: [3729, 3480, 3468, 3460, 3319, 2814, 2135, 1920, 1884, 1511],
-        backgroundColor: [
-          "#0032a0",
-          "#F77F00",
-          "#06A77D",
-          "#0077BE",
-          "#8B5CF6",
-          "#EC4899",
-          "#14B8A6",
-          "#F59E0B",
-          "#6366F1",
-          "#003D82",
-        ],
-        borderColor: "#fff",
+        backgroundColor: palette,
+        borderColor: "#ffffff",
         borderWidth: 2,
         hoverBorderWidth: 2,
         hoverOffset: 6,
@@ -204,8 +199,8 @@ export function IncomeSourcesChart({
     datasets: [
       {
         data: [localValue, externalValue],
-        backgroundColor: ["#10b981", "#0ea5e9"],
-        borderColor: "#fff",
+        backgroundColor: [palette[2], palette[3]],
+        borderColor: "#ffffff",
         borderWidth: 2,
         hoverOffset: 4,
       },
@@ -275,8 +270,8 @@ export function ExpenditureChart({
     datasets: [
       {
         data: [gpsValue, socialValue, economicValue, debtValue],
-        backgroundColor: ["#3b82f6", "#8b5cf6", "#f59e0b", "#ef4444"],
-        borderColor: "#fff",
+        backgroundColor: palette.slice(0, 4),
+        borderColor: "#ffffff",
         borderWidth: 2,
         hoverOffset: 4,
       },
@@ -340,7 +335,7 @@ export function CMCIRankingsChart() {
       {
         label: t("stats-chart-overall-rank"),
         data: [172, 655, 246, 166, 200, 218, 116, 359, 44],
-        borderColor: "#0032a0",
+        borderColor: palette[0],
         backgroundColor: "rgba(0, 50, 160, 0.1)",
         fill: true,
         tension: 0.35,
@@ -429,8 +424,8 @@ export function PillarScoresTrendChart() {
           3.4251,
           4.4403,
         ],
-        borderColor: "#0032a0",
-        backgroundColor: "#0032a0",
+        borderColor: palette[0],
+        backgroundColor: palette[0],
         tension: 0.35,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -450,8 +445,8 @@ export function PillarScoresTrendChart() {
           8.2384,
           8.5939,
         ],
-        borderColor: "#f59e0b",
-        backgroundColor: "#f59e0b",
+        borderColor: palette[1],
+        backgroundColor: palette[1],
         tension: 0.35,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -471,8 +466,8 @@ export function PillarScoresTrendChart() {
           2.9511,
           3.3508,
         ],
-        borderColor: "#10b981",
-        backgroundColor: "#10b981",
+        borderColor: palette[2],
+        backgroundColor: palette[2],
         tension: 0.35,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -492,8 +487,8 @@ export function PillarScoresTrendChart() {
           10.2982,
           11.2791,
         ],
-        borderColor: "#0ea5e9",
-        backgroundColor: "#0ea5e9",
+        borderColor: palette[3],
+        backgroundColor: palette[3],
         tension: 0.35,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -503,8 +498,8 @@ export function PillarScoresTrendChart() {
       {
         label: t("stats-chart-innovation"),
         data: [null, null, null, null, null, null, 3.6167, 2.7567, 7.4175],
-        borderColor: "#8b5cf6",
-        backgroundColor: "#8b5cf6",
+        borderColor: palette[4],
+        backgroundColor: palette[4],
         tension: 0.35,
         pointRadius: 4,
         pointHoverRadius: 6,

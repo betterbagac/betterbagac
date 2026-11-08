@@ -95,7 +95,7 @@
 .accessibility-content .promise-card {
     margin-top: var(--spacing-xl);
     background: #e6f4ea;
-    border-left: 4px solid var(--color-success);
+    border: 1px solid rgba(10, 124, 94, 0.35);
 }
 
 .accessibility-content .promise-card h4 {

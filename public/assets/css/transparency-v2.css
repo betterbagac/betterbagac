@@ -22,7 +22,7 @@
     background: rgba(255, 255, 255, 0.12);
     color: white;
     padding: 6px 16px;
-    border-radius: 100px;
+    border-radius: var(--radius-chip);
     font-size: 0.8125rem;
     font-weight: 500;
     margin-bottom: 12px;
@@ -46,7 +46,7 @@
 /* SRE Section V2 */
 .sre-section-v2 {
     padding: 48px 0 64px;
-    background: #f8fafc;
+    background: #F8F9FA;
 }
 
 .sre-header-v2 {
@@ -92,7 +92,7 @@
 .sre-period-toggle {
     display: flex;
     background: white;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     padding: 4px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     border: 1px solid rgba(0, 0, 0, 0.06);
@@ -105,7 +105,7 @@
     padding: 10px 22px;
     border: none;
     background: transparent;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     cursor: pointer;
     transition: all 0.2s ease;
     min-width: 85px;
@@ -150,7 +150,7 @@
 
 .sre-metric-card {
     background: white;
-    border-radius: 14px;
+    border-radius: var(--radius-container);
     padding: 18px;
     display: flex;
     align-items: center;
@@ -169,7 +169,7 @@
 .sre-metric-icon {
     width: 44px;
     height: 44px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,25 +178,25 @@
 }
 
 .sre-metric-income .sre-metric-icon {
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: linear-gradient(135deg, #0A7C5E 0%, #086B50 100%);
     color: white;
     box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
 }
 
 .sre-metric-expense .sre-metric-icon {
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    background: linear-gradient(135deg, #F77F00 0%, #B25A00 100%);
     color: white;
     box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
 }
 
 .sre-metric-net .sre-metric-icon {
-    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    background: linear-gradient(135deg, #0B5C8F 0%, #084A75 100%);
     color: white;
     box-shadow: 0 3px 10px rgba(59, 130, 246, 0.3);
 }
 
 .sre-metric-balance .sre-metric-icon {
-    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
     color: white;
     box-shadow: 0 3px 10px rgba(139, 92, 246, 0.3);
 }
@@ -236,7 +236,7 @@
 
 .sre-breakdown-panel {
     background: white;
-    border-radius: 16px;
+    border-radius: var(--radius-container);
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(0, 0, 0, 0.05);
@@ -285,13 +285,13 @@
     align-items: center;
     gap: 10px;
     padding: 10px 12px;
-    background: #f8fafc;
-    border-radius: 8px;
+    background: #F8F9FA;
+    border-radius: var(--radius-control);
     transition: all 0.2s ease;
 }
 
 .sre-breakdown-item:hover {
-    background: #f1f5f9;
+    background: #F8F9FA;
 }
 
 .sre-item-indicator {
@@ -302,27 +302,27 @@
 }
 
 .sre-indicator-local {
-    background: #10b981;
+    background: #0A7C5E;
 }
 
 .sre-indicator-external {
-    background: #0ea5e9;
+    background: #0B5C8F;
 }
 
 .sre-indicator-gps {
-    background: #3b82f6;
+    background: #0B5C8F;
 }
 
 .sre-indicator-social {
-    background: #8b5cf6;
+    background: var(--color-primary);
 }
 
 .sre-indicator-economic {
-    background: #f59e0b;
+    background: #F77F00;
 }
 
 .sre-indicator-debt {
-    background: #ef4444;
+    background: #D62828;
 }
 
 .sre-item-info {
@@ -362,7 +362,7 @@
     color: var(--color-text-light);
     background: rgba(0, 0, 0, 0.04);
     padding: 2px 6px;
-    border-radius: 4px;
+    border-radius: var(--radius-chip);
     font-weight: 500;
 }
 
@@ -382,7 +382,7 @@
     padding: 12px 20px;
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     color: var(--color-text);
     font-size: 0.875rem;
     font-weight: 500;
@@ -452,7 +452,7 @@
 /* Project Card */
 .infra-project-v5 {
     background: white;
-    border-radius: 14px;
+    border-radius: var(--radius-container);
     border: 1px solid rgba(0, 0, 0, 0.06);
     overflow: hidden;
     transition: all 0.2s ease;
@@ -484,7 +484,7 @@
     background: var(--color-primary);
     color: white;
     padding: 5px 12px;
-    border-radius: 5px;
+    border-radius: var(--radius-chip);
     font-size: 0.75rem;
     font-weight: 700;
 }
@@ -493,10 +493,10 @@
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    background: rgba(0, 119, 190, 0.08);
+    background: rgba(11, 92, 143, 0.08);
     color: var(--color-info);
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: var(--radius-chip);
     font-size: 0.75rem;
     font-weight: 600;
 }
@@ -526,7 +526,7 @@
 /* Project Details */
 .infra-project-details {
     padding: 20px 24px;
-    background: #fafbfc;
+    background: #F8F9FA;
 }
 
 .infra-detail-row {
@@ -598,7 +598,7 @@
 /* Resources Section V2 */
 .resources-section-v2 {
     padding: 64px 0;
-    background: #f8fafc;
+    background: #F8F9FA;
 }
 
 .resources-header-v2 {
@@ -644,7 +644,7 @@
     align-items: center;
     gap: 16px;
     background: white;
-    border-radius: 14px;
+    border-radius: var(--radius-container);
     padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     text-decoration: none;
@@ -662,7 +662,7 @@
     width: 52px;
     height: 52px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -836,7 +836,7 @@
     align-items: center;
     gap: 6px;
     font-size: 0.8125rem;
-    color: #16a34a;
+    color: #0A7C5E;
     font-weight: 500;
 }
 
@@ -858,7 +858,7 @@
     gap: 32px;
     padding: 16px 24px;
     background: white;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     border: 1px solid rgba(0, 0, 0, 0.06);
     margin-bottom: 16px;
 }
@@ -903,7 +903,7 @@
     padding: 7px 12px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background: white;
-    border-radius: 6px;
+    border-radius: var(--radius-control);
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-text-light);
@@ -933,7 +933,7 @@
     font-size: 0.5625rem;
     padding: 2px 5px;
     background: rgba(0, 0, 0, 0.06);
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     font-weight: 600;
 }
 
@@ -944,7 +944,7 @@
 /* Table Wrapper */
 .dpwh-table-wrap {
     background: white;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     border: 1px solid rgba(0, 0, 0, 0.06);
     overflow: hidden;
 }
@@ -958,7 +958,7 @@
 }
 
 .dpwh-table thead {
-    background: #0032a0;
+    background: var(--color-primary);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -1040,7 +1040,7 @@
     color: var(--color-primary);
     background: rgba(26, 95, 42, 0.08);
     padding: 2px 5px;
-    border-radius: 3px;
+    border-radius: var(--radius-chip);
     letter-spacing: 0.2px;
 }
 
@@ -1048,34 +1048,34 @@
     font-size: 0.5rem;
     font-weight: 600;
     padding: 2px 6px;
-    border-radius: 6px;
+    border-radius: var(--radius-control);
     text-transform: uppercase;
     letter-spacing: 0.2px;
 }
 
 .dpwh-cat-badge.buildings {
     background: rgba(139, 92, 246, 0.1);
-    color: #7c3aed;
+    color: var(--color-primary-dark);
 }
 
 .dpwh-cat-badge.roads {
     background: rgba(59, 130, 246, 0.1);
-    color: #2563eb;
+    color: #084A75;
 }
 
 .dpwh-cat-badge.flood {
-    background: rgba(0, 119, 190, 0.1);
-    color: #0077be;
+    background: rgba(11, 92, 143, 0.1);
+    color: #0B5C8F;
 }
 
 .dpwh-cat-badge.water {
-    background: rgba(6, 182, 212, 0.1);
-    color: #0891b2;
+    background: rgba(11, 92, 143, 0.1);
+    color: #0B5C8F;
 }
 
 .dpwh-cat-badge.bridges {
     background: rgba(245, 158, 11, 0.12);
-    color: #b45309;
+    color: #9A4E00;
 }
 
 .dpwh-proj-title {
@@ -1136,7 +1136,7 @@
 .dpwh-badge {
     display: inline-block;
     padding: 3px 8px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     font-size: 0.625rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -1144,18 +1144,18 @@
 }
 
 .dpwh-badge.complete {
-    background: #dcfce7;
-    color: #166534;
+    background: #E6F4EA;
+    color: #086B50;
 }
 
 .dpwh-badge.ongoing {
-    background: #fef3c7;
-    color: #92400e;
+    background: #FBEFE0;
+    color: #7A3D00;
 }
 
 .dpwh-badge.procurement {
-    background: #e0e7ff;
-    color: #3730a3;
+    background: #E8F0FE;
+    color: var(--color-primary-dark);
 }
 
 /* Date Cell */
@@ -1180,7 +1180,7 @@
     padding: 9px 18px;
     background: white;
     border: 1px solid var(--color-primary);
-    border-radius: 6px;
+    border-radius: var(--radius-control);
     color: var(--color-primary);
     font-size: 0.75rem;
     font-weight: 600;
@@ -1249,11 +1249,11 @@
 /* Skeleton Loader */
 .dpwh-skeleton-row {
     height: 56px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #E5E7EB 25%, #E5E7EB 50%, #E5E7EB 75%);
     background-size: 200% 100%;
     animation: dpwh-shimmer 1.2s infinite;
     margin: 8px 16px;
-    border-radius: 4px;
+    border-radius: var(--radius-chip);
 }
 
 @keyframes dpwh-shimmer {
@@ -1356,10 +1356,10 @@
 .chart-center-value {
     font-size: 1.125rem;
     font-weight: 700;
-    color: #0032a0;
+    color: var(--color-primary);
 }
 
 .chart-center-text {
     font-size: 0.6875rem;
-    color: #6c757d;
+    color: #666666;
 }

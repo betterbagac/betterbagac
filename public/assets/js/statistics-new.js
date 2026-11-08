@@ -9,8 +9,8 @@ const COLORS = {
     primaryDark: '#002170',
     secondary: '#003D82',
     accent: '#F77F00',
-    success: '#06A77D',
-    info: '#0077BE'
+    success: '#0A7C5E',
+    info: '#0B5C8F'
 };
 
 // Barangay data (2020 Census)

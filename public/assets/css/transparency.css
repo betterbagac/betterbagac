@@ -32,7 +32,7 @@
     background: rgba(255,255,255,0.15);
     color: white;
     padding: 8px 20px;
-    border-radius: 50px;
+    border-radius: var(--radius-chip);
     font-size: 0.875rem;
     font-weight: 500;
     margin-bottom: 16px;
@@ -70,7 +70,7 @@
 
 .trans-metrics .metric-card {
     background: white;
-    border-radius: 16px;
+    border-radius: var(--radius-container);
     padding: 28px 24px;
     text-align: center;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -93,7 +93,7 @@
 .trans-metrics .metric-icon {
     width: 56px;
     height: 56px;
-    border-radius: 14px;
+    border-radius: var(--radius-container);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -148,7 +148,7 @@
     background: rgba(0,50,160,0.08);
     color: var(--color-primary);
     padding: 6px 14px;
-    border-radius: 50px;
+    border-radius: var(--radius-chip);
     font-size: 0.8125rem;
     font-weight: 600;
     margin-bottom: 12px;
@@ -177,7 +177,7 @@ come Section */
 
 .income-chart-wrap {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     padding: 24px;
     border: 1px solid rgba(0,0,0,0.06);
     height: 350px;
@@ -191,7 +191,7 @@ come Section */
 
 .income-category {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     border: 1px solid rgba(0,0,0,0.06);
     overflow: hidden;
 }
@@ -207,7 +207,7 @@ come Section */
 .income-category-icon {
     width: 44px;
     height: 44px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,7 +242,7 @@ come Section */
     color: var(--color-primary);
     background: rgba(0,50,160,0.08);
     padding: 4px 10px;
-    border-radius: 50px;
+    border-radius: var(--radius-chip);
 }
 
 .income-items {
@@ -279,7 +279,7 @@ iture Section */
 
 .expenditure-chart-wrap {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     padding: 24px;
     border: 1px solid rgba(0,0,0,0.06);
     height: 350px;
@@ -293,7 +293,7 @@ iture Section */
 
 .expenditure-item {
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     padding: 16px;
     border: 1px solid rgba(0,0,0,0.06);
     transition: all 0.2s ease;
@@ -314,7 +314,7 @@ iture Section */
     width: 40px;
     height: 40px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -348,7 +348,7 @@ iture Section */
 .expenditure-bar {
     height: 8px;
     background: var(--color-bg-alt);
-    border-radius: 4px;
+    border-radius: var(--radius-chip);
     margin-top: 12px;
     overflow: hidden;
 }
@@ -356,7 +356,7 @@ iture Section */
 .expenditure-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-info) 100%);
-    border-radius: 4px;
+    border-radius: var(--radius-chip);
     width: 0;
     transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -375,7 +375,7 @@ iture Section */
 ct Card */
 .project-card {
     background: white;
-    border-radius: 16px;
+    border-radius: var(--radius-container);
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     border: 1px solid rgba(0,0,0,0.04);
@@ -405,7 +405,7 @@ ct Card */
     background: rgba(255,255,255,0.2);
     color: white;
     padding: 6px 14px;
-    border-radius: 50px;
+    border-radius: var(--radius-chip);
     font-size: 0.875rem;
     font-weight: 500;
 }
@@ -440,7 +440,7 @@ ct Card */
 .project-detail {
     background: var(--color-bg-alt);
     padding: 16px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     text-align: center;
 }
 
@@ -491,7 +491,7 @@ ct Card */
     align-items: center;
     gap: 16px;
     background: white;
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     padding: 20px;
     border: 1px solid rgba(0,0,0,0.06);
     text-decoration: none;
@@ -508,7 +508,7 @@ ct Card */
     width: 56px;
     height: 56px;
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -648,7 +648,7 @@ uarter Selection Tabs */
     padding: 12px 24px;
     background: rgba(255,255,255,0.1);
     border: 2px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
+    border-radius: var(--radius-container);
     color: rgba(255,255,255,0.8);
     cursor: pointer;
     transition: all 0.3s ease;
@@ -745,7 +745,7 @@ uarter Selection Tabs */
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     color: white;
     padding: 8px 20px;
-    border-radius: 50px;
+    border-radius: var(--radius-chip);
     font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: 16px;
@@ -774,7 +774,7 @@ uarter Selection Tabs */
 
 .sre-quarter-card {
     background: white;
-    border-radius: 20px;
+    border-radius: var(--radius-container);
     overflow: hidden;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     border: 1px solid rgba(0,0,0,0.04);
@@ -834,7 +834,7 @@ uarter Selection Tabs */
 .sre-metric-icon {
     width: 40px;
     height: 40px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -902,7 +902,7 @@ uarter Selection Tabs */
     padding: 10px 20px;
     background: white;
     border: 1px solid rgba(0,0,0,0.1);
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     color: var(--color-primary);
     font-size: 0.875rem;
     font-weight: 600;
@@ -920,7 +920,7 @@ uarter Selection Tabs */
 /* Breakdown Section */
 .sre-breakdown-section {
     background: white;
-    border-radius: 20px;
+    border-radius: var(--radius-container);
     padding: 32px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
     border: 1px solid rgba(0,0,0,0.04);
@@ -946,14 +946,14 @@ uarter Selection Tabs */
     gap: 8px;
     background: var(--color-bg-alt);
     padding: 4px;
-    border-radius: 10px;
+    border-radius: var(--radius-control);
 }
 
 .sre-tab {
     padding: 8px 20px;
     border: none;
     background: transparent;
-    border-radius: 8px;
+    border-radius: var(--radius-control);
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--color-text-light);
@@ -979,7 +979,7 @@ uarter Selection Tabs */
 
 .sre-breakdown-card {
     background: var(--color-bg-alt);
-    border-radius: 16px;
+    border-radius: var(--radius-container);
     padding: 24px;
 }
 

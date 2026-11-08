@@ -82,7 +82,7 @@ export default function History() {
         .history-section .home-stats-v2-header h2 i { color: var(--color-primary); }
         .history-content { display: grid; grid-template-columns: 1fr 340px; gap: 32px; align-items: start; }
         .history-timeline { position: relative; padding-left: 28px; }
-        .history-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--color-primary) 0%, rgba(0,50,160,0.2) 100%); border-radius: 2px; }
+        .history-timeline::before { content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(180deg, var(--color-primary) 0%, rgba(0,50,160,0.2) 100%); border-radius: var(--radius-chip); }
         .timeline-item { position: relative; padding-bottom: 20px; opacity: 0; animation: fadeInUp 0.5s ease forwards; }
         .timeline-item:nth-child(1) { animation-delay: 0.1s; }
         .timeline-item:nth-child(2) { animation-delay: 0.2s; }
@@ -94,16 +94,16 @@ export default function History() {
         .timeline-item:last-child { padding-bottom: 0; }
         .timeline-marker { position: absolute; left: -28px; top: 4px; width: 14px; height: 14px; background: var(--color-bg); border: 3px solid var(--color-primary); border-radius: 50%; transition: all 0.3s ease; z-index: 1; }
         .timeline-item:hover .timeline-marker { background: var(--color-primary); transform: scale(1.2); box-shadow: 0 0 0 4px rgba(0,50,160,0.15); }
-        .timeline-content { background: var(--color-bg); border: 1px solid rgba(0,0,0,0.06); border-radius: 10px; padding: 16px 18px; transition: all 0.3s ease; }
+        .timeline-content { background: var(--color-bg); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-control); padding: 16px 18px; transition: all 0.3s ease; }
         .timeline-item:hover .timeline-content { border-color: var(--color-primary); box-shadow: 0 4px 16px rgba(0,50,160,0.1); transform: translateX(4px); }
-        .timeline-year { display: inline-block; background: var(--color-primary); color: white; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px; }
+        .timeline-year { display: inline-block; background: var(--color-primary); color: white; font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: var(--radius-container); margin-bottom: 8px; }
         .timeline-content p { font-size: 0.875rem; color: var(--color-text); margin: 0; line-height: 1.6; }
         .timeline-content p strong { color: var(--color-primary); }
         .timeline-content p em { font-style: italic; color: var(--color-text-light); }
         .history-summary { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 100px; }
-        .history-card { background: var(--color-bg); border: 1px solid rgba(0,0,0,0.06); border-radius: 12px; padding: 20px; display: flex; gap: 14px; align-items: flex-start; transition: all 0.3s ease; }
+        .history-card { background: var(--color-bg); border: 1px solid rgba(0,0,0,0.06); border-radius: var(--radius-container); padding: 20px; display: flex; gap: 14px; align-items: flex-start; transition: all 0.3s ease; }
         .history-card:hover { border-color: var(--color-primary); box-shadow: 0 4px 16px rgba(0,50,160,0.1); transform: translateY(-2px); }
-        .history-card-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .history-card-icon { width: 44px; height: 44px; background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%); border-radius: var(--radius-control); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .history-card-icon i { color: white; font-size: 1.25rem; }
         .history-card-content h4 { font-size: 0.9375rem; font-weight: 600; color: var(--color-text); margin: 0 0 6px 0; }
         .history-card-content p { font-size: 0.8125rem; color: var(--color-text-light); margin: 0; line-height: 1.5; }

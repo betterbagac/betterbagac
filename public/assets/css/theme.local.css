@@ -1,7 +1,128 @@
-/* Per-LGU token overrides. */
+/* Bagac brand layer. Loads after style.css, so dropping this file restores the
+   template look. Coast leads, Las Casas supports. */
 
 :root {
-  /* --color-primary: #0b4f9c; */
-  /* --color-primary-dark: #083a72; */
-  /* --color-accent: #e8930c; */
+    /* Sea navy structure. */
+    --color-primary: #0a3d5c;
+    --color-primary-dark: #062a41;
+    --color-secondary: #0f5375;
+
+    /* Warm paper ground. */
+    --color-bg-alt: #f7f2e8;
+    --color-hairline: #e7e1d6;
+
+    /* Info strip, darker than the hero. */
+    --color-night-watch: #052a3d;
+
+    /* Brand marks. Yellow is the logo's own; use --flag-ink for text. */
+    --flag: #fcd116;
+    --flag-ink: #6b5000;
+    --shore: #f7f2e8;
+    --shore-edge: #e8dcc6;
+    --sea-deep: #06364f;
+    --sea-mid: #0a4e68;
+    --sea-glass: #7eb8b0;
+    --narra: #5b3a24;
+}
+
+/* Hero: water. */
+.home-hero-v2 {
+    position: relative;
+    background: var(--sea-deep);
+    overflow: hidden;
+}
+
+/* Faded chart lines at the hero's foot. */
+.home-hero-v2::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 190px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 190' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%237EB8B0' stroke-linecap='round'%3E%3Cpath stroke-opacity='.1' stroke-width='1' d='M-60 34 C 240 14 420 50 640 30 S 1060 6 1240 20 S 1400 34 1520 30'/%3E%3Cpath stroke-opacity='.13' stroke-width='1' d='M-60 56 C 240 36 418 72 640 52 S 1058 28 1240 42 S 1400 56 1520 52'/%3E%3Cpath stroke-opacity='.16' stroke-width='1' d='M-60 78 C 236 58 412 96 640 74 S 1052 50 1240 64 S 1398 78 1520 74'/%3E%3Cpath stroke-opacity='.19' stroke-width='1' d='M-60 100 C 232 80 406 120 640 96 S 1046 72 1240 86 S 1396 100 1520 96'/%3E%3Cpath stroke-opacity='.22' stroke-width='1.1' d='M-60 122 C 228 102 400 144 640 118 S 1040 94 1240 108 S 1394 122 1520 118'/%3E%3Cpath stroke-opacity='.25' stroke-width='1.1' d='M-60 144 C 224 124 394 166 640 140 S 1034 116 1240 130 S 1392 144 1520 140'/%3E%3Cpath stroke-opacity='.28' stroke-width='1.1' d='M-60 166 C 220 146 388 188 640 162 S 1028 138 1240 152 S 1390 166 1520 162'/%3E%3Cpath stroke-opacity='.32' stroke-width='1.25' d='M-60 188 C 216 168 382 210 640 184 S 1022 160 1240 174 S 1388 188 1520 184'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 42%);
+    pointer-events: none;
+}
+
+/* Search wrapper styled as a plaster wall. */
+.home-hero-v2-search {
+    position: relative;
+    background: var(--shore);
+    border: 1px solid var(--shore-edge);
+    border-radius: var(--radius-chip);
+    padding: var(--spacing-lg);
+    box-shadow: 0 24px 48px rgba(3, 24, 36, 0.32);
+}
+
+/* Narra eave above the wall. */
+.home-hero-v2-search::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -18px;
+    left: -18px;
+    height: 10px;
+    background: var(--narra);
+    box-shadow: 0 8px 18px rgba(3, 24, 36, 0.4);
+}
+
+/* No shadow for the card inside the wall. */
+.home-hero-v2-search .home-search-box {
+    background: #fff;
+    border-color: rgba(91, 58, 36, 0.18);
+    box-shadow: none;
+}
+
+.home-hero-v2-search .home-search-box:focus-within {
+    border-color: rgba(91, 58, 36, 0.4);
+    box-shadow: none;
+}
+
+/* Warm tint for the quick links. */
+.home-search-tags a {
+    background: rgba(91, 58, 36, 0.07);
+    color: var(--color-primary);
+}
+
+.home-search-tags a:hover {
+    background: rgba(91, 58, 36, 0.13);
+    border-color: rgba(91, 58, 36, 0.2);
+}
+
+/* Yellow mark under section headings. */
+.home-section-header h2 {
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.home-section-header h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--flag);
+}
+
+/* Phones: drop the wall, keep the eave. */
+@media (max-width: 767px) {
+    .home-hero-v2-search {
+        padding: 0;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .home-hero-v2-search::before {
+        top: -8px;
+        right: 0;
+        left: 0;
+        height: 8px;
+        box-shadow: 0 6px 12px rgba(3, 24, 36, 0.35);
+    }
 }
