@@ -78,9 +78,9 @@ export const contactPage: TranslationDictionary = {
     "contact-breadcrumb": "Landas ng pahina",
 
     // Page header
-    "contact-title": "Ugnayan at mga Opisyal na Kanal",
+    "contact-title": "Ugnayan at mga Opisyal na Channel",
     "contact-subtitle":
-      "Ang BetterBagac ay isang malayang proyektong pinapatakbo ng mga boluntaryo, hindi ang Pamahalaang Munisipal ng Bagac. Nasa ibaba ang sariling mga nailathalang kanal ng LGU, at kung paano maaabot ang mga nagpapatakbo ng site na ito.",
+      "Ang BetterBagac ay isang malayang proyektong pinapatakbo ng mga boluntaryo, hindi ang Pamahalaang Munisipal ng Bagac. Nasa ibaba ang sariling mga nailathalang channel ng LGU, at kung paano maaabot ang mga nagpapatakbo ng site na ito.",
 
     // Official LGU channels
     "contact-official": "Opisyal",
@@ -93,7 +93,7 @@ export const contactPage: TranslationDictionary = {
     "contact-mayor-mobile": "Opisina ng Punong Bayan",
     "contact-mayor-email": "Email ng Opisina ng Punong Bayan",
     "contact-transactions-note":
-      "Para sa permit, sertipiko, at bayad, magtransaksyon saMunisipyo o sa mga kanal na inilalathala ng LGU. Hindi makakapagproseso ng transaksyon ang proyektong ito.",
+      "Para sa permit, sertipiko, at bayad, magtransaksyon sa Munisipyo o sa mga channel na inilalathala ng LGU. Hindi makakapagproseso ng transaksyon ang proyektong ito.",
 
     // This website
     "contact-project": "Ang site na ito",
