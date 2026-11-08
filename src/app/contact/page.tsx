@@ -31,40 +31,19 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Information */}
+      {/* Official LGU channels: reproduced here, not operated by this project */}
       <section className="section">
         <div className="container">
+          <div className="hotlines-header">
+            <div className="hotlines-title">
+              <span className="hotlines-badge">
+                <i className="bi bi-building-fill"></i> {t("contact-official")}
+              </span>
+              <h2>{t("contact-official-title")}</h2>
+            </div>
+            <p>{t("contact-official-desc")}</p>
+          </div>
           <div className="grid grid-3" style={{ gap: "var(--spacing-md)" }}>
-            <a
-              href={`mailto:${siteConfig.contact.email}`}
-              className="contact-card"
-            >
-              <div className="contact-card-icon">
-                <i className="bi bi-envelope-fill"></i>
-              </div>
-              <div className="contact-card-content">
-                <h3>{t("contact-email")}</h3>
-                <p className="contact-card-value">{siteConfig.contact.email}</p>
-                <span className="contact-card-note">
-                  {t("contact-response")}
-                </span>
-              </div>
-            </a>
-            <a
-              href={`tel:${siteConfig.contact.mobile}`}
-              className="contact-card"
-            >
-              <div className="contact-card-icon">
-                <i className="bi bi-phone-fill"></i>
-              </div>
-              <div className="contact-card-content">
-                <h3>{t("contact-mobile")}</h3>
-                <p className="contact-card-value">
-                  {siteConfig.contact.mobileDisplay}
-                </p>
-                <span className="contact-card-note">{t("contact-hours")}</span>
-              </div>
-            </a>
             <a
               href={`tel:${siteConfig.contact.phone}`}
               className="contact-card"
@@ -73,13 +52,54 @@ export default function ContactPage() {
                 <i className="bi bi-telephone-fill"></i>
               </div>
               <div className="contact-card-content">
-                <h3>{t("contact-phone")}</h3>
+                <h3>{t("contact-hall-phone")}</h3>
                 <p className="contact-card-value">
                   {siteConfig.contact.phoneDisplay}
                 </p>
                 <span className="contact-card-note">{t("contact-hours")}</span>
               </div>
             </a>
+            <a
+              href={`tel:${siteConfig.contact.mobile}`}
+              className="contact-card"
+            >
+              <div className="contact-card-icon">
+                <i className="bi bi-person-badge-fill"></i>
+              </div>
+              <div className="contact-card-content">
+                <h3>{t("contact-mayor-mobile")}</h3>
+                <p className="contact-card-value">
+                  {siteConfig.contact.mobileDisplay}
+                </p>
+                <span className="contact-card-note">{t("contact-hours")}</span>
+              </div>
+            </a>
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              className="contact-card"
+            >
+              <div className="contact-card-icon">
+                <i className="bi bi-envelope-fill"></i>
+              </div>
+              <div className="contact-card-content">
+                <h3>{t("contact-mayor-email")}</h3>
+                <p className="contact-card-value">{siteConfig.contact.email}</p>
+                <span className="contact-card-note">
+                  {t("contact-response")}
+                </span>
+              </div>
+            </a>
+          </div>
+          <div
+            className="contact-card-note"
+            style={{
+              display: "block",
+              marginTop: "var(--spacing-md)",
+              textAlign: "center",
+            }}
+          >
+            <p>{t("contact-transactions-note")}</p>
+            <p>{t("contact-official-note")}</p>
           </div>
         </div>
       </section>
@@ -259,6 +279,12 @@ export default function ContactPage() {
               </span>
             </a>
           </div>
+          <p
+            className="contact-card-note"
+            style={{ display: "block", marginTop: "var(--spacing-md)" }}
+          >
+            {t("contact-hotlines-source")}
+          </p>
         </div>
       </section>
 
@@ -312,6 +338,59 @@ export default function ContactPage() {
               <span className="hotline-card-number">
                 {siteConfig.hotlines.emergency}
               </span>
+            </a>
+          </div>
+          <p
+            className="contact-card-note"
+            style={{ display: "block", marginTop: "var(--spacing-md)" }}
+          >
+            {t("contact-hotlines-source")}
+          </p>
+        </div>
+      </section>
+
+      {/* This website: the volunteer team behind it, not an LGU office */}
+      <section className="section">
+        <div className="container">
+          <div className="hotlines-header">
+            <div className="hotlines-title">
+              <span className="hotlines-badge hotlines-badge--medical">
+                <i className="bi bi-people-fill"></i> {t("contact-project")}
+              </span>
+              <h2>{t("contact-project-title")}</h2>
+            </div>
+            <p>{t("contact-project-desc")}</p>
+          </div>
+          <div className="grid grid-2" style={{ gap: "var(--spacing-md)" }}>
+            <a
+              href={`mailto:${siteConfig.volunteerEmail}`}
+              className="contact-card"
+            >
+              <div className="contact-card-icon">
+                <i className="bi bi-envelope-heart"></i>
+              </div>
+              <div className="contact-card-content">
+                <h3>{t("contact-project-email")}</h3>
+                <p className="contact-card-value">
+                  {siteConfig.volunteerEmail}
+                </p>
+              </div>
+            </a>
+            <a
+              href={siteConfig.repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-card"
+            >
+              <div className="contact-card-icon">
+                <i className="bi bi-github"></i>
+              </div>
+              <div className="contact-card-content">
+                <h3>{t("contact-project-code")}</h3>
+                <p className="contact-card-value">
+                  {siteConfig.repo.replace("https://", "")}
+                </p>
+              </div>
             </a>
           </div>
         </div>
