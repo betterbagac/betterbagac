@@ -45,13 +45,13 @@ export default function HotlineBar() {
                 {t("hotline-mdrrmo")}: {hotlines.emergency}
               </span>
             </a>
-            <a
+            {/* <a
               href={`mailto:${siteConfig.volunteerEmail}`}
               className="hotline-item"
             >
               <i className="bi bi-envelope-heart" aria-hidden="true"></i>
               <span>{t("hotline-volunteer")}</span>
-            </a>
+            </a> */}
           </div>
         </div>
       </div>

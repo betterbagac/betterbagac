@@ -161,13 +161,13 @@ export default function Footer() {
                 {siteConfig.costToPeople}
               </span>
             </div>
-            <a
+            {/* <a
               href={`mailto:${siteConfig.volunteerEmail}`}
               className="footer-contribute"
             >
               <i className="bi bi-envelope-heart" aria-hidden="true"></i>{" "}
               {t("footer-volunteer")}
-            </a>
+            </a> */}
             <a
               href={siteConfig.repo}
               className="footer-contribute"
