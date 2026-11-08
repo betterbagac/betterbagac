@@ -82,6 +82,15 @@ export default function Footer() {
             <ul className="footer-links-new">
               <li>
                 <a
+                  href={siteConfig.links.publicRecord}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {t("nav-public-record")}
+                </a>
+              </li>
+              <li>
+                <a
                   href={siteConfig.links.openData}
                   target="_blank"
                   rel="noopener noreferrer"

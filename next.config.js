@@ -7,6 +7,15 @@ const nextConfig = {
   images: {
     domains: ["betterbagac.org"],
   },
+  async redirects() {
+    return [
+      {
+        source: "/transparency",
+        destination: "https://transparency.betterbagac.org/",
+        permanent: true,
+      },
+    ];
+  },
   // Preserve existing URL structure
   async rewrites() {
     return [

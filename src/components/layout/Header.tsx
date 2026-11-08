@@ -110,8 +110,26 @@ export default function Header() {
                 </li>
               </ul>
             </li>
-            <li>
+            <li className="has-dropdown">
               <Link href="/budget">{t("nav-transparency")}</Link>
+              <ul className="dropdown-menu">
+                <li>
+                  <Link href="/budget">{t("header-budget-overview")}</Link>
+                </li>
+                <li>
+                  <a
+                    href={siteConfig.links.publicRecord}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {t("nav-public-record")}{" "}
+                    <i
+                      className="bi bi-box-arrow-up-right"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </li>
+              </ul>
             </li>
             <li>
               <Link href="/contact">{t("nav-contact")}</Link>
